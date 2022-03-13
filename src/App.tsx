@@ -1,8 +1,17 @@
 import React from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  React.useEffect(() => {
+    axios.get('https://easy-list.herokuapp.com/spaces/all', {
+      method: 'get'
+    })
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
+  });
+
   return (
     <div className="App">
       <header className="App-header">
