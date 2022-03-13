@@ -1,6 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 
+// components
+import Header from '../../components/Header/Header';
+
+// styling
+import './homepage.css';
+
 function HomePage() {
   React.useEffect(() => {
     axios.get('https://easy-list.herokuapp.com/spaces/all', {
@@ -11,9 +17,7 @@ function HomePage() {
   });
 
   return (
-    <div className="home">
-      hello world
-    </div>
+    <Header />
   );
 }
 
