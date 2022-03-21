@@ -10,13 +10,13 @@ import './homepage.css';
 import Space from '../../components/Space/Space';
 
 interface ISpaceItem {
-  id: string;
+  _id: string;
   complete: string;
   name: string;
 }
 
 interface ISpace {
-  id: string;
+  _id: string;
   name: string;
   user: string;
   items: ISpaceItem[];

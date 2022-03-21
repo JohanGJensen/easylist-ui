@@ -8,13 +8,13 @@ import ItemList from '../ItemList/ItemList';
 import { Plus, Trash } from 'tabler-icons-react';
 
 interface ISpaceItem {
-  id: string;
+  _id: string;
   complete: string;
   name: string;
 }
 
 interface ISpace {
-  id: string;
+  _id: string;
   name: string;
   user: string;
   items: ISpaceItem[];
@@ -29,9 +29,9 @@ const HomePage: React.FC<IProps> = (props) => {
 
   return (
     <Container>
-      {data && data.map((space: ISpace) => {
+      {data && data.map((space: ISpace, i: number) => {
         return (
-          <Card shadow="sm" p="lg" style={{ marginBottom: '1.2rem' }}>
+          <Card key={`space-${i}`} shadow="sm" p="lg" style={{ marginBottom: '1.2rem' }}>
             <Group position={'apart'}>
               <Group direction={'column'} spacing={'xs'}>
                 <Text size={'xl'} weight={500}>{space.name}</Text>
@@ -43,7 +43,7 @@ const HomePage: React.FC<IProps> = (props) => {
               </Group>
             </Group>
             <Divider my="sm" />
-            <ItemList items={space.items} />
+            <ItemList spaceId={space._id} items={space.items} />
           </Card>
         )
       })}

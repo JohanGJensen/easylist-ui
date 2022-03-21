@@ -1,34 +1,33 @@
 import React from 'react';
 
 // components
-import { Checkbox, Text, ActionIcon, Group } from '@mantine/core';
+import { Text, Group } from '@mantine/core';
 
 // styling
-import { Trash } from 'tabler-icons-react';
+import ButtonGroup from './ButtonGroup';
 
 interface ISpaceItem {
-	id: string;
+	_id: string;
 	complete: string;
 	name: string;
 }
 
 interface IProps {
+	spaceId: string;
 	items: ISpaceItem[];
 }
 
 const ItemList: React.FC<IProps> = (props) => {
-	const { items } = props;
+	const { spaceId, items } = props;
 
 	return (
 		<>
-			{items && items.map((it) => {
+			{items && items.map((item, i) => {
+				console.log(spaceId, item)
 				return (
-					<Group position={'apart'}>
-						<Text size={'lg'}>{it.name}</Text>
-						<Group direction={'row'} spacing={'xs'}>
-							<Checkbox checked={true} color={'teal'} />
-							<ActionIcon size={'sm'} color={'red'} children={<Trash />} />
-						</Group>
+					<Group key={`item-${i}`} position={'apart'}>
+						<Text size={'lg'}>{item.name}</Text>
+						<ButtonGroup spaceId={spaceId} item={item} />
 					</Group>
 				)
 			})}
