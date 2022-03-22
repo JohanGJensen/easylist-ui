@@ -1,9 +1,11 @@
 import React from 'react';
-import axios from 'axios';
 
 // components
 import Header from '../../components/Header/Header';
 import { LoadingOverlay } from '@mantine/core';
+
+// api
+import { getAllSpaces } from '../../api';
 
 // styling
 import './homepage.css';
@@ -27,9 +29,7 @@ function HomePage() {
   const [data, setData] = React.useState<ISpace[]>(null);
 
   React.useEffect(() => {
-    axios.get('https://easy-list.herokuapp.com/spaces/all', {
-      method: 'get'
-    })
+    getAllSpaces()
       .then((data) => {
         setData(data.data);
         setLoading(false);

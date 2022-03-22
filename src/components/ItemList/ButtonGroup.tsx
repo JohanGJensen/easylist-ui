@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 // components
 import { Checkbox, ActionIcon, Group } from '@mantine/core';
+
+// api
+import { postNewItem } from '../../api';
 
 // styling
 import { Trash } from 'tabler-icons-react';
@@ -46,9 +48,8 @@ const ItemList: React.FC<IProps> = (props) => {
 
 		setComplete(newComplete);
 
-		axios.post(`https://easy-list.herokuapp.com/items/update/${spaceId}/${item._id}`, params)
+		postNewItem(spaceId, item._id, params)
 			.catch((error) => console.error(error));
-
 	}
 
 	return (
