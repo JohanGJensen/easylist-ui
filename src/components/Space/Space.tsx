@@ -43,7 +43,7 @@ const HomePage: React.FC<IProps> = (props) => {
               </Group>
             </Group>
             <Divider my="sm" />
-            <ItemList spaceId={space._id} items={space.items} />
+            <ItemList space={space} />
           </Card>
         )
       })}

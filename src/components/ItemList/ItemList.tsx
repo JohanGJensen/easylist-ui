@@ -12,22 +12,28 @@ interface ISpaceItem {
 	name: string;
 }
 
-interface IProps {
-	spaceId: string;
+interface ISpace {
+	_id: string;
+	name: string;
+	user: string;
 	items: ISpaceItem[];
 }
 
+interface IProps {
+	space: ISpace;
+}
+
 const ItemList: React.FC<IProps> = (props) => {
-	const { spaceId, items } = props;
+	const { space } = props;
 
 	return (
 		<>
-			{items && items.map((item, i) => {
-				console.log(spaceId, item)
+			{space.items && space.items.map((item, i) => {
+
 				return (
 					<Group key={`item-${i}`} position={'apart'}>
 						<Text size={'lg'}>{item.name}</Text>
-						<ButtonGroup spaceId={spaceId} item={item} />
+						<ButtonGroup space={space} item={item} />
 					</Group>
 				)
 			})}

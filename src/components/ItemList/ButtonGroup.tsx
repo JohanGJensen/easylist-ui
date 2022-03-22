@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Checkbox, ActionIcon, Group } from '@mantine/core';
 
 // api
-import { postNewItem } from '../../api';
+import { postNewItem, deleteItem } from '../../api';
 
 // styling
 import { Trash } from 'tabler-icons-react';
@@ -15,20 +15,27 @@ interface ISpaceItem {
 	name: string;
 }
 
+interface ISpace {
+	_id: string;
+	name: string;
+	user: string;
+	items: ISpaceItem[];
+}
+
 interface IProps {
-	spaceId: string;
+	space: ISpace;
 	item: ISpaceItem;
 }
 
 const ItemList: React.FC<IProps> = (props) => {
 	const [complete, setComplete] = useState<boolean>(false);
-	const { spaceId, item } = props;
+	const { space, item } = props;
 
 	useEffect(() => {
-		handleChecked(item.complete);
+		parseBoolean(item.complete);
 	}, []);
 
-	const handleChecked = (complete) => {
+	const parseBoolean = (complete) => {
 		if (typeof complete === 'string') {
 			setComplete((complete === 'true') ? true : false);
 		}
@@ -36,7 +43,7 @@ const ItemList: React.FC<IProps> = (props) => {
 		if (typeof complete === 'boolean') {
 			setComplete(complete);
 		}
-	}
+	};
 
 	const handleChange = () => {
 		const params = new URLSearchParams();
@@ -48,14 +55,26 @@ const ItemList: React.FC<IProps> = (props) => {
 
 		setComplete(newComplete);
 
-		postNewItem(spaceId, item._id, params)
+		postNewItem(space._id, item._id, params)
 			.catch((error) => console.error(error));
 	}
+
+	const handleDelete = () => {
+		deleteItem(space._id, item._id)
+			.then(() => {
+				// DELETE ITEM in UI
+				// we need a context provider / state
+				space.items.filter((spaceItem) => {
+					return spaceItem._id !== item._id;
+				})
+			})
+			.catch((error) => console.error(error));
+	};
 
 	return (
 		<Group direction={'row'} spacing={'xs'}>
 			<Checkbox onChange={handleChange} checked={complete} color={'teal'} />
-			<ActionIcon size={'sm'} color={'red'} children={<Trash />} />
+			<ActionIcon onClick={handleDelete} size={'sm'} color={'red'} children={<Trash />} />
 		</Group>
 	);
 }

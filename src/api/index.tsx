@@ -9,3 +9,7 @@ export const getAllSpaces = () => {
 export const postNewItem = (spaceId: string, itemId: string, params: URLSearchParams) => {
   return axios.post(`${HOST}/items/update/${spaceId}/${itemId}`, params);
 };
+
+export const deleteItem = (spaceId: string, itemId: string) => {
+  return axios.delete(`${HOST}/items/delete/${spaceId}/${itemId}`);
+}
