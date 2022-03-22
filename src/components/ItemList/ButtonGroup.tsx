@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { SpaceContext } from '../../providers/SpaceProvider';
 
 // components
 import { Checkbox, ActionIcon, Group } from '@mantine/core';
@@ -28,6 +29,7 @@ interface IProps {
 }
 
 const ItemList: React.FC<IProps> = (props) => {
+	const { data, handleData } = React.useContext(SpaceContext);
 	const [complete, setComplete] = useState<boolean>(false);
 	const { space, item } = props;
 
@@ -60,13 +62,20 @@ const ItemList: React.FC<IProps> = (props) => {
 	}
 
 	const handleDelete = () => {
+		const newItems = space.items.filter((sItem) => {
+			return sItem._id !== item._id;
+		});
+		const newData = data.map((dataSpace) => {
+			if (dataSpace._id === space._id) {
+				dataSpace.items = newItems;
+			}
+
+			return dataSpace;
+		});
+
 		deleteItem(space._id, item._id)
 			.then(() => {
-				// DELETE ITEM in UI
-				// we need a context provider / state
-				space.items.filter((spaceItem) => {
-					return spaceItem._id !== item._id;
-				})
+				handleData(newData);
 			})
 			.catch((error) => console.error(error));
 	};

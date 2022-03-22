@@ -1,31 +1,18 @@
 import React from 'react';
+import { SpaceContext } from '../../providers/SpaceProvider';
 
 // components
 import { Card, Container, Text, Divider, ActionIcon, Group } from '@mantine/core';
 import ItemList from '../ItemList/ItemList';
 
+// types
+import { ISpace } from '../../interfaces';
+
 // styling
 import { Plus, Trash } from 'tabler-icons-react';
 
-interface ISpaceItem {
-  _id: string;
-  complete: string;
-  name: string;
-}
-
-interface ISpace {
-  _id: string;
-  name: string;
-  user: string;
-  items: ISpaceItem[];
-}
-
-interface IProps {
-  data: ISpace[];
-}
-
-const HomePage: React.FC<IProps> = (props) => {
-  const { data } = props;
+const HomePage: React.FC = ({ }) => {
+  const { data } = React.useContext(SpaceContext);
 
   return (
     <Container>
