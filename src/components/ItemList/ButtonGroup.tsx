@@ -5,7 +5,7 @@ import { SpaceContext } from '../../providers/SpaceProvider';
 import { Checkbox, ActionIcon, Group } from '@mantine/core';
 
 // api
-import { postNewItem, deleteItem } from '../../api';
+import { postItemUpdate, deleteItem } from '../../api';
 
 // styling
 import { Trash } from 'tabler-icons-react';
@@ -57,7 +57,7 @@ const ItemList: React.FC<IProps> = (props) => {
 
 		setComplete(newComplete);
 
-		postNewItem(space._id, item._id, params)
+		postItemUpdate(space._id, item._id, params)
 			.catch((error) => console.error(error));
 	}
 

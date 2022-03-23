@@ -2,14 +2,12 @@ import React from 'react';
 import { SpaceContext } from '../../providers/SpaceProvider';
 
 // components
-import { Card, Container, Text, Divider, ActionIcon, Group } from '@mantine/core';
+import { Card, Container, Text, Divider, Group } from '@mantine/core';
 import ItemList from '../ItemList/ItemList';
+import ButtonGroup from './ButtonGroup';
 
 // types
 import { ISpace } from '../../interfaces';
-
-// styling
-import { Plus, Trash } from 'tabler-icons-react';
 
 const HomePage: React.FC = ({ }) => {
   const { data } = React.useContext(SpaceContext);
@@ -24,10 +22,7 @@ const HomePage: React.FC = ({ }) => {
                 <Text size={'xl'} weight={500}>{space.name}</Text>
                 <Text size={'sm'}>{space.user}</Text>
               </Group>
-              <Group direction={'row'} spacing={'md'}>
-                <ActionIcon size={'sm'} color={'teal'} children={<Plus />} />
-                <ActionIcon size={'sm'} color={'red'} children={<Trash />} />
-              </Group>
+              <ButtonGroup spaceId={space._id} />
             </Group>
             <Divider my="sm" />
             <ItemList space={space} />
