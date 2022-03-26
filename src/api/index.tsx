@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const HOST = 'http://0.0.0.0:5000'
-// const HOST = 'https://easy-list.herokuapp.com';
+// const HOST = 'http://0.0.0.0:5000'
+const HOST = 'https://easy-list.herokuapp.com';
 
 export const getAllSpaces = () => {
   return axios.get(`${HOST}/spaces/all`);
