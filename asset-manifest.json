@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/easylist-ui-pwa/static/css/main.e8641634.css",
+    "main.js": "/easylist-ui-pwa/static/js/main.ba13bde7.js",
+    "service-worker.js": "/easylist-ui-pwa/service-worker.js",
+    "index.html": "/easylist-ui-pwa/index.html",
+    "main.e8641634.css.map": "/easylist-ui-pwa/static/css/main.e8641634.css.map",
+    "main.ba13bde7.js.map": "/easylist-ui-pwa/static/js/main.ba13bde7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e8641634.css",
+    "static/js/main.ba13bde7.js"
+  ]
+}
