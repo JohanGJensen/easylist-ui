@@ -4,15 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { getAllSpaces } from '../api';
 
 // types
-import { ISpace, IState } from '../interfaces';
+import { ISpace, ISpaceItem, IState } from '../interfaces';
 
-const state: IState = {
-  data: null,
-  loading: true,
-  handleData: () => { }
-};
-
-export const SpaceContext = React.createContext(state);
+export const SpaceContext = React.createContext(null);
 
 const SpaceProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = React.useState<boolean>(true);
@@ -21,20 +15,57 @@ const SpaceProvider: React.FC = ({ children }) => {
   useEffect(() => {
     getAllSpaces()
       .then((data) => {
-        setData(data.data);
+        setData(data.data.result);
         setLoading(false);
       })
       .catch((error) => console.error(error));
   }, []);
 
+  const handleAddItem = (spaceId: string, item: ISpaceItem) => {
+    const newData: ISpace[] = data.map((space) => {
+      if (space._id === spaceId) {
+        space.items.push(item);
+      }
+
+      return space;
+    });
+
+    newData && setData(newData);
+  };
+
+  const handleDeleteItem = (space: ISpace, item: ISpaceItem) => {
+    const itemIndex = space.items.findIndex((sItem) => {
+      return sItem._id === item._id;
+    });
+
+    const newData = data.map((dataSpace) => {
+      if (dataSpace._id === space._id) {
+        dataSpace.items.splice(itemIndex, 1);
+      }
+
+      return dataSpace;
+    });
+
+    setData(newData);
+  };
+
   const handleData = (data: ISpace[]) => {
     setData(data);
+  };
+
+  const values: IState = {
+    data,
+    loading,
+    handleData,
+    handleDeleteItem,
+    handleAddItem
   }
 
   return (
-    <SpaceContext.Provider value={{ data, handleData, loading }}>
-      {children}
-    </SpaceContext.Provider>
+    <SpaceContext.Provider
+      value={values}
+      children={children}
+    />
   );
 }
 

@@ -20,7 +20,6 @@ const ItemList: React.FC<IProps> = (props) => {
 	return (
 		<>
 			{items && items.map((item, i) => {
-
 				return (
 					<Group key={`item-${i}`} position={'apart'}>
 						<Text size={'lg'}>{item.name}</Text>

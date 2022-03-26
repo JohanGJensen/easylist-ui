@@ -2,6 +2,8 @@ import { ISpace } from ".";
 
 export interface IState {
   data: ISpace[];
-  handleData: (d: any) => void;
   loading: boolean;
+  handleData: (d: any) => void;
+  handleDeleteItem: (space: ISpace, item: any) => void;
+  handleAddItem: (id: any, item: any) => void;
 }

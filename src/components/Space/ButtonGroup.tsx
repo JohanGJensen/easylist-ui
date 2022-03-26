@@ -2,10 +2,10 @@ import React, { ChangeEvent } from 'react';
 import { SpaceContext } from '../../providers/SpaceProvider';
 
 // components
-import { ActionIcon, Group, Modal, Input, Button } from '@mantine/core';
+import { ActionIcon, Group, Modal, Input, Button, Text } from '@mantine/core';
 
 // api
-import { postNewItem } from '../../api';
+import { deleteSpace, postNewItem } from '../../api';
 
 // styling
 import { Plus, ShoppingCart, Trash } from 'tabler-icons-react';
@@ -15,17 +15,19 @@ interface IProps {
 }
 
 const ButtonGroup: React.FC<IProps> = (props) => {
-  const context = React.useContext(SpaceContext);
+  const { handleAddItem } = React.useContext(SpaceContext);
   const { spaceId } = props;
   const [value, setValue] = React.useState<string>('');
-  const [modal, setModal] = React.useState<boolean>(false);
+  const [addItemModal, setAddItemModal] = React.useState<boolean>(false);
+  const [deleteItemModal, setDeleteItemModal] = React.useState<boolean>(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
   const handleModalClose = () => {
-    setModal(false);
+    setAddItemModal(false);
+    setDeleteItemModal(false);
     setValue('');
   };
 
@@ -39,19 +41,28 @@ const ButtonGroup: React.FC<IProps> = (props) => {
     params.append('complete', 'false');
 
     postNewItem(spaceId, params)
-      // TODO: Add new item in frontend - endpoint should return it 
+      .then(res => {
+        handleAddItem(spaceId, res.data.result);
+      })
       .catch(error => console.error(error));
 
     handleModalClose();
   };
 
+  const handleDeleteSpace = () => {
+    deleteSpace(spaceId)
+      .catch(error => console.error(error));
+
+    setDeleteItemModal(false);
+  }
+
   return (
     <>
       <Group direction={'row'} spacing={'md'}>
-        <ActionIcon onClick={() => setModal(true)} size={'sm'} color={'teal'} children={<Plus />} />
-        <ActionIcon size={'sm'} color={'red'} children={<Trash />} />
+        <ActionIcon onClick={() => setAddItemModal(true)} size={'sm'} color={'teal'} children={<Plus />} />
+        <ActionIcon onClick={() => setDeleteItemModal(true)} size={'sm'} color={'red'} children={<Trash />} />
       </Group>
-      <Modal onClose={handleModalClose} opened={modal} children={
+      <Modal onClose={handleModalClose} opened={addItemModal} children={
         <>
           <Input
             value={value}
@@ -71,6 +82,19 @@ const ButtonGroup: React.FC<IProps> = (props) => {
               size={'xs'}
               color={'teal'}
               children={'add & close'}
+            />
+          </Group>
+        </>
+      } />
+      <Modal onClose={handleModalClose} opened={deleteItemModal} children={
+        <>
+          <Text align={'center'} children={'are you sure?'} />
+          <Group position={'right'} style={{ marginTop: '1.5rem' }}>
+            <Button
+              onClick={handleDeleteSpace}
+              size={'xs'}
+              color={'red'}
+              children={'delete'}
             />
           </Group>
         </>

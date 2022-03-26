@@ -10,7 +10,12 @@ import ButtonGroup from './ButtonGroup';
 import { ISpace } from '../../interfaces';
 
 const HomePage: React.FC = ({ }) => {
+  // const [percentage, setPercentage] = React.useState<number>(75);
   const { data } = React.useContext(SpaceContext);
+
+  // React.useEffect(() => {
+
+  // }, [data]);
 
   return (
     <Container>
@@ -26,6 +31,8 @@ const HomePage: React.FC = ({ }) => {
             </Group>
             <Divider my="sm" />
             <ItemList space={space} />
+            {/* <Divider my="sm" />
+            <Progress value={percentage} size={'lg'} /> */}
           </Card>
         )
       })}

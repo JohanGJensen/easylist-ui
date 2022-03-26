@@ -1,9 +1,14 @@
 import axios from "axios";
 
-const HOST = 'https://easy-list.herokuapp.com';
+const HOST = 'http://0.0.0.0:5000'
+// const HOST = 'https://easy-list.herokuapp.com';
 
 export const getAllSpaces = () => {
   return axios.get(`${HOST}/spaces/all`);
+};
+
+export const deleteSpace = (spaceId: string) => {
+  return axios.delete(`${HOST}/spaces/delete/${spaceId}`);
 };
 
 export const postNewItem = (spaceId: string, params: URLSearchParams) => {
