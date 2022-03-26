@@ -10,16 +10,17 @@ import ButtonGroup from './ButtonGroup';
 import { ISpace } from '../../interfaces';
 
 const HomePage: React.FC = ({ }) => {
-  // const [percentage, setPercentage] = React.useState<number>(75);
   const { data } = React.useContext(SpaceContext);
+  const [spaces, setSpaces] = React.useState<ISpace[]>(data);
+  // const [percentage, setPercentage] = React.useState<number>(75);
 
-  // React.useEffect(() => {
-
-  // }, [data]);
+  React.useEffect(() => {
+    setSpaces(data);
+  }, [data]);
 
   return (
     <Container>
-      {data && data.map((space: ISpace, i: number) => {
+      {spaces && spaces.map((space: ISpace, i: number) => {
         return (
           <Card key={`space-${i}`} shadow="sm" p="lg" style={{ marginBottom: '1.2rem' }}>
             <Group position={'apart'}>

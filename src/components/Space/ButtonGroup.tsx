@@ -15,27 +15,23 @@ interface IProps {
 }
 
 const ButtonGroup: React.FC<IProps> = (props) => {
-  const { handleAddItem } = React.useContext(SpaceContext);
+  const { handleAddItem, handleDeleteSpace } = React.useContext(SpaceContext);
   const { spaceId } = props;
   const [value, setValue] = React.useState<string>('');
   const [addItemModal, setAddItemModal] = React.useState<boolean>(false);
   const [deleteItemModal, setDeleteItemModal] = React.useState<boolean>(false);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
-  const handleModalClose = () => {
+  const onModalClose = () => {
     setAddItemModal(false);
     setDeleteItemModal(false);
     setValue('');
   };
 
-  const handleAddItemAndMore = () => {
-
-  };
-
-  const handleAddItemAndClose = () => {
+  const onAddItemAndMore = () => {
     const params = new URLSearchParams();
     params.append('name', value);
     params.append('complete', 'false');
@@ -46,11 +42,12 @@ const ButtonGroup: React.FC<IProps> = (props) => {
       })
       .catch(error => console.error(error));
 
-    handleModalClose();
+    onModalClose();
   };
 
-  const handleDeleteSpace = () => {
+  const onDeleteSpace = () => {
     deleteSpace(spaceId)
+      .then(() => handleDeleteSpace(spaceId))
       .catch(error => console.error(error));
 
     setDeleteItemModal(false);
@@ -62,23 +59,23 @@ const ButtonGroup: React.FC<IProps> = (props) => {
         <ActionIcon onClick={() => setAddItemModal(true)} size={'sm'} color={'teal'} children={<Plus />} />
         <ActionIcon onClick={() => setDeleteItemModal(true)} size={'sm'} color={'red'} children={<Trash />} />
       </Group>
-      <Modal onClose={handleModalClose} opened={addItemModal} children={
+      <Modal onClose={onModalClose} opened={addItemModal} children={
         <>
           <Input
             value={value}
-            onChange={handleChange}
+            onChange={onChange}
             icon={<ShoppingCart size={16} />}
             placeholder={'add item to the list'}
           />
           <Group position={'right'} style={{ marginTop: '1.5rem' }}>
             <Button
-              onClick={handleAddItemAndMore}
+              onClick={onAddItemAndMore}
               size={'xs'}
               color={'teal'}
               children={'add more'}
             />
             <Button
-              onClick={handleAddItemAndClose}
+              onClick={onAddItemAndMore}
               size={'xs'}
               color={'teal'}
               children={'add & close'}
@@ -86,12 +83,12 @@ const ButtonGroup: React.FC<IProps> = (props) => {
           </Group>
         </>
       } />
-      <Modal onClose={handleModalClose} opened={deleteItemModal} children={
+      <Modal onClose={onModalClose} opened={deleteItemModal} children={
         <>
           <Text align={'center'} children={'are you sure?'} />
           <Group position={'right'} style={{ marginTop: '1.5rem' }}>
             <Button
-              onClick={handleDeleteSpace}
+              onClick={onDeleteSpace}
               size={'xs'}
               color={'red'}
               children={'delete'}

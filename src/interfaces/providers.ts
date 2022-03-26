@@ -5,5 +5,6 @@ export interface IState {
   loading: boolean;
   handleData: (d: any) => void;
   handleDeleteItem: (space: ISpace, item: any) => void;
+  handleDeleteSpace: (spaceId: string) => void;
   handleAddItem: (id: any, item: any) => void;
 }

@@ -47,7 +47,7 @@ const ItemList: React.FC<IProps> = (props) => {
 		}
 	};
 
-	const handleChange = () => {
+	const onChange = () => {
 		const params = new URLSearchParams();
 		const newComplete = !complete;
 
@@ -61,7 +61,7 @@ const ItemList: React.FC<IProps> = (props) => {
 			.catch((error) => console.error(error));
 	}
 
-	const handleDelete = () => {
+	const onDelete = () => {
 		deleteItem(space._id, item._id)
 			.then(() => {
 				handleDeleteItem(space, item);
@@ -71,8 +71,8 @@ const ItemList: React.FC<IProps> = (props) => {
 
 	return (
 		<Group direction={'row'} spacing={'xs'}>
-			<Checkbox onChange={handleChange} checked={complete} color={'teal'} />
-			<ActionIcon onClick={handleDelete} size={'sm'} color={'red'} children={<Trash />} />
+			<Checkbox onChange={onChange} checked={complete} color={'teal'} />
+			<ActionIcon onClick={onDelete} size={'sm'} color={'red'} children={<Trash />} />
 		</Group>
 	);
 }
