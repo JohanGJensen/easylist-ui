@@ -21,6 +21,10 @@ const SpaceProvider: React.FC = ({ children }) => {
       .catch((error) => console.error(error));
   }, []);
 
+  const handleAddSpace = (space: ISpace) => {
+    setData([...data, space]);
+  };
+
   const handleAddItem = (spaceId: string, item: ISpaceItem) => {
     const newData: ISpace[] = data.map((space) => {
       if (space._id === spaceId) {
@@ -57,7 +61,7 @@ const SpaceProvider: React.FC = ({ children }) => {
 
     newData.splice(spaceIndex, 1);
 
-    setData(newData);
+    setData([...newData]);
   };
 
   const handleData = (data: ISpace[]) => {
@@ -70,7 +74,8 @@ const SpaceProvider: React.FC = ({ children }) => {
     handleData,
     handleDeleteItem,
     handleDeleteSpace,
-    handleAddItem
+    handleAddItem,
+    handleAddSpace
   }
 
   return (

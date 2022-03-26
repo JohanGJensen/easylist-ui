@@ -11,16 +11,11 @@ import { ISpace } from '../../interfaces';
 
 const HomePage: React.FC = ({ }) => {
   const { data } = React.useContext(SpaceContext);
-  const [spaces, setSpaces] = React.useState<ISpace[]>(data);
   // const [percentage, setPercentage] = React.useState<number>(75);
-
-  React.useEffect(() => {
-    setSpaces(data);
-  }, [data]);
 
   return (
     <Container>
-      {spaces && spaces.map((space: ISpace, i: number) => {
+      {data && data.map((space: ISpace, i: number) => {
         return (
           <Card key={`space-${i}`} shadow="sm" p="lg" style={{ marginBottom: '1.2rem' }}>
             <Group position={'apart'}>

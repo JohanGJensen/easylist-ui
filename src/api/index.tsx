@@ -7,6 +7,10 @@ export const getAllSpaces = () => {
   return axios.get(`${HOST}/spaces/all`);
 };
 
+export const postNewSpace = (params: URLSearchParams) => {
+  return axios.post(`${HOST}/spaces/create`, params);
+};
+
 export const deleteSpace = (spaceId: string) => {
   return axios.delete(`${HOST}/spaces/delete/${spaceId}`);
 };

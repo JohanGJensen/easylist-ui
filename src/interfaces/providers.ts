@@ -7,4 +7,5 @@ export interface IState {
   handleDeleteItem: (space: ISpace, item: any) => void;
   handleDeleteSpace: (spaceId: string) => void;
   handleAddItem: (id: any, item: any) => void;
+  handleAddSpace: (space: ISpace) => void;
 }
