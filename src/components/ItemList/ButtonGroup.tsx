@@ -29,7 +29,7 @@ interface IProps {
 }
 
 const ItemList: React.FC<IProps> = (props) => {
-	const { handleDeleteItem } = React.useContext(SpaceContext);
+	const { handleUpdateItem, handleDeleteItem } = React.useContext(SpaceContext);
 	const [complete, setComplete] = useState<boolean>(false);
 	const { space, item } = props;
 
@@ -58,14 +58,13 @@ const ItemList: React.FC<IProps> = (props) => {
 		setComplete(newComplete);
 
 		postItemUpdate(space._id, item._id, params)
+			.then((res) => handleUpdateItem(space._id, res.data.result))
 			.catch((error) => console.error(error));
 	}
 
 	const onDelete = () => {
 		deleteItem(space._id, item._id)
-			.then(() => {
-				handleDeleteItem(space, item);
-			})
+			.then(() => handleDeleteItem(space, item))
 			.catch((error) => console.error(error));
 	};
 

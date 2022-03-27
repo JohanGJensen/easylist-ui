@@ -3,20 +3,29 @@ import { SpaceContext } from '../../providers/SpaceProvider';
 
 // components
 import Header from '../../components/Header/Header';
-import { LoadingOverlay } from '@mantine/core';
+import { Container, LoadingOverlay } from '@mantine/core';
+import Space from '../../components/Space/Space';
 
 // styling
 import './homepage.css';
-import Space from '../../components/Space/Space';
+
+// types
+import { ISpace } from '../../interfaces';
 
 function HomePage() {
-  const context = React.useContext(SpaceContext);
+  const { data, loading } = React.useContext(SpaceContext);
 
   return (
     <>
-      <LoadingOverlay visible={context.loading} />
+      <LoadingOverlay visible={loading} />
       <Header />
-      <Space />
+      <Container>
+        {data && data.map((space: ISpace) => {
+          return (
+            <Space key={`space-${space._id}`} space={space} />
+          )
+        })}
+      </Container>
     </>
   );
 }

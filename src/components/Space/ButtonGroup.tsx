@@ -21,6 +21,18 @@ const ButtonGroup: React.FC<IProps> = (props) => {
   const [addItemModal, setAddItemModal] = React.useState<boolean>(false);
   const [deleteItemModal, setDeleteItemModal] = React.useState<boolean>(false);
 
+  const addItem = () => {
+    const params = new URLSearchParams();
+    params.append('name', value);
+    params.append('complete', 'false');
+
+    postNewItem(spaceId, params)
+      .then(res => {
+        handleAddItem(spaceId, res.data.result);
+      })
+      .catch(error => console.error(error));
+  };
+
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
@@ -32,16 +44,12 @@ const ButtonGroup: React.FC<IProps> = (props) => {
   };
 
   const onAddItemAndMore = () => {
-    const params = new URLSearchParams();
-    params.append('name', value);
-    params.append('complete', 'false');
+    addItem();
+    setValue('');
+  };
 
-    postNewItem(spaceId, params)
-      .then(res => {
-        handleAddItem(spaceId, res.data.result);
-      })
-      .catch(error => console.error(error));
-
+  const onAddItemAndClose = () => {
+    addItem();
     onModalClose();
   };
 
@@ -75,7 +83,7 @@ const ButtonGroup: React.FC<IProps> = (props) => {
               children={'add more'}
             />
             <Button
-              onClick={onAddItemAndMore}
+              onClick={onAddItemAndClose}
               size={'xs'}
               color={'teal'}
               children={'add & close'}
