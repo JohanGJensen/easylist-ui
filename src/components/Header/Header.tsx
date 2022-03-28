@@ -42,17 +42,18 @@ function Header() {
     }
 
     setInputValue(value);
-  }
+  };
 
   const onChangeSelect = (e: string) => {
     setSelectValue(e);
-  }
+  };
 
   const onCloseModal = () => {
     setAddSpaceModal(false);
     setInputValue('');
+    setInputInvalid(false);
     setSelectValue('All');
-  }
+  };
 
   return (
     <header className="header-bar">
@@ -85,7 +86,7 @@ function Header() {
               size={'xs'}
               color={'teal'}
               children={'add space'}
-              disabled={inputValue === '' && true}
+              disabled={inputValue === ''}
             />
           </Group>
         </>

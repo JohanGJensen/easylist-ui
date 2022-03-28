@@ -18,6 +18,7 @@ const ButtonGroup: React.FC<IProps> = (props) => {
   const { handleAddItem, handleDeleteSpace } = React.useContext(SpaceContext);
   const { spaceId } = props;
   const [value, setValue] = React.useState<string>('');
+  const [inputIsInvalid, setInputInvalid] = React.useState<boolean>(false);
   const [addItemModal, setAddItemModal] = React.useState<boolean>(false);
   const [deleteItemModal, setDeleteItemModal] = React.useState<boolean>(false);
 
@@ -34,6 +35,16 @@ const ButtonGroup: React.FC<IProps> = (props) => {
   };
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value: string = e.target.value;
+
+    if (value === '') {
+      setInputInvalid(true);
+    }
+
+    if (value !== '' && inputIsInvalid) {
+      setInputInvalid(false);
+    }
+
     setValue(e.target.value);
   };
 
@@ -41,6 +52,7 @@ const ButtonGroup: React.FC<IProps> = (props) => {
     setAddItemModal(false);
     setDeleteItemModal(false);
     setValue('');
+    setInputInvalid(false);
   };
 
   const onAddItemAndMore = () => {
@@ -59,7 +71,7 @@ const ButtonGroup: React.FC<IProps> = (props) => {
       .catch(error => console.error(error));
 
     setDeleteItemModal(false);
-  }
+  };
 
   return (
     <>
@@ -74,6 +86,7 @@ const ButtonGroup: React.FC<IProps> = (props) => {
             onChange={onChange}
             icon={<ShoppingCart size={16} />}
             placeholder={'add item to the list'}
+            invalid={inputIsInvalid}
           />
           <Group position={'right'} style={{ marginTop: '1.5rem' }}>
             <Button
@@ -81,12 +94,14 @@ const ButtonGroup: React.FC<IProps> = (props) => {
               size={'xs'}
               color={'teal'}
               children={'add more'}
+              disabled={value === ''}
             />
             <Button
               onClick={onAddItemAndClose}
               size={'xs'}
               color={'teal'}
               children={'add & close'}
+              disabled={value === ''}
             />
           </Group>
         </>
