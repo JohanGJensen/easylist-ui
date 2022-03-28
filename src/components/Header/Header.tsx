@@ -3,7 +3,7 @@ import { SpaceContext } from '../../providers/SpaceProvider';
 
 // components
 import { Button, Select, Group, Input, Modal } from '@mantine/core';
-import { FilePlus } from 'tabler-icons-react';
+import { FilePlus, Settings } from 'tabler-icons-react';
 
 // api
 import { postNewSpace } from '../../api';
@@ -59,6 +59,7 @@ function Header() {
     <header className="header-bar">
       <Group spacing={'xs'} position={'right'} style={{ width: '98%', padding: '6px 0px' }}>
         <Button onClick={() => setAddSpaceModal(true)} color={'teal'} children={<FilePlus />} />
+        {/* <Button onClick={() => {}} color={'gray'} children={<Settings />} /> */}
         {/* <Button color={'red'} children={<Trash />} /> */}
       </Group>
       <Modal onClose={onCloseModal} opened={addSpaceModal} children={
