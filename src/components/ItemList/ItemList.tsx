@@ -18,14 +18,16 @@ const ItemList: React.FC<IProps> = (props) => {
 
 	return (
 		<>
-			{items && items.map((item) => {
+			{items.length ? items.map((item) => {
 				return (
 					<Group key={`space-${props.space._id}-item-${item._id}`} position={'apart'}>
 						<Text size={'lg'}>{item.name}</Text>
 						<ButtonGroup space={props.space} item={item} />
 					</Group>
 				)
-			})}
+			})
+				:
+				<Text size={'sm'} color={'grey'}>{'no items added'}</Text>}
 		</>
 	);
 }

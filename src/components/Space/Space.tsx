@@ -1,5 +1,4 @@
 import React from 'react';
-import { SpaceContext } from '../../providers/SpaceProvider';
 
 // components
 import { Card, Text, Divider, Group, Progress } from '@mantine/core';
@@ -9,28 +8,16 @@ import ButtonGroup from './ButtonGroup';
 // types
 import { ISpace } from '../../interfaces';
 
+// hooks
+import { useProgressPercentage } from './hooks/useProgressPercentage';
+
 interface IProps {
   space: ISpace;
 }
 
 const HomePage: React.FC<IProps> = (props) => {
-  const { data } = React.useContext(SpaceContext);
   const { space } = props;
-  const [percentage, setPercentage] = React.useState<number>(0);
-
-  React.useEffect(() => {
-    let totalItemCount: number = space.items.length;
-    let checkedItemCount: number = 0;
-
-    space.items.forEach(item => {
-      item.complete === 'true' && (checkedItemCount += 1);
-    });
-
-    const decimal = checkedItemCount / totalItemCount;
-    const percent = decimal * 100;
-
-    setPercentage(percent);
-  }, [data]);
+  const percentage = useProgressPercentage(space);
 
   return (
     <Card shadow="sm" p="lg" style={{ marginBottom: '1.2rem' }}>
@@ -43,8 +30,17 @@ const HomePage: React.FC<IProps> = (props) => {
       </Group>
       <Divider my="sm" />
       <ItemList space={space} />
-      <Divider my="sm" />
-      <Progress value={percentage} color={percentage >= 100 ? 'teal' : 'blue'} size={'lg'} />
+      {
+        percentage >= 0 &&
+        <>
+          <Divider my="sm" />
+          <Progress
+            value={percentage}
+            color={percentage >= 100 ? 'teal' : 'blue'}
+            size={'lg'}
+          />
+        </>
+      }
     </Card>
   );
 }
