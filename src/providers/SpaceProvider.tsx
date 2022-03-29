@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { getAllSpaces } from '../api';
 
 // types
-import { ISpace, ISpaceItem, IState } from '../interfaces';
+import { ISpace, ISpaceItem, ISpaceState } from '../interfaces';
 
 export const SpaceContext = React.createContext(null);
 
@@ -77,7 +77,7 @@ const SpaceProvider: React.FC = ({ children }) => {
     setData([...newData]);
   };
 
-  const values: IState = {
+  const values: ISpaceState = {
     data,
     loading,
     handleDeleteItem,

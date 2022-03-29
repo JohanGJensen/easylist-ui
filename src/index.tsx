@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
+import SettingsProvider from './providers/SettingsProvider';
 
 import BaseRouter from './routing/BaseRouter';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
@@ -8,7 +9,9 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <BaseRouter />
+      <SettingsProvider>
+        <BaseRouter />
+      </SettingsProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

@@ -2,7 +2,7 @@ import React from 'react';
 
 // components
 import SettingsHeader from './components/SettingsHeader';
-import { Container } from '@mantine/core';
+import { Container, Title, Text, Card, Space, Select } from '@mantine/core';
 
 // styling
 
@@ -14,7 +14,18 @@ function SettingsPage() {
     <>
       <SettingsHeader />
       <Container>
-        <h1>settings</h1>
+        <Title order={3} children={'settings'} />
+        <Space h={'xs'} />
+        <Card withBorder={true}>
+          <Text size={'md'} children={'placement of item checkbox'} />
+          <Select
+            data={[
+              { value: 'right', label: 'right' },
+              { value: 'left', label: 'left' },
+            ]}
+            value={'right'}
+          />
+        </Card>
       </Container>
     </>
   );
