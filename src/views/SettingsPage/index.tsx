@@ -1,7 +1,7 @@
 import React from 'react';
 
 // components
-// import Header from '../../components/Header/Header';
+import SettingsHeader from './components/SettingsHeader';
 import { Container } from '@mantine/core';
 
 // styling
@@ -12,7 +12,7 @@ function SettingsPage() {
 
   return (
     <>
-      {/* <Header /> */}
+      <SettingsHeader />
       <Container>
         <h1>settings</h1>
       </Container>
