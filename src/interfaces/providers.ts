@@ -1,11 +1,11 @@
-import { ISpace } from ".";
+import { ISpace, ISpaceItem } from ".";
 
 export interface IState {
   data: ISpace[];
   loading: boolean;
-  handleDeleteItem(): void;
-  handleDeleteSpace(): void;
-  handleAddItem(): void;
-  handleAddSpace(): void;
-  handleUpdateItem(): void;
+  handleDeleteItem(space: ISpace, item: ISpaceItem): void;
+  handleDeleteSpace(spaceId: string): void;
+  handleAddItem(spaceId: string, item: ISpaceItem): void;
+  handleAddSpace(space: ISpace): void;
+  handleUpdateItem(spaceId: string, item: ISpaceItem): void;
 }

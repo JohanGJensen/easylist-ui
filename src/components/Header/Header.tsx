@@ -1,97 +1,38 @@
-import React, { ChangeEvent } from 'react';
-import { SpaceContext } from '../../providers/SpaceProvider';
+import React from 'react';
 
 // components
-import { Button, Select, Group, Input, Modal } from '@mantine/core';
-import { FilePlus, Settings } from 'tabler-icons-react';
-
-// api
-import { postNewSpace } from '../../api';
+import { Group } from '@mantine/core';
 
 // styling
 import './header.css';
 
-function Header() {
-  const { handleAddSpace } = React.useContext(SpaceContext);
-  const [addSpaceModal, setAddSpaceModal] = React.useState<boolean>(false);
-  const [inputValue, setInputValue] = React.useState<string>('');
-  const [inputIsInvalid, setInputInvalid] = React.useState<boolean>(false);
-  const [selectValue, setSelectValue] = React.useState<string>('All');
+interface IProps {
+  position?: 'apart' | 'left' | 'right';
+  leftContent?: React.ReactNode;
+  rightContent?: React.ReactNode;
+}
 
-  const onAddSpace = () => {
-    const params = new URLSearchParams();
-    params.append('name', inputValue);
-    params.append('user', selectValue);
-
-    postNewSpace(params)
-      .then((res) => handleAddSpace(res.data.result))
-      .catch((error) => console.error(error));
-
-    onCloseModal();
-  };
-
-  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    const value: string = e.target.value;
-
-    if (value === '') {
-      setInputInvalid(true);
-    }
-
-    if (value !== '' && inputIsInvalid) {
-      setInputInvalid(false);
-    }
-
-    setInputValue(value);
-  };
-
-  const onChangeSelect = (e: string) => {
-    setSelectValue(e);
-  };
-
-  const onCloseModal = () => {
-    setAddSpaceModal(false);
-    setInputValue('');
-    setInputInvalid(false);
-    setSelectValue('All');
-  };
+const Header: React.FC<IProps> = (props) => {
+  const {
+    position = 'right',
+    leftContent,
+    rightContent
+  } = props;
 
   return (
     <header className="header-bar">
-      <Group spacing={'xs'} position={'right'} style={{ width: '98%', padding: '6px 0px' }}>
-        <Button onClick={() => setAddSpaceModal(true)} color={'teal'} children={<FilePlus />} />
-        {/* <Button onClick={() => {}} color={'gray'} children={<Settings />} /> */}
-        {/* <Button color={'red'} children={<Trash />} /> */}
-      </Group>
-      <Modal onClose={onCloseModal} opened={addSpaceModal} children={
-        <>
-          <Input
-            value={inputValue}
-            onChange={onChangeInput}
-            icon={<FilePlus size={16} />}
-            placeholder={'name of space...'}
-            invalid={inputIsInvalid}
-          />
-          <Select
-            placeholder="pick a user"
-            data={[
-              { value: 'All', label: 'All' },
-              { value: 'Johan', label: 'Johan' },
-              { value: 'Laura', label: 'Laura' },
-            ]}
-            value={selectValue}
-            onChange={onChangeSelect}
-          />
-          <Group position={'right'} style={{ marginTop: '1.5rem' }}>
-            <Button
-              onClick={onAddSpace}
-              size={'xs'}
-              color={'teal'}
-              children={'add space'}
-              disabled={inputValue === ''}
-            />
+      <Group position={position} style={{ width: '98%', padding: '6px 0px' }}>
+        {leftContent &&
+          <Group spacing={'xs'}>
+            {leftContent}
           </Group>
-        </>
-      } />
+        }
+        {rightContent &&
+          <Group spacing={'xs'}>
+            {rightContent}
+          </Group>
+        }
+      </Group>
     </header>
   );
 }
