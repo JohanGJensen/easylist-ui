@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SpaceProvider from './providers/SpaceProvider';
+import { BrowserRouter } from "react-router-dom";
+
+import BaseRouter from './routing/BaseRouter';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
-// components & views
-import HomePage from './views/HomePage';
-
 ReactDOM.render(
-  <SpaceProvider>
-    <React.StrictMode>
-      <HomePage />
-    </React.StrictMode>
-  </SpaceProvider>,
+  <React.StrictMode>
+    <BrowserRouter>
+      <BaseRouter />
+    </BrowserRouter>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

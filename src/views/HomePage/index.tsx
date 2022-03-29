@@ -2,7 +2,7 @@ import React from 'react';
 import { SpaceContext } from '../../providers/SpaceProvider';
 
 // components
-import Header from '../../components/Header/Header';
+import HomeHeader from './components/HomeHeader';
 import { Container, LoadingOverlay } from '@mantine/core';
 import Space from '../../components/Space/Space';
 
@@ -18,7 +18,7 @@ function HomePage() {
   return (
     <>
       <LoadingOverlay visible={loading} />
-      <Header />
+      <HomeHeader />
       <Container>
         {data && data.map((space: ISpace) => {
           return (
