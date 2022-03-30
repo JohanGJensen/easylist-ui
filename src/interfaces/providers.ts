@@ -12,4 +12,5 @@ export interface ISpaceState {
 
 export interface ISettingsState {
   checkboxPos: 'left' | 'right';
+  handleCheckboxPos(value: 'left' | 'right'): void;
 }

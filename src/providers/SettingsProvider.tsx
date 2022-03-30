@@ -19,8 +19,14 @@ const SettingsProvider: React.FC = ({ children }) => {
     }
   }, []);
 
+  const handleCheckboxPos = (value: 'left' | 'right') => {
+    localStorage.setItem('checkbox', value);
+    setCheckboxPos(value);
+  };
+
   const values: ISettingsState = {
-    checkboxPos
+    checkboxPos,
+    handleCheckboxPos
   };
 
   return (

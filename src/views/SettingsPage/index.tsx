@@ -1,14 +1,14 @@
 import React from 'react';
+import { SettingsContext } from '../../providers/SettingsProvider';
 
 // components
 import SettingsHeader from './components/SettingsHeader';
 import { Container, Title, Text, Card, Space, Select } from '@mantine/core';
 
-// styling
-
 // types
 
-function SettingsPage() {
+const SettingsPage: React.FC = () => {
+  const { handleCheckboxPos, checkboxPos } = React.useContext(SettingsContext);
 
   return (
     <>
@@ -23,7 +23,8 @@ function SettingsPage() {
               { value: 'right', label: 'right' },
               { value: 'left', label: 'left' },
             ]}
-            value={'right'}
+            value={checkboxPos}
+            onChange={handleCheckboxPos}
           />
         </Card>
       </Container>
