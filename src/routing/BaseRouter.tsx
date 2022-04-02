@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes, Route, Navigate } from "react-router-dom";
 
 // components
-import SpaceProvider from '../providers/SpaceProvider';
 import HomePage from '../views/HomePage';
 import SettingsPage from '../views/SettingsPage';
 
@@ -18,11 +17,7 @@ const BaseRouter: React.FC<IProps> = () => {
       />
       <Route
         path={'/'}
-        element={
-          <SpaceProvider>
-            <HomePage />
-          </SpaceProvider>
-        }
+        element={<HomePage />}
       />
       <Route
         path={'/settings'}
