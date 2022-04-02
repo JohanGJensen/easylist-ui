@@ -9,7 +9,7 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={'easylist-ui-pwa'}>
       <SettingsProvider>
         <SpaceProvider>
           <BaseRouter />

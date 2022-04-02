@@ -12,10 +12,6 @@ const BaseRouter: React.FC<IProps> = () => {
   return (
     <Routes>
       <Route
-        path={'/easylist-ui-pwa'}
-        element={<Navigate to={'/'} />}
-      />
-      <Route
         path={'/'}
         element={<HomePage />}
       />
