@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 // components
 import SpaceProvider from '../providers/SpaceProvider';
@@ -12,6 +12,10 @@ const BaseRouter: React.FC<IProps> = () => {
 
   return (
     <Routes>
+      <Route
+        path={'/easylist-ui-pwa'}
+        element={<Navigate to={'/'} />}
+      />
       <Route
         path={'/'}
         element={
