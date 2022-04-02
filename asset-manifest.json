@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/easylist-ui-pwa/static/css/main.6c326754.css",
-    "main.js": "/easylist-ui-pwa/static/js/main.b5a7a4e2.js",
+    "main.js": "/easylist-ui-pwa/static/js/main.9d1609cc.js",
     "service-worker.js": "/easylist-ui-pwa/service-worker.js",
     "index.html": "/easylist-ui-pwa/index.html",
     "main.6c326754.css.map": "/easylist-ui-pwa/static/css/main.6c326754.css.map",
-    "main.b5a7a4e2.js.map": "/easylist-ui-pwa/static/js/main.b5a7a4e2.js.map"
+    "main.9d1609cc.js.map": "/easylist-ui-pwa/static/js/main.9d1609cc.js.map"
   },
   "entrypoints": [
     "static/css/main.6c326754.css",
-    "static/js/main.b5a7a4e2.js"
+    "static/js/main.9d1609cc.js"
   ]
 }
