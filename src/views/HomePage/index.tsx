@@ -4,7 +4,7 @@ import { SpaceContext } from '../../providers/SpaceProvider';
 // components
 import HomeHeader from './components/HomeHeader';
 import { Container, LoadingOverlay } from '@mantine/core';
-import Space from '../../components/Space/Space';
+import Space from './components/Space/Space';
 
 // styling
 import './homepage.css';

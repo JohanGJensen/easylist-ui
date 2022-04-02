@@ -62,7 +62,7 @@ function HomeHeader() {
         rightContent={
           <>
             <Button onClick={() => setAddSpaceModal(true)} color={'teal'} children={<FilePlus />} />
-            <Button onClick={() => navigate('/settings')} color={'gray'} children={<Settings />} />
+            <Button onClick={() => navigate('/settings')} color={'teal'} children={<Settings />} />
           </>
         }
       />

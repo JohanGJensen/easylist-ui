@@ -3,12 +3,13 @@ import { SettingsContext } from '../../providers/SettingsProvider';
 
 // components
 import SettingsHeader from './components/SettingsHeader';
-import { Container, Title, Text, Card, Space, Select } from '@mantine/core';
+import { Container, Title, Space } from '@mantine/core';
+import SettingsCard from './components/SettingsCard';
+import CheckboxSetting from './components/content/CheckboxSetting';
 
 // types
 
 const SettingsPage: React.FC = () => {
-  const { handleCheckboxPos, checkboxPos } = React.useContext(SettingsContext);
 
   return (
     <>
@@ -16,17 +17,7 @@ const SettingsPage: React.FC = () => {
       <Container>
         <Title order={3} children={'settings'} />
         <Space h={'xs'} />
-        <Card withBorder={true}>
-          <Text size={'md'} children={'placement of item checkbox'} />
-          <Select
-            data={[
-              { value: 'right', label: 'right' },
-              { value: 'left', label: 'left' },
-            ]}
-            value={checkboxPos}
-            onChange={handleCheckboxPos}
-          />
-        </Card>
+        <SettingsCard content={<CheckboxSetting />} />
       </Container>
     </>
   );

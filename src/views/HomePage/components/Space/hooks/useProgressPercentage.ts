@@ -1,8 +1,8 @@
 import React from 'react';
-import { SpaceContext } from '../../../providers/SpaceProvider';
+import { SpaceContext } from '../../../../../providers/SpaceProvider';
 
 // types
-import { ISpace } from '../../../interfaces';
+import { ISpace } from '../../../../../interfaces';
 
 export const useProgressPercentage = (space: ISpace) => {
   const { data } = React.useContext(SpaceContext);

@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { SpaceContext } from '../../providers/SpaceProvider';
-import { SettingsContext } from '../../providers/SettingsProvider';
+import { SpaceContext } from '../../../../providers/SpaceProvider';
+import { SettingsContext } from '../../../../providers/SettingsProvider';
 
 // components
 import { Text, Group, Checkbox, ActionIcon } from '@mantine/core';
 import { Trash } from 'tabler-icons-react';
 
 // types
-import { ISpace, ISpaceItem } from '../../interfaces';
+import { ISpace, ISpaceItem } from '../../../../interfaces';
 
 // api
-import { postItemUpdate, deleteItem } from '../../api';
+import { postItemUpdate, deleteItem } from '../../../../api';
 
 // styling
 

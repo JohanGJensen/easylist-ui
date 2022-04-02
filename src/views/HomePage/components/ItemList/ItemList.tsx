@@ -5,7 +5,7 @@ import { Text } from '@mantine/core';
 import Item from './Item';
 
 // types
-import { ISpace } from '../../interfaces';
+import { ISpace } from '../../../../interfaces';
 
 // styling
 
