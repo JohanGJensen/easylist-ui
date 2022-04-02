@@ -1,11 +1,11 @@
 import React, { ChangeEvent } from 'react';
-import { SpaceContext } from '../../providers/SpaceProvider';
+import { SpaceContext } from '../../../../providers/SpaceProvider';
 
 // components
 import { ActionIcon, Group, Modal, Input, Button, Text } from '@mantine/core';
 
 // api
-import { deleteSpace, postNewItem } from '../../api';
+import { deleteSpace, postNewItem } from '../../../../api';
 
 // styling
 import { Plus, ShoppingCart, Trash } from 'tabler-icons-react';

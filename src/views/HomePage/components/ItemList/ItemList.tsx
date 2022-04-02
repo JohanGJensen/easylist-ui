@@ -1,13 +1,13 @@
 import React from 'react';
 
 // components
-import { Text, Group } from '@mantine/core';
+import { Text } from '@mantine/core';
+import Item from './Item';
 
 // types
-import { ISpace } from '../../interfaces';
+import { ISpace } from '../../../../interfaces';
 
 // styling
-import ButtonGroup from './ButtonGroup';
 
 interface IProps {
 	space: ISpace;
@@ -20,10 +20,11 @@ const ItemList: React.FC<IProps> = (props) => {
 		<>
 			{items.length ? items.map((item) => {
 				return (
-					<Group key={`space-${props.space._id}-item-${item._id}`} position={'apart'}>
-						<Text size={'lg'}>{item.name}</Text>
-						<ButtonGroup space={props.space} item={item} />
-					</Group>
+					<Item
+						key={`space-${props.space._id}-item-${item._id}`}
+						space={props.space}
+						item={item}
+					/>
 				)
 			})
 				:

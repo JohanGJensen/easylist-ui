@@ -6,7 +6,7 @@ import ItemList from '../ItemList/ItemList';
 import ButtonGroup from './ButtonGroup';
 
 // types
-import { ISpace } from '../../interfaces';
+import { ISpace } from '../../../../interfaces';
 
 // hooks
 import { useProgressPercentage } from './hooks/useProgressPercentage';

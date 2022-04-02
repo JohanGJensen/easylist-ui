@@ -1,20 +1,23 @@
 import React from 'react';
+import { SettingsContext } from '../../providers/SettingsProvider';
 
 // components
 import SettingsHeader from './components/SettingsHeader';
-import { Container } from '@mantine/core';
-
-// styling
+import { Container, Title, Space } from '@mantine/core';
+import SettingsCard from './components/SettingsCard';
+import CheckboxSetting from './components/content/CheckboxSetting';
 
 // types
 
-function SettingsPage() {
+const SettingsPage: React.FC = () => {
 
   return (
     <>
       <SettingsHeader />
       <Container>
-        <h1>settings</h1>
+        <Title order={3} children={'settings'} />
+        <Space h={'xs'} />
+        <SettingsCard content={<CheckboxSetting />} />
       </Container>
     </>
   );
