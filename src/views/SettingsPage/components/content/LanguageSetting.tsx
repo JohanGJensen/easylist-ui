@@ -16,6 +16,7 @@ const CheckboxSetting: React.FC = () => {
         data={[
           { value: 'en_US', label: lang.settingsLanguageOptionEnglish },
           { value: 'da_DK', label: lang.settingsLanguageOptionDanish },
+          { value: 'es_ES', label: lang.settingsLanguageOptionSpanish },
         ]}
         value={langCode}
         onChange={handleLanguage}
