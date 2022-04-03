@@ -13,7 +13,7 @@ const SettingsHeader = () => {
     <Header
       position={'left'}
       leftContent={
-        <Button onClick={() => navigate('/')} color={'gray'} children={<ArrowBack />} />
+        <Button onClick={() => navigate(-1)} color={'gray'} children={<ArrowBack />} />
       }
     />
   );
