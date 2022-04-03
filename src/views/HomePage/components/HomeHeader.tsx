@@ -1,6 +1,7 @@
 import React, { ChangeEvent } from 'react';
-import { SpaceContext } from '../../../providers/SpaceProvider';
 import { useNavigate } from "react-router-dom";
+import { SpaceContext } from '../../../providers/SpaceProvider';
+import { SettingsContext } from '../../../providers/SettingsProvider';
 
 // components
 import Header from '../../../components/Header/Header';
@@ -13,6 +14,7 @@ import { postNewSpace } from '../../../api';
 function HomeHeader() {
   const navigate = useNavigate();
 
+  const { lang } = React.useContext(SettingsContext);
   const { handleAddSpace } = React.useContext(SpaceContext);
   const [addSpaceModal, setAddSpaceModal] = React.useState<boolean>(false);
   const [inputValue, setInputValue] = React.useState<string>('');
@@ -72,13 +74,13 @@ function HomeHeader() {
             value={inputValue}
             onChange={onChangeInput}
             icon={<FilePlus size={16} />}
-            placeholder={'name of space...'}
+            placeholder={lang.homeCreateSpaceInputPlaceholder}
             invalid={inputIsInvalid}
           />
           <Select
-            placeholder="pick a user"
+            placeholder={lang.spaceUserPlaceholder}
             data={[
-              { value: 'All', label: 'All' },
+              { value: 'All', label: lang.spaceUserOptionAll },
               { value: 'Johan', label: 'Johan' },
               { value: 'Laura', label: 'Laura' },
             ]}
@@ -90,7 +92,7 @@ function HomeHeader() {
               onClick={onAddSpace}
               size={'xs'}
               color={'teal'}
-              children={'add space'}
+              children={lang.homeCreateSpaceAddButton}
               disabled={inputValue === ''}
             />
           </Group>

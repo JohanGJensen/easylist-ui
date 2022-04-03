@@ -1,4 +1,5 @@
 export * from './providers';
+export * from './language';
 
 export interface ISpaceItem {
   _id: string;
