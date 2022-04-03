@@ -14,8 +14,8 @@ const CheckboxSetting: React.FC = () => {
       <Text size={'md'} children={lang.settingsCheckboxText} />
       <Select
         data={[
-          { value: 'right', label: lang.settingsCheckboxOptionLeft },
-          { value: 'left', label: lang.settingsCheckboxOptionRight },
+          { value: 'right', label: lang.settingsCheckboxOptionRight },
+          { value: 'left', label: lang.settingsCheckboxOptionLeft },
         ]}
         value={checkboxPos}
         onChange={handleCheckboxPos}
