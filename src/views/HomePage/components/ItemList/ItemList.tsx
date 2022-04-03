@@ -1,4 +1,5 @@
 import React from 'react';
+import { SettingsContext } from '../../../../providers/SettingsProvider';
 
 // components
 import { Text } from '@mantine/core';
@@ -14,6 +15,7 @@ interface IProps {
 }
 
 const ItemList: React.FC<IProps> = (props) => {
+	const { lang } = React.useContext(SettingsContext);
 	const { items } = props.space;
 
 	return (
@@ -28,7 +30,7 @@ const ItemList: React.FC<IProps> = (props) => {
 				)
 			})
 				:
-				<Text size={'sm'} color={'grey'}>{'no items added'}</Text>}
+				<Text size={'sm'} color={'grey'}>{lang.spaceItemsNoItems}</Text>}
 		</>
 	);
 }

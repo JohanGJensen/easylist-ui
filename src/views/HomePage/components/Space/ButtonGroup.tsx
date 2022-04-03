@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { SpaceContext } from '../../../../providers/SpaceProvider';
+import { SettingsContext } from '../../../../providers/SettingsProvider';
 
 // components
 import { ActionIcon, Group, Modal, Input, Button, Text } from '@mantine/core';
@@ -15,6 +16,7 @@ interface IProps {
 }
 
 const ButtonGroup: React.FC<IProps> = (props) => {
+  const { lang } = React.useContext(SettingsContext);
   const { handleAddItem, handleDeleteSpace } = React.useContext(SpaceContext);
   const { spaceId } = props;
   const [value, setValue] = React.useState<string>('');
@@ -85,7 +87,7 @@ const ButtonGroup: React.FC<IProps> = (props) => {
             value={value}
             onChange={onChange}
             icon={<ShoppingCart size={16} />}
-            placeholder={'add item to the list'}
+            placeholder={lang.spaceAddItemInputPlaceholder}
             invalid={inputIsInvalid}
           />
           <Group position={'right'} style={{ marginTop: '1.5rem' }}>
@@ -93,14 +95,14 @@ const ButtonGroup: React.FC<IProps> = (props) => {
               onClick={onAddItemAndMore}
               size={'xs'}
               color={'teal'}
-              children={'add more'}
+              children={lang.spaceAddItemButtonMore}
               disabled={value === ''}
             />
             <Button
               onClick={onAddItemAndClose}
               size={'xs'}
               color={'teal'}
-              children={'add & close'}
+              children={lang.spaceAddItemButtonClose}
               disabled={value === ''}
             />
           </Group>
@@ -108,13 +110,13 @@ const ButtonGroup: React.FC<IProps> = (props) => {
       } />
       <Modal onClose={onModalClose} opened={deleteItemModal} children={
         <>
-          <Text align={'center'} children={'are you sure?'} />
+          <Text align={'center'} children={lang.spaceDeleteSpaceWarning} />
           <Group position={'right'} style={{ marginTop: '1.5rem' }}>
             <Button
               onClick={onDeleteSpace}
               size={'xs'}
               color={'red'}
-              children={'delete'}
+              children={lang.spaceDeleteSpaceButton}
             />
           </Group>
         </>
