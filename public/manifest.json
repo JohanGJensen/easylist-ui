@@ -3,12 +3,12 @@
   "name": "the app for shopping",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "icon.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
-      "src": "icon_logo192x192.png",
+      "src": "icon_192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
