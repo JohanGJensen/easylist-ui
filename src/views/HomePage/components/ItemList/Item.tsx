@@ -29,6 +29,7 @@ const Item: React.FC<IProps> = (props) => {
   const { checkboxPos } = useContext(SettingsContext);
   const [complete, setComplete] = useState<boolean>(false);
   const { space, item } = props;
+  const completedStyle = complete ? { textDecoration: 'line-through' } : {};
 
   useEffect(() => {
     parseBoolean(item.complete);
@@ -73,7 +74,7 @@ const Item: React.FC<IProps> = (props) => {
           <Checkbox onChange={onChange} checked={complete} color={'teal'} />
         }
         <Text
-          style={ complete ? { textDecoration: 'line-through' } : {}}
+          style={{ ...completedStyle, maxWidth: '210px' }}
           color={complete ? 'dimmed' : 'inherit'}
           size={'lg'}
         >{item.name}</Text>
