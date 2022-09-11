@@ -1,4 +1,3 @@
-import { type } from 'os';
 import React, { useState, useEffect } from 'react';
 
 // types
@@ -7,7 +6,9 @@ import { ILanguage, ISettingsState, LanguageTypes } from '../interfaces';
 // languages
 import { englishLanguage, getLanguage } from '../languages';
 
-export const SettingsContext = React.createContext(null);
+export const SettingsContext = React.createContext({
+
+} as ISettingsState);
 
 const SettingsProvider: React.FC = ({ children }) => {
   const [checkboxPos, setCheckboxPos] = useState<'left' | 'right'>('right');
@@ -18,7 +19,7 @@ const SettingsProvider: React.FC = ({ children }) => {
    * CHECKBOX related settings
    */
   useEffect(() => {
-    const checkbox: string = localStorage.getItem('checkbox');
+    const checkbox: string | null = localStorage.getItem('checkbox');
 
     if (checkbox === 'left' || checkbox === 'right') {
       setCheckboxPos(checkbox);
@@ -29,7 +30,7 @@ const SettingsProvider: React.FC = ({ children }) => {
    * LANGUAGE related settings
    */
   useEffect(() => {
-    const lang: LanguageTypes = JSON.parse(localStorage.getItem('lang'));
+    const lang: LanguageTypes | null = JSON.parse(localStorage.getItem('lang') as string);
 
     if (lang) {
       setLangCode(lang);

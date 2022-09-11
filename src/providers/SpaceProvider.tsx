@@ -6,11 +6,19 @@ import { getAllSpaces } from '../api';
 // types
 import { ISpace, ISpaceItem, ISpaceState } from '../interfaces';
 
-export const SpaceContext = React.createContext(null);
+export const SpaceContext = React.createContext({
+  data: [],
+  loading: true,
+  handleUpdateItem: (id: string, i: ISpaceItem) => {},
+  handleDeleteItem: (s: ISpace, i: ISpaceItem) => {},
+  handleDeleteSpace: (id: string) => {},
+  handleAddItem: (id: string, i: ISpaceItem) => {},
+  handleAddSpace: (s: ISpace) => {},
+} as ISpaceState);
 
 const SpaceProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = React.useState<boolean>(true);
-  const [data, setData] = useState<ISpace[]>(null);
+  const [data, setData] = useState<ISpace[]>([]);
 
   useEffect(() => {
     getAllSpaces()
