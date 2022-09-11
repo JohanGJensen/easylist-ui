@@ -72,7 +72,11 @@ const Item: React.FC<IProps> = (props) => {
           checkboxPos === CheckBoxPosition.LEFT &&
           <Checkbox onChange={onChange} checked={complete} color={'teal'} />
         }
-        <Text size={'lg'}>{item.name}</Text>
+        <Text
+          style={ complete ? { textDecoration: 'line-through' } : {}}
+          color={complete ? 'dimmed' : 'inherit'}
+          size={'lg'}
+        >{item.name}</Text>
       </Group>
       <Group direction={'row'} spacing={'xs'}>
         {
