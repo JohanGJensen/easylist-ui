@@ -31,7 +31,7 @@ const ButtonGroup: React.FC<IProps> = (props) => {
 
     postNewItem(spaceId, params)
       .then(res => {
-        handleAddItem(spaceId, res.data.result);
+        handleAddItem(spaceId, res.data);
       })
       .catch(error => console.error(error));
   };

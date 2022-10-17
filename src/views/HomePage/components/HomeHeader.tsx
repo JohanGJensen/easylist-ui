@@ -27,7 +27,7 @@ function HomeHeader() {
     params.append('user', selectValue);
 
     postNewSpace(params)
-      .then((res) => handleAddSpace(res.data.result))
+      .then((res) => handleAddSpace(res.data))
       .catch((error) => console.error(error));
 
     onCloseModal();

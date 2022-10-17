@@ -23,7 +23,7 @@ const ItemList: React.FC<IProps> = (props) => {
 			{items.length ? items.map((item) => {
 				return (
 					<Item
-						key={`space-${props.space._id}-item-${item._id}`}
+						key={`space-${props.space.id}-item-${item.id}`}
 						space={props.space}
 						item={item}
 					/>

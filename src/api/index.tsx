@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const HOST = 'http://0.0.0.0:5000'
-const HOST = 'https://easy-list.herokuapp.com';
+const HOST = 'http://localhost:8080'
+// const HOST = 'https://easylist-api.onrender.com';
 
 export const getAllSpaces = () => {
   return axios.get(`${HOST}/spaces/all`);
@@ -19,7 +19,7 @@ export const postNewItem = (spaceId: string, params: URLSearchParams) => {
   return axios.post(`${HOST}/items/create/${spaceId}`, params);
 };
 
-export const postItemUpdate = (spaceId: string, itemId: string, params: URLSearchParams) => {
+export const postItemUpdate = (spaceId: string, itemId: string, params: any) => {
   return axios.post(`${HOST}/items/update/${spaceId}/${itemId}`, params);
 };
 
