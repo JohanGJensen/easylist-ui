@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const HOST = 'http://localhost:8080'
-// const HOST = 'https://easylist-api.onrender.com';
+// const HOST = 'http://localhost:8080'
+const HOST = 'https://easylist-api.onrender.com';
 
 export const getAllSpaces = () => {
   return axios.get(`${HOST}/spaces/all`);
