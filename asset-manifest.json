@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.js": "/easylist-ui-pwa/static/js/main.82432781.js",
+    "main.js": "/easylist-ui-pwa/static/js/main.9f2c3574.js",
     "static/css/516.15b1b051.chunk.css": "/easylist-ui-pwa/static/css/516.15b1b051.chunk.css",
-    "static/js/516.27cc51ff.chunk.js": "/easylist-ui-pwa/static/js/516.27cc51ff.chunk.js",
+    "static/js/516.a8b5a71b.chunk.js": "/easylist-ui-pwa/static/js/516.a8b5a71b.chunk.js",
     "static/css/20.77383203.chunk.css": "/easylist-ui-pwa/static/css/20.77383203.chunk.css",
     "static/js/20.12a1c62d.chunk.js": "/easylist-ui-pwa/static/js/20.12a1c62d.chunk.js",
     "static/js/340.378fd890.chunk.js": "/easylist-ui-pwa/static/js/340.378fd890.chunk.js",
     "service-worker.js": "/easylist-ui-pwa/service-worker.js",
     "index.html": "/easylist-ui-pwa/index.html",
-    "main.82432781.js.map": "/easylist-ui-pwa/static/js/main.82432781.js.map",
+    "main.9f2c3574.js.map": "/easylist-ui-pwa/static/js/main.9f2c3574.js.map",
     "516.15b1b051.chunk.css.map": "/easylist-ui-pwa/static/css/516.15b1b051.chunk.css.map",
-    "516.27cc51ff.chunk.js.map": "/easylist-ui-pwa/static/js/516.27cc51ff.chunk.js.map",
+    "516.a8b5a71b.chunk.js.map": "/easylist-ui-pwa/static/js/516.a8b5a71b.chunk.js.map",
     "20.77383203.chunk.css.map": "/easylist-ui-pwa/static/css/20.77383203.chunk.css.map",
     "20.12a1c62d.chunk.js.map": "/easylist-ui-pwa/static/js/20.12a1c62d.chunk.js.map",
     "340.378fd890.chunk.js.map": "/easylist-ui-pwa/static/js/340.378fd890.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.82432781.js"
+    "static/js/main.9f2c3574.js"
   ]
 }
