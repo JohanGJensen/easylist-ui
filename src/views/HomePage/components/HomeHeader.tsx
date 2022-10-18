@@ -22,11 +22,12 @@ function HomeHeader() {
   const [selectValue, setSelectValue] = React.useState<string>('All');
 
   const onAddSpace = () => {
-    const params = new URLSearchParams();
-    params.append('name', inputValue);
-    params.append('user', selectValue);
+    const request = {
+      name: inputValue,
+      user: selectValue
+    };
 
-    postNewSpace(params)
+    postNewSpace(request)
       .then((res) => handleAddSpace(res.data))
       .catch((error) => console.error(error));
 

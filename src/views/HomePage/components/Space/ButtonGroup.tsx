@@ -25,11 +25,12 @@ const ButtonGroup: React.FC<IProps> = (props) => {
   const [deleteItemModal, setDeleteItemModal] = React.useState<boolean>(false);
 
   const addItem = () => {
-    const params = new URLSearchParams();
-    params.append('name', value);
-    params.append('complete', 'false');
+    const request = {
+      name: value,
+      complete: false,
+    };
 
-    postNewItem(spaceId, params)
+    postNewItem(spaceId, request)
       .then(res => {
         handleAddItem(spaceId, res.data);
       })

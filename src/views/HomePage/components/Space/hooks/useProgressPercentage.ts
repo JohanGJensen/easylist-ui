@@ -20,7 +20,7 @@ export const useProgressPercentage = (space: ISpace) => {
     const percent = decimal * 100;
 
     setPercentage(percent);
-  }, [data]);
+  }, [data, space.items]);
 
   return percentage;
 };
