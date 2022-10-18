@@ -13,7 +13,7 @@ export const useProgressPercentage = (space: ISpace) => {
     let checkedItemCount: number = 0;
 
     space.items.forEach(item => {
-      item.complete === 'true' && (checkedItemCount += 1);
+      item.complete && (checkedItemCount += 1);
     });
 
     const decimal = checkedItemCount / totalItemCount;
