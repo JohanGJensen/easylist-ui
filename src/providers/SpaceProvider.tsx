@@ -23,7 +23,7 @@ const SpaceProvider: React.FC = ({ children }) => {
   useEffect(() => {
     getAllSpaces()
       .then((data) => {
-        setData(data.data.result);
+        setData(data.data);
         setLoading(false);
       })
       .catch((error) => console.error(error));
@@ -35,7 +35,7 @@ const SpaceProvider: React.FC = ({ children }) => {
 
   const handleAddItem = (spaceId: string, item: ISpaceItem) => {
     const newData: ISpace[] = data.map((space) => {
-      if (space._id === spaceId) {
+      if (space.id === spaceId) {
         space.items.push(item);
       }
 
@@ -47,10 +47,10 @@ const SpaceProvider: React.FC = ({ children }) => {
 
   const handleDeleteItem = (space: ISpace, item: ISpaceItem) => {
     const itemIndex: number = space.items.findIndex((sItem) => {
-      return sItem._id === item._id;
+      return sItem.id === item.id;
     });
     const newData: ISpace[] = data.map((dataSpace) => {
-      if (dataSpace._id === space._id) {
+      if (dataSpace.id === space.id) {
         dataSpace.items.splice(itemIndex, 1);
       }
 
@@ -63,7 +63,7 @@ const SpaceProvider: React.FC = ({ children }) => {
   const handleDeleteSpace = (spaceId: string) => {
     const newData: ISpace[] = data;
     const spaceIndex: number = data.findIndex(space => {
-      return space._id === spaceId;
+      return space.id === spaceId;
     });
 
     newData.splice(spaceIndex, 1);
@@ -73,10 +73,10 @@ const SpaceProvider: React.FC = ({ children }) => {
 
   const handleUpdateItem = (spaceId: string, item: ISpaceItem) => {
     const spaceIndex: number = data.findIndex(space => {
-      return space._id === spaceId;
+      return space.id === spaceId;
     });
     const itemIndex: number = data[spaceIndex].items.findIndex(sItem => {
-      return sItem._id === item._id
+      return sItem.id === item.id
     });
     const newData: ISpace[] = data;
 

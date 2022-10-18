@@ -46,22 +46,21 @@ const Item: React.FC<IProps> = (props) => {
   };
 
   const onChange = () => {
-    const params = new URLSearchParams();
-    const newComplete = !complete;
+    const params = {
+      id: item.id,
+      name: item.name,
+      complete: !complete
+    };
+  
+    setComplete(!complete);
 
-    params.append('_id', item._id);
-    params.append('name', item.name);
-    params.append('complete', newComplete.toString());
-
-    setComplete(newComplete);
-
-    postItemUpdate(space._id, item._id, params)
-      .then((res) => handleUpdateItem(space._id, res.data.result))
+    postItemUpdate(space.id, item.id, params)
+      .then((res) => handleUpdateItem(space.id, res.data))
       .catch((error) => console.error(error));
   }
 
   const onDelete = () => {
-    deleteItem(space._id, item._id)
+    deleteItem(space.id, item.id)
       .then(() => handleDeleteItem(space, item))
       .catch((error) => console.error(error));
   };

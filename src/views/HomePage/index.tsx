@@ -22,7 +22,7 @@ function HomePage() {
       <Container>
         {data && data.map((space: ISpace) => {
           return (
-            <Space key={`space-${space._id}`} space={space} />
+            <Space key={`space-${space.id}`} space={space} />
           )
         })}
       </Container>

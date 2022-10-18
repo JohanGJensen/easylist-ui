@@ -26,7 +26,7 @@ const HomePage: React.FC<IProps> = (props) => {
           <Text size={'xl'} weight={500}>{space.name}</Text>
           <Text size={'sm'}>{space.user}</Text>
         </Group>
-        <ButtonGroup spaceId={space._id} />
+        <ButtonGroup spaceId={space.id} />
       </Group>
       <Divider my="sm" />
       <ItemList space={space} />
