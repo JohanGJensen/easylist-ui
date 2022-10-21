@@ -6,11 +6,13 @@ import { ILanguage, ISettingsState, LanguageTypes } from '../interfaces';
 // languages
 import { englishLanguage, getLanguage } from '../languages';
 
-export const SettingsContext = React.createContext({
+export const SettingsContext = React.createContext({} as ISettingsState);
 
-} as ISettingsState);
+interface IProviderProps {
+  children: React.ReactNode;
+}
 
-const SettingsProvider: React.FC = ({ children }) => {
+const SettingsProvider: React.FC<IProviderProps> = ({ children }) => {
   const [checkboxPos, setCheckboxPos] = useState<'left' | 'right'>('right');
   const [langCode, setLangCode] = useState<LanguageTypes>('en_US');
   const [lang, setLang] = useState<ILanguage>(englishLanguage);
