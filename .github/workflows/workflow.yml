@@ -1,4 +1,4 @@
 name: Deploy with gh-pages
-  env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    REACT_APP_PRODUCTION: 'hello world'
+
+env:
+  REACT_APP_PRODUCTION: 'hello world'
