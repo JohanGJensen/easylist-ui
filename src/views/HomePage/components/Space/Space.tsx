@@ -1,7 +1,7 @@
 import React from 'react';
 
 // components
-import { Card, Text, Divider, Group, Progress } from '@mantine/core';
+import { Card, Text, Divider, Group, Stack, Progress } from '@mantine/core';
 import ItemList from '../ItemList/ItemList';
 import ButtonGroup from './ButtonGroup';
 
@@ -22,10 +22,10 @@ const HomePage: React.FC<IProps> = (props) => {
   return (
     <Card shadow="sm" p="lg" style={{ marginBottom: '1.2rem' }}>
       <Group position={'apart'}>
-        <Group direction={'column'} spacing={'xs'}>
+        <Stack spacing={'xs'}>
           <Text size={'xl'} weight={500}>{space.name}</Text>
           <Text size={'sm'}>{space.user}</Text>
-        </Group>
+        </Stack>
         <ButtonGroup spaceId={space.id} />
       </Group>
       <Divider my="sm" />

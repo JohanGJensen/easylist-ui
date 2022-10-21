@@ -7,7 +7,8 @@ import SpaceProvider from './providers/SpaceProvider';
 import BaseRouter from './routing/BaseRouter';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
-const root = createRoot(document.getElementById('root'));
+const container: HTMLElement|null = document.getElementById('root');
+const root = createRoot(container as HTMLElement);
 
 root.render(
   <React.StrictMode>
@@ -18,8 +19,7 @@ root.render(
         </SpaceProvider>
       </SettingsProvider>
     </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change

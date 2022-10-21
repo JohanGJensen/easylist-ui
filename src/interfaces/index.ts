@@ -3,7 +3,7 @@ export * from './language';
 
 export interface ISpaceItem {
   id: string;
-  complete: string;
+  complete: boolean;
   name: string;
 }
 

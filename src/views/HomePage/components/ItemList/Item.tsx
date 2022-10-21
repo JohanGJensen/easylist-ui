@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { SpaceContext } from '../../../../providers/SpaceProvider';
 import { SettingsContext } from '../../../../providers/SettingsProvider';
 
@@ -27,23 +27,9 @@ enum CheckBoxPosition {
 const Item: React.FC<IProps> = (props) => {
   const { handleUpdateItem, handleDeleteItem } = useContext(SpaceContext);
   const { checkboxPos } = useContext(SettingsContext);
-  const [complete, setComplete] = useState<boolean>(false);
   const { space, item } = props;
+  const [complete, setComplete] = useState<boolean>(item.complete);
   const completedStyle = complete ? { textDecoration: 'line-through' } : {};
-
-  useEffect(() => {
-    parseBoolean(item.complete);
-  }, []);
-
-  const parseBoolean = (complete) => {
-    if (typeof complete === 'string') {
-      setComplete((complete === 'true') ? true : false);
-    }
-
-    if (typeof complete === 'boolean') {
-      setComplete(complete);
-    }
-  };
 
   const onChange = () => {
     const params = {
@@ -67,7 +53,7 @@ const Item: React.FC<IProps> = (props) => {
 
   return (
     <Group position={'apart'}>
-      <Group direction={'row'} spacing={'xs'}>
+      <Group spacing={'xs'}>
         {
           checkboxPos === CheckBoxPosition.LEFT &&
           <Checkbox onChange={onChange} checked={complete} color={'teal'} />
@@ -78,7 +64,7 @@ const Item: React.FC<IProps> = (props) => {
           size={'lg'}
         >{item.name}</Text>
       </Group>
-      <Group direction={'row'} spacing={'xs'}>
+      <Group spacing={'xs'}>
         {
           checkboxPos === CheckBoxPosition.RIGHT &&
           <Checkbox onChange={onChange} checked={complete} color={'teal'} />
