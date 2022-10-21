@@ -1,21 +1,23 @@
 {
   "files": {
-    "main.js": "/easylist-ui-pwa/static/js/main.1bd7b8f1.js",
-    "static/css/516.15b1b051.chunk.css": "/easylist-ui-pwa/static/css/516.15b1b051.chunk.css",
-    "static/js/516.b839db5d.chunk.js": "/easylist-ui-pwa/static/js/516.b839db5d.chunk.js",
-    "static/css/20.77383203.chunk.css": "/easylist-ui-pwa/static/css/20.77383203.chunk.css",
-    "static/js/20.12a1c62d.chunk.js": "/easylist-ui-pwa/static/js/20.12a1c62d.chunk.js",
-    "static/js/340.378fd890.chunk.js": "/easylist-ui-pwa/static/js/340.378fd890.chunk.js",
+    "main.js": "/easylist-ui-pwa/static/js/main.df21442e.js",
+    "static/css/521.2b454874.chunk.css": "/easylist-ui-pwa/static/css/521.2b454874.chunk.css",
+    "static/js/521.17a21c70.chunk.js": "/easylist-ui-pwa/static/js/521.17a21c70.chunk.js",
+    "static/css/927.da3bb6e8.chunk.css": "/easylist-ui-pwa/static/css/927.da3bb6e8.chunk.css",
+    "static/js/927.e47a189d.chunk.js": "/easylist-ui-pwa/static/js/927.e47a189d.chunk.js",
+    "static/js/939.9ad90387.chunk.js": "/easylist-ui-pwa/static/js/939.9ad90387.chunk.js",
+    "static/js/708.53c808f6.chunk.js": "/easylist-ui-pwa/static/js/708.53c808f6.chunk.js",
     "service-worker.js": "/easylist-ui-pwa/service-worker.js",
     "index.html": "/easylist-ui-pwa/index.html",
-    "main.1bd7b8f1.js.map": "/easylist-ui-pwa/static/js/main.1bd7b8f1.js.map",
-    "516.15b1b051.chunk.css.map": "/easylist-ui-pwa/static/css/516.15b1b051.chunk.css.map",
-    "516.b839db5d.chunk.js.map": "/easylist-ui-pwa/static/js/516.b839db5d.chunk.js.map",
-    "20.77383203.chunk.css.map": "/easylist-ui-pwa/static/css/20.77383203.chunk.css.map",
-    "20.12a1c62d.chunk.js.map": "/easylist-ui-pwa/static/js/20.12a1c62d.chunk.js.map",
-    "340.378fd890.chunk.js.map": "/easylist-ui-pwa/static/js/340.378fd890.chunk.js.map"
+    "main.df21442e.js.map": "/easylist-ui-pwa/static/js/main.df21442e.js.map",
+    "521.2b454874.chunk.css.map": "/easylist-ui-pwa/static/css/521.2b454874.chunk.css.map",
+    "521.17a21c70.chunk.js.map": "/easylist-ui-pwa/static/js/521.17a21c70.chunk.js.map",
+    "927.da3bb6e8.chunk.css.map": "/easylist-ui-pwa/static/css/927.da3bb6e8.chunk.css.map",
+    "927.e47a189d.chunk.js.map": "/easylist-ui-pwa/static/js/927.e47a189d.chunk.js.map",
+    "939.9ad90387.chunk.js.map": "/easylist-ui-pwa/static/js/939.9ad90387.chunk.js.map",
+    "708.53c808f6.chunk.js.map": "/easylist-ui-pwa/static/js/708.53c808f6.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.1bd7b8f1.js"
+    "static/js/main.df21442e.js"
   ]
 }
