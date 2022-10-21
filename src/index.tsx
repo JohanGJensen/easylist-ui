@@ -12,7 +12,7 @@ const root = createRoot(container as HTMLElement);
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename={'easylist-ui-pwa'}>
+    <BrowserRouter>
       <SettingsProvider>
         <SpaceProvider>
           <BaseRouter />
