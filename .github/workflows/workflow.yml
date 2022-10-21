@@ -1,5 +1,8 @@
 name: Deploy to gh-pages
 
+env:
+  REACT_APP_PRODUCTION: ${{ secrets.REACT_APP_PRODUCTION }}
+
 on:
   push:
     branches:
@@ -24,5 +27,3 @@ jobs:
         with:
           branch: gh-pages
           folder: build
-env:
-  REACT_APP_PRODUCTION: 'hello world'
