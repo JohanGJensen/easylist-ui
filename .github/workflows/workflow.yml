@@ -1,4 +1,31 @@
-name: Deploy with gh-pages
+name: Deploy to gh-pages
 
+on:
+  push:
+    branches:
+      - "main"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    environment:
+      - name: github-pages
+        url: https://github.com
+    steps:
+      - name: Checkout
+        uses: actions/checkout@1
+
+      - name: Install and build
+        run: npm install && npm run build
+
+      - name: deploy
+        uses: JamesIves/github-pages-deploy-action@4.4.1
+        with:
+          branch: gh-pages
+          folder: build
 env:
   REACT_APP_PRODUCTION: 'hello world'
