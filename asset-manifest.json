@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.js": "/easylist-ui-pwa/static/js/main.3c2cec2e.js",
+    "main.js": "/easylist-ui-pwa/static/js/main.77bf9480.js",
     "static/css/521.2b454874.chunk.css": "/easylist-ui-pwa/static/css/521.2b454874.chunk.css",
-    "static/js/521.17a21c70.chunk.js": "/easylist-ui-pwa/static/js/521.17a21c70.chunk.js",
+    "static/js/521.425212ab.chunk.js": "/easylist-ui-pwa/static/js/521.425212ab.chunk.js",
     "static/css/927.da3bb6e8.chunk.css": "/easylist-ui-pwa/static/css/927.da3bb6e8.chunk.css",
     "static/js/927.e47a189d.chunk.js": "/easylist-ui-pwa/static/js/927.e47a189d.chunk.js",
     "static/js/939.9ad90387.chunk.js": "/easylist-ui-pwa/static/js/939.9ad90387.chunk.js",
-    "static/js/708.53c808f6.chunk.js": "/easylist-ui-pwa/static/js/708.53c808f6.chunk.js",
+    "static/js/526.6a480aa5.chunk.js": "/easylist-ui-pwa/static/js/526.6a480aa5.chunk.js",
     "service-worker.js": "/easylist-ui-pwa/service-worker.js",
     "index.html": "/easylist-ui-pwa/index.html",
-    "main.3c2cec2e.js.map": "/easylist-ui-pwa/static/js/main.3c2cec2e.js.map",
+    "main.77bf9480.js.map": "/easylist-ui-pwa/static/js/main.77bf9480.js.map",
     "521.2b454874.chunk.css.map": "/easylist-ui-pwa/static/css/521.2b454874.chunk.css.map",
-    "521.17a21c70.chunk.js.map": "/easylist-ui-pwa/static/js/521.17a21c70.chunk.js.map",
+    "521.425212ab.chunk.js.map": "/easylist-ui-pwa/static/js/521.425212ab.chunk.js.map",
     "927.da3bb6e8.chunk.css.map": "/easylist-ui-pwa/static/css/927.da3bb6e8.chunk.css.map",
     "927.e47a189d.chunk.js.map": "/easylist-ui-pwa/static/js/927.e47a189d.chunk.js.map",
     "939.9ad90387.chunk.js.map": "/easylist-ui-pwa/static/js/939.9ad90387.chunk.js.map",
-    "708.53c808f6.chunk.js.map": "/easylist-ui-pwa/static/js/708.53c808f6.chunk.js.map"
+    "526.6a480aa5.chunk.js.map": "/easylist-ui-pwa/static/js/526.6a480aa5.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.3c2cec2e.js"
+    "static/js/main.77bf9480.js"
   ]
 }
