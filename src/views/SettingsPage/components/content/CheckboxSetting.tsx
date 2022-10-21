@@ -19,6 +19,7 @@ const CheckboxSetting: React.FC = () => {
         ]}
         value={checkboxPos}
         onChange={handleCheckboxPos}
+        withinPortal={true}
       />
     </>
   );

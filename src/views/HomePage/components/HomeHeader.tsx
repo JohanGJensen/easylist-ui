@@ -65,7 +65,7 @@ function HomeHeader() {
         rightContent={
           <>
             <Button onClick={() => setAddSpaceModal(true)} color={'teal'} children={<FilePlus />} />
-            <Button onClick={() => navigate('/settings')} color={'teal'} children={<Settings />} />
+            <Button onClick={() => navigate('/easylist-ui-pwa/settings')} color={'teal'} children={<Settings />} />
           </>
         }
       />

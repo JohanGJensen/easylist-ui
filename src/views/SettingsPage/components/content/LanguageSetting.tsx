@@ -20,6 +20,7 @@ const CheckboxSetting: React.FC = () => {
         ]}
         value={langCode}
         onChange={handleLanguage}
+        withinPortal={true}
       />
     </>
   );
