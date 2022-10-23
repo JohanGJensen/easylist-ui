@@ -1,24 +1,26 @@
 import React from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from "react-router-dom";
 import SettingsProvider from './providers/SettingsProvider';
-import SpaceProvider from './providers/SpaceProvider';
 
 import BaseRouter from './routing/BaseRouter';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
-const container: HTMLElement|null = document.getElementById('root');
+const container: HTMLElement | null = document.getElementById('root');
 const root = createRoot(container as HTMLElement);
+
+const queryClient = new QueryClient();
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <SettingsProvider>
-        <SpaceProvider>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <SettingsProvider>
           <BaseRouter />
-        </SpaceProvider>
-      </SettingsProvider>
-    </BrowserRouter>
+        </SettingsProvider>
+      </BrowserRouter>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

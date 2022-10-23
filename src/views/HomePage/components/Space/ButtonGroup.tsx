@@ -1,5 +1,4 @@
 import React, { ChangeEvent } from 'react';
-import { SpaceContext } from '../../../../providers/SpaceProvider';
 import { SettingsContext } from '../../../../providers/SettingsProvider';
 
 // components
@@ -10,6 +9,7 @@ import { deleteSpace, postNewItem } from '../../../../api';
 
 // styling
 import { Plus, ShoppingCart, Trash } from 'tabler-icons-react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 interface IProps {
   spaceId: string;
@@ -17,12 +17,28 @@ interface IProps {
 
 const ButtonGroup: React.FC<IProps> = (props) => {
   const { lang } = React.useContext(SettingsContext);
-  const { handleAddItem, handleDeleteSpace } = React.useContext(SpaceContext);
   const { spaceId } = props;
   const [value, setValue] = React.useState<string>('');
   const [inputIsInvalid, setInputInvalid] = React.useState<boolean>(false);
   const [addItemModal, setAddItemModal] = React.useState<boolean>(false);
   const [deleteItemModal, setDeleteItemModal] = React.useState<boolean>(false);
+
+  // Access the client
+  const queryClient = useQueryClient();
+
+  // Mutations
+  const mutateDeleteSpace = useMutation(deleteSpace, {
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries(['spaces']);
+    }
+  });
+  const mutatePostNewItem = useMutation(postNewItem, {
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries(['spaces']);
+    }
+  });
 
   const addItem = () => {
     const request = {
@@ -30,11 +46,7 @@ const ButtonGroup: React.FC<IProps> = (props) => {
       complete: false,
     };
 
-    postNewItem(spaceId, request)
-      .then(res => {
-        handleAddItem(spaceId, res.data);
-      })
-      .catch(error => console.error(error));
+    mutatePostNewItem.mutate({spaceId, request});
   };
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -69,16 +81,14 @@ const ButtonGroup: React.FC<IProps> = (props) => {
   };
 
   const onDeleteSpace = () => {
-    deleteSpace(spaceId)
-      .then(() => handleDeleteSpace(spaceId))
-      .catch(error => console.error(error));
+    mutateDeleteSpace.mutate(spaceId);
 
     setDeleteItemModal(false);
   };
 
   return (
     <>
-      <Group direction={'row'} spacing={'md'}>
+      <Group spacing={'md'}>
         <ActionIcon onClick={() => setAddItemModal(true)} size={'sm'} color={'teal'} children={<Plus />} />
         <ActionIcon onClick={() => setDeleteItemModal(true)} size={'sm'} color={'red'} children={<Trash />} />
       </Group>

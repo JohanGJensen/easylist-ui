@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import { SpaceContext } from '../../../../providers/SpaceProvider';
 import { SettingsContext } from '../../../../providers/SettingsProvider';
 
 // components
@@ -11,6 +10,7 @@ import { ISpace, ISpaceItem } from '../../../../interfaces';
 
 // api
 import { postItemUpdate, deleteItem } from '../../../../api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 // styling
 
@@ -25,30 +25,48 @@ enum CheckBoxPosition {
 }
 
 const Item: React.FC<IProps> = (props) => {
-  const { handleUpdateItem, handleDeleteItem } = useContext(SpaceContext);
   const { checkboxPos } = useContext(SettingsContext);
   const { space, item } = props;
   const [complete, setComplete] = useState<boolean>(item.complete);
   const completedStyle = complete ? { textDecoration: 'line-through' } : {};
 
+  // Access the client
+  const qc = useQueryClient();
+
+  // Mutations
+  const mutateDeleteItem = useMutation(deleteItem, {
+    onSuccess: () => {
+      // Invalidate and refetch
+      qc.invalidateQueries(['spaces']);
+    }
+  });
+  const mutateUpdateItem = useMutation(postItemUpdate, {
+    onSuccess: () => {
+      // Invalidate and refetch
+      qc.invalidateQueries(['spaces']);
+    }
+  });
+
   const onChange = () => {
-    const params = {
+    const request = {
       id: item.id,
       name: item.name,
       complete: !complete
     };
+    const data = {
+      spaceId: space.id,
+      itemId: item.id,
+      request: request,
+    };
   
     setComplete(!complete);
 
-    postItemUpdate(space.id, item.id, params)
-      .then((res) => handleUpdateItem(space.id, res.data))
-      .catch((error) => console.error(error));
+    mutateUpdateItem.mutate(data);
   }
 
   const onDelete = () => {
-    deleteItem(space.id, item.id)
-      .then(() => handleDeleteItem(space, item))
-      .catch((error) => console.error(error));
+    const data = { spaceId: space.id, itemId: item.id };
+    mutateDeleteItem.mutate(data);
   };
 
   return (

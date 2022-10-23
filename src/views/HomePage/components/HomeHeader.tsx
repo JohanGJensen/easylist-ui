@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from "react-router-dom";
-import { SpaceContext } from '../../../providers/SpaceProvider';
 import { SettingsContext } from '../../../providers/SettingsProvider';
 
 // components
@@ -15,21 +15,29 @@ function HomeHeader() {
   const navigate = useNavigate();
 
   const { lang } = React.useContext(SettingsContext);
-  const { handleAddSpace } = React.useContext(SpaceContext);
   const [addSpaceModal, setAddSpaceModal] = React.useState<boolean>(false);
   const [inputValue, setInputValue] = React.useState<string>('');
   const [inputIsInvalid, setInputInvalid] = React.useState<boolean>(false);
   const [selectValue, setSelectValue] = React.useState<string>('All');
 
+  // Access the client
+  const queryClient = useQueryClient();
+
+  // Mutations
+  const mutation = useMutation(postNewSpace, {
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries(['spaces']);
+    }
+  });
+  
   const onAddSpace = () => {
     const request = {
       name: inputValue,
       user: selectValue
     };
 
-    postNewSpace(request)
-      .then((res) => handleAddSpace(res.data))
-      .catch((error) => console.error(error));
+    mutation.mutate(request);
 
     onCloseModal();
   };
