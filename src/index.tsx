@@ -6,6 +6,7 @@ import SettingsProvider from './providers/SettingsProvider';
 
 import BaseRouter from './routing/BaseRouter';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import SpaceProvider from './providers/SpaceProvider';
 
 const container: HTMLElement | null = document.getElementById('root');
 const root = createRoot(container as HTMLElement);
@@ -17,7 +18,9 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <SettingsProvider>
-          <BaseRouter />
+          <SpaceProvider>
+            <BaseRouter />
+          </SpaceProvider>
         </SettingsProvider>
       </BrowserRouter>
     </QueryClientProvider>

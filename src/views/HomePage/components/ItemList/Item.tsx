@@ -9,8 +9,7 @@ import { Trash } from 'tabler-icons-react';
 import { ISpace, ISpaceItem } from '../../../../interfaces';
 
 // api
-import { postItemUpdate, deleteItem } from '../../../../api';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import useMutateItems from '../../../../api/mutations/useMutateItems';
 
 // styling
 
@@ -30,22 +29,7 @@ const Item: React.FC<IProps> = (props) => {
   const [complete, setComplete] = useState<boolean>(item.complete);
   const completedStyle = complete ? { textDecoration: 'line-through' } : {};
 
-  // Access the client
-  const qc = useQueryClient();
-
-  // Mutations
-  const mutateDeleteItem = useMutation(deleteItem, {
-    onSuccess: () => {
-      // Invalidate and refetch
-      qc.invalidateQueries(['spaces']);
-    }
-  });
-  const mutateUpdateItem = useMutation(postItemUpdate, {
-    onSuccess: () => {
-      // Invalidate and refetch
-      qc.invalidateQueries(['spaces']);
-    }
-  });
+  const { removeItem, updateItem } = useMutateItems(space, item);
 
   const onChange = () => {
     const request = {
@@ -61,12 +45,12 @@ const Item: React.FC<IProps> = (props) => {
   
     setComplete(!complete);
 
-    mutateUpdateItem.mutate(data);
+    updateItem(data);
   }
 
   const onDelete = () => {
     const data = { spaceId: space.id, itemId: item.id };
-    mutateDeleteItem.mutate(data);
+    removeItem(data);
   };
 
   return (

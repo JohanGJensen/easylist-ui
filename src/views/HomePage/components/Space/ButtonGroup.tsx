@@ -1,52 +1,43 @@
 import React, { ChangeEvent } from 'react';
 import { SettingsContext } from '../../../../providers/SettingsProvider';
+import { ISpace } from '../../../../interfaces';
 
 // components
 import { ActionIcon, Group, Modal, Input, Button, Text } from '@mantine/core';
 
-// api
-import { deleteSpace, postNewItem } from '../../../../api';
-
 // styling
 import { Plus, ShoppingCart, Trash } from 'tabler-icons-react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+// mutations
+import useMutateSpaces from '../../../../api/mutations/useMutateSpaces';
+import useMutateItems from '../../../../api/mutations/useMutateItems';
 
 interface IProps {
-  spaceId: string;
+  space: ISpace;
 }
 
 const ButtonGroup: React.FC<IProps> = (props) => {
   const { lang } = React.useContext(SettingsContext);
-  const { spaceId } = props;
+  const { space } = props;
   const [value, setValue] = React.useState<string>('');
   const [inputIsInvalid, setInputInvalid] = React.useState<boolean>(false);
   const [addItemModal, setAddItemModal] = React.useState<boolean>(false);
   const [deleteItemModal, setDeleteItemModal] = React.useState<boolean>(false);
 
-  // Access the client
-  const queryClient = useQueryClient();
-
-  // Mutations
-  const mutateDeleteSpace = useMutation(deleteSpace, {
-    onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries(['spaces']);
-    }
-  });
-  const mutatePostNewItem = useMutation(postNewItem, {
-    onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries(['spaces']);
-    }
-  });
+  const { removeSpace } = useMutateSpaces(space);
+  const { newItem } = useMutateItems(space);
 
   const addItem = () => {
     const request = {
       name: value,
       complete: false,
     };
+    const data = {
+      spaceId: space.id,
+      request: request
+    };
 
-    mutatePostNewItem.mutate({spaceId, request});
+    newItem(data);
   };
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -81,7 +72,7 @@ const ButtonGroup: React.FC<IProps> = (props) => {
   };
 
   const onDeleteSpace = () => {
-    mutateDeleteSpace.mutate(spaceId);
+    removeSpace(space.id);
 
     setDeleteItemModal(false);
   };

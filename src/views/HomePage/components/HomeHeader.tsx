@@ -1,5 +1,4 @@
 import React, { ChangeEvent } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from "react-router-dom";
 import { SettingsContext } from '../../../providers/SettingsProvider';
 
@@ -8,8 +7,8 @@ import Header from '../../../components/Header/Header';
 import { Button, Select, Group, Input, Modal } from '@mantine/core';
 import { FilePlus, Settings } from 'tabler-icons-react';
 
-// api
-import { postNewSpace } from '../../../api';
+// mutations
+import useMutateSpaces from '../../../api/mutations/useMutateSpaces';
 
 function HomeHeader() {
   const navigate = useNavigate();
@@ -20,24 +19,15 @@ function HomeHeader() {
   const [inputIsInvalid, setInputInvalid] = React.useState<boolean>(false);
   const [selectValue, setSelectValue] = React.useState<string>('All');
 
-  // Access the client
-  const queryClient = useQueryClient();
-
-  // Mutations
-  const mutation = useMutation(postNewSpace, {
-    onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries(['spaces']);
-    }
-  });
-  
+  const { newSpace } = useMutateSpaces();
+ 
   const onAddSpace = () => {
     const request = {
       name: inputValue,
       user: selectValue
     };
 
-    mutation.mutate(request);
+    newSpace(request);
 
     onCloseModal();
   };
