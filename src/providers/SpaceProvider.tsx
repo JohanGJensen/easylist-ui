@@ -1,7 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
-// api
-import { getAllSpaces } from '../api';
+import React, { useState } from 'react';
 
 // types
 import { ISpace, ISpaceItem, ISpaceState } from '../interfaces';
@@ -13,17 +10,11 @@ interface IProviderProps {
 }
 
 const SpaceProvider: React.FC<IProviderProps> = ({ children }) => {
-  const [loading, setLoading] = React.useState<boolean>(true);
   const [data, setData] = useState<ISpace[]>([]);
 
-  useEffect(() => {
-    getAllSpaces()
-      .then((data) => {
-        setData(data.data);
-        setLoading(false);
-      })
-      .catch((error) => console.error(error));
-  }, []);
+  const handleSetAllSpaces = (spaces: ISpace[]) => {
+    setData(spaces);
+  };
 
   const handleAddSpace = (space: ISpace) => {
     setData([...data, space]);
@@ -41,9 +32,9 @@ const SpaceProvider: React.FC<IProviderProps> = ({ children }) => {
     newData && setData(newData);
   };
 
-  const handleDeleteItem = (space: ISpace, item: ISpaceItem) => {
+  const handleDeleteItem = (space: ISpace, itemId: string) => {
     const itemIndex: number = space.items.findIndex((sItem) => {
-      return sItem.id === item.id;
+      return sItem.id === itemId;
     });
     const newData: ISpace[] = data.map((dataSpace) => {
       if (dataSpace.id === space.id) {
@@ -83,7 +74,7 @@ const SpaceProvider: React.FC<IProviderProps> = ({ children }) => {
 
   const values: ISpaceState = {
     data,
-    loading,
+    handleSetAllSpaces,
     handleDeleteItem,
     handleDeleteSpace,
     handleAddItem,

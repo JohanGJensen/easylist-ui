@@ -1,5 +1,4 @@
-import React from 'react';
-import { SpaceContext } from '../../providers/SpaceProvider';
+import React, { useContext } from 'react';
 
 // components
 import HomeHeader from './components/HomeHeader';
@@ -12,12 +11,23 @@ import './homepage.css';
 // types
 import { ISpace } from '../../interfaces';
 
+import { getAllSpaces } from '../../api';
+import { useQuery } from '@tanstack/react-query';
+import { SpaceContext } from '../../providers/SpaceProvider';
+
 function HomePage() {
-  const { data, loading } = React.useContext(SpaceContext);
+  const { data, handleSetAllSpaces } = useContext(SpaceContext);
+
+  const { isLoading  } = useQuery(['spaces'], getAllSpaces, {
+    onSuccess: ({ data: spaces }) => {
+      handleSetAllSpaces(spaces);
+    },
+    staleTime: 6000
+  });
 
   return (
     <>
-      <LoadingOverlay visible={loading} />
+      <LoadingOverlay visible={isLoading} />
       <HomeHeader />
       <Container>
         {data && data.map((space: ISpace) => {

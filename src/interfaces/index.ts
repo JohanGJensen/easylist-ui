@@ -7,6 +7,17 @@ export interface ISpaceItem {
   name: string;
 }
 
+export interface IItemRequest {
+  id?: string;
+  name: string;
+  complete: boolean;
+}
+
+export interface ISpaceRequest {
+  name: string;
+  user: string;
+}
+
 export interface ISpace {
   id: string;
   name: string;

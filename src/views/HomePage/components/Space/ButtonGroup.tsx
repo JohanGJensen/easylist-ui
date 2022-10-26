@@ -1,40 +1,43 @@
 import React, { ChangeEvent } from 'react';
-import { SpaceContext } from '../../../../providers/SpaceProvider';
 import { SettingsContext } from '../../../../providers/SettingsProvider';
+import { ISpace } from '../../../../interfaces';
 
 // components
 import { ActionIcon, Group, Modal, Input, Button, Text } from '@mantine/core';
 
-// api
-import { deleteSpace, postNewItem } from '../../../../api';
-
 // styling
 import { Plus, ShoppingCart, Trash } from 'tabler-icons-react';
 
+// mutations
+import useMutateSpaces from '../../../../api/mutations/useMutateSpaces';
+import useMutateItems from '../../../../api/mutations/useMutateItems';
+
 interface IProps {
-  spaceId: string;
+  space: ISpace;
 }
 
 const ButtonGroup: React.FC<IProps> = (props) => {
   const { lang } = React.useContext(SettingsContext);
-  const { handleAddItem, handleDeleteSpace } = React.useContext(SpaceContext);
-  const { spaceId } = props;
+  const { space } = props;
   const [value, setValue] = React.useState<string>('');
   const [inputIsInvalid, setInputInvalid] = React.useState<boolean>(false);
   const [addItemModal, setAddItemModal] = React.useState<boolean>(false);
   const [deleteItemModal, setDeleteItemModal] = React.useState<boolean>(false);
+
+  const { removeSpace } = useMutateSpaces();
+  const { newItem } = useMutateItems(space);
 
   const addItem = () => {
     const request = {
       name: value,
       complete: false,
     };
+    const data = {
+      spaceId: space.id,
+      request: request
+    };
 
-    postNewItem(spaceId, request)
-      .then(res => {
-        handleAddItem(spaceId, res.data);
-      })
-      .catch(error => console.error(error));
+    newItem(data);
   };
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -69,16 +72,14 @@ const ButtonGroup: React.FC<IProps> = (props) => {
   };
 
   const onDeleteSpace = () => {
-    deleteSpace(spaceId)
-      .then(() => handleDeleteSpace(spaceId))
-      .catch(error => console.error(error));
+    removeSpace(space.id);
 
     setDeleteItemModal(false);
   };
 
   return (
     <>
-      <Group direction={'row'} spacing={'md'}>
+      <Group spacing={'md'}>
         <ActionIcon onClick={() => setAddItemModal(true)} size={'sm'} color={'teal'} children={<Plus />} />
         <ActionIcon onClick={() => setDeleteItemModal(true)} size={'sm'} color={'red'} children={<Trash />} />
       </Group>

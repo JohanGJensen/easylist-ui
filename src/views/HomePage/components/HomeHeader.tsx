@@ -1,6 +1,5 @@
 import React, { ChangeEvent } from 'react';
 import { useNavigate } from "react-router-dom";
-import { SpaceContext } from '../../../providers/SpaceProvider';
 import { SettingsContext } from '../../../providers/SettingsProvider';
 
 // components
@@ -8,28 +7,29 @@ import Header from '../../../components/Header/Header';
 import { Button, Select, Group, Input, Modal } from '@mantine/core';
 import { FilePlus, Settings } from 'tabler-icons-react';
 
-// api
-import { postNewSpace } from '../../../api';
+// mutations
+import useMutateSpaces from '../../../api/mutations/useMutateSpaces';
+
+import { ISpaceRequest } from '../../../interfaces';
 
 function HomeHeader() {
   const navigate = useNavigate();
 
   const { lang } = React.useContext(SettingsContext);
-  const { handleAddSpace } = React.useContext(SpaceContext);
   const [addSpaceModal, setAddSpaceModal] = React.useState<boolean>(false);
   const [inputValue, setInputValue] = React.useState<string>('');
   const [inputIsInvalid, setInputInvalid] = React.useState<boolean>(false);
   const [selectValue, setSelectValue] = React.useState<string>('All');
 
+  const { newSpace } = useMutateSpaces();
+ 
   const onAddSpace = () => {
-    const request = {
+    const request: ISpaceRequest = {
       name: inputValue,
       user: selectValue
     };
 
-    postNewSpace(request)
-      .then((res) => handleAddSpace(res.data))
-      .catch((error) => console.error(error));
+    newSpace(request);
 
     onCloseModal();
   };
