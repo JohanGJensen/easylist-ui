@@ -24,7 +24,7 @@ const ButtonGroup: React.FC<IProps> = (props) => {
   const [addItemModal, setAddItemModal] = React.useState<boolean>(false);
   const [deleteItemModal, setDeleteItemModal] = React.useState<boolean>(false);
 
-  const { removeSpace } = useMutateSpaces(space);
+  const { removeSpace } = useMutateSpaces();
   const { newItem } = useMutateItems(space);
 
   const addItem = () => {

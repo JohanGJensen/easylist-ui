@@ -2,12 +2,9 @@ import { useContext } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { deleteItem, postItemUpdate, postNewItem } from '..';
 import { SpaceContext } from '../../providers/SpaceProvider';
-import { ISpace, ISpaceItem } from '../../interfaces';
+import { ISpace } from '../../interfaces';
 
-const useMutateItems = (
-  space: ISpace,
-  item?: ISpaceItem
-) => {
+const useMutateItems = (space: ISpace) => {
   const {
     handleAddItem,
     handleDeleteItem,
@@ -16,10 +13,8 @@ const useMutateItems = (
 
   // Mutations
   const { mutate: removeItem } = useMutation(deleteItem, {
-    onSuccess: () => {
-      if (item) {
-        handleDeleteItem(space, item);
-      }
+    onSuccess: ({ data: item }) => {
+      handleDeleteItem(space, item.id);
     }
   });
 

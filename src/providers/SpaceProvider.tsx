@@ -32,9 +32,9 @@ const SpaceProvider: React.FC<IProviderProps> = ({ children }) => {
     newData && setData(newData);
   };
 
-  const handleDeleteItem = (space: ISpace, item: ISpaceItem) => {
+  const handleDeleteItem = (space: ISpace, itemId: string) => {
     const itemIndex: number = space.items.findIndex((sItem) => {
-      return sItem.id === item.id;
+      return sItem.id === itemId;
     });
     const newData: ISpace[] = data.map((dataSpace) => {
       if (dataSpace.id === space.id) {
