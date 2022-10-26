@@ -10,6 +10,8 @@ import { FilePlus, Settings } from 'tabler-icons-react';
 // mutations
 import useMutateSpaces from '../../../api/mutations/useMutateSpaces';
 
+import { ISpaceRequest } from '../../../interfaces';
+
 function HomeHeader() {
   const navigate = useNavigate();
 
@@ -22,7 +24,7 @@ function HomeHeader() {
   const { newSpace } = useMutateSpaces();
  
   const onAddSpace = () => {
-    const request = {
+    const request: ISpaceRequest = {
       name: inputValue,
       user: selectValue
     };
