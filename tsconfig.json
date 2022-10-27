@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
-        "outDir": "dist",
+        "outDir": "build",
         "noImplicitAny": true,
-        "module": "es6",
+        "module": "es2020",
         "target": "es5",
         "jsx": "react",
         "baseUrl": "src",
@@ -12,6 +12,6 @@
         "allowSyntheticDefaultImports": true,
     },
     "include": [
-        "custom.d.ts"
+        "src"
     ]
 }
