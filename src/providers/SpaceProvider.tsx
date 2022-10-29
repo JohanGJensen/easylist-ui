@@ -49,7 +49,7 @@ const SpaceProvider: React.FC<IProviderProps> = ({ children }) => {
 
   const handleDeleteSpace = (spaceId: string) => {
     const newData: ISpace[] = data;
-    const spaceIndex: number = data.findIndex(space => {
+    const spaceIndex: number = data.findIndex((space) => {
       return space.id === spaceId;
     });
 
@@ -59,11 +59,11 @@ const SpaceProvider: React.FC<IProviderProps> = ({ children }) => {
   };
 
   const handleUpdateItem = (spaceId: string, item: ISpaceItem) => {
-    const spaceIndex: number = data.findIndex(space => {
+    const spaceIndex: number = data.findIndex((space) => {
       return space.id === spaceId;
     });
-    const itemIndex: number = data[spaceIndex].items.findIndex(sItem => {
-      return sItem.id === item.id
+    const itemIndex: number = data[spaceIndex].items.findIndex((sItem) => {
+      return sItem.id === item.id;
     });
     const newData: ISpace[] = data;
 
@@ -79,15 +79,12 @@ const SpaceProvider: React.FC<IProviderProps> = ({ children }) => {
     handleDeleteSpace,
     handleAddItem,
     handleAddSpace,
-    handleUpdateItem
-  }
+    handleUpdateItem,
+  };
 
   return (
-    <SpaceContext.Provider
-      value={values}
-      children={children}
-    />
+    <SpaceContext.Provider value={values}>{children}</SpaceContext.Provider>
   );
-}
+};
 
 export default SpaceProvider;

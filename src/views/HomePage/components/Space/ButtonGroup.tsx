@@ -34,7 +34,7 @@ const ButtonGroup: React.FC<IProps> = (props) => {
     };
     const data = {
       spaceId: space.id,
-      request: request
+      request: request,
     };
 
     newItem(data);
@@ -80,10 +80,22 @@ const ButtonGroup: React.FC<IProps> = (props) => {
   return (
     <>
       <Group spacing={'md'}>
-        <ActionIcon onClick={() => setAddItemModal(true)} size={'sm'} color={'teal'} children={<Plus />} />
-        <ActionIcon onClick={() => setDeleteItemModal(true)} size={'sm'} color={'red'} children={<Trash />} />
+        <ActionIcon
+          onClick={() => setAddItemModal(true)}
+          size={'sm'}
+          color={'teal'}
+        >
+          <Plus />
+        </ActionIcon>
+        <ActionIcon
+          onClick={() => setDeleteItemModal(true)}
+          size={'sm'}
+          color={'red'}
+        >
+          <Trash />
+        </ActionIcon>
       </Group>
-      <Modal onClose={onModalClose} opened={addItemModal} children={
+      <Modal onClose={onModalClose} opened={addItemModal}>
         <>
           <Input
             value={value}
@@ -97,34 +109,33 @@ const ButtonGroup: React.FC<IProps> = (props) => {
               onClick={onAddItemAndMore}
               size={'xs'}
               color={'teal'}
-              children={lang.spaceAddItemButtonMore}
               disabled={value === ''}
-            />
+            >
+              {lang.spaceAddItemButtonMore}
+            </Button>
             <Button
               onClick={onAddItemAndClose}
               size={'xs'}
               color={'teal'}
-              children={lang.spaceAddItemButtonClose}
               disabled={value === ''}
-            />
+            >
+              {lang.spaceAddItemButtonClose}
+            </Button>
           </Group>
         </>
-      } />
-      <Modal onClose={onModalClose} opened={deleteItemModal} children={
+      </Modal>
+      <Modal onClose={onModalClose} opened={deleteItemModal}>
         <>
-          <Text align={'center'} children={lang.spaceDeleteSpaceWarning} />
+          <Text align={'center'}>{lang.spaceDeleteSpaceWarning}</Text>
           <Group position={'right'} style={{ marginTop: '1.5rem' }}>
-            <Button
-              onClick={onDeleteSpace}
-              size={'xs'}
-              color={'red'}
-              children={lang.spaceDeleteSpaceButton}
-            />
+            <Button onClick={onDeleteSpace} size={'xs'} color={'red'}>
+              {lang.spaceDeleteSpaceButton}
+            </Button>
           </Group>
         </>
-      } />
+      </Modal>
     </>
   );
-}
+};
 
 export default ButtonGroup;

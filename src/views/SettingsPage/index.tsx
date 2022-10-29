@@ -19,13 +19,13 @@ const SettingsPage: React.FC = () => {
     <>
       <SettingsHeader />
       <Container>
-        <Title order={3} children={lang.settings} />
+        <Title order={3}>{lang.settings}</Title>
         <Space h={'xs'} />
         <SettingsCard content={<CheckboxSetting />} />
         <SettingsCard content={<LanguageSetting />} />
       </Container>
     </>
   );
-}
+};
 
 export default SettingsPage;

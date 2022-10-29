@@ -11,7 +11,7 @@ const CheckboxSetting: React.FC = () => {
 
   return (
     <>
-      <Text size={'md'} children={lang.settingsLanguageText} />
+      <Text size={'md'}>{lang.settingsLanguageText}</Text>
       <Select
         data={[
           { value: 'en_US', label: lang.settingsLanguageOptionEnglish },
@@ -24,6 +24,6 @@ const CheckboxSetting: React.FC = () => {
       />
     </>
   );
-}
+};
 
 export default CheckboxSetting;

@@ -23,15 +23,16 @@ const HomePage: React.FC<IProps> = (props) => {
     <Card shadow="sm" p="lg" style={{ marginBottom: '1.2rem' }}>
       <Group position={'apart'}>
         <Stack spacing={'xs'}>
-          <Text size={'xl'} weight={500}>{space.name}</Text>
+          <Text size={'xl'} weight={500}>
+            {space.name}
+          </Text>
           <Text size={'sm'}>{space.user}</Text>
         </Stack>
         <ButtonGroup space={space} />
       </Group>
       <Divider my="sm" />
       <ItemList space={space} />
-      {
-        percentage >= 0 &&
+      {percentage >= 0 && (
         <>
           <Divider my="sm" />
           <Progress
@@ -40,9 +41,9 @@ const HomePage: React.FC<IProps> = (props) => {
             size={'lg'}
           />
         </>
-      }
+      )}
     </Card>
   );
-}
+};
 
 export default HomePage;

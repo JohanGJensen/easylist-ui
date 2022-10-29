@@ -7,11 +7,12 @@ import { Text, Select } from '@mantine/core';
 // types
 
 const CheckboxSetting: React.FC = () => {
-  const { handleCheckboxPos, checkboxPos, lang } = React.useContext(SettingsContext);
+  const { handleCheckboxPos, checkboxPos, lang } =
+    React.useContext(SettingsContext);
 
   return (
     <>
-      <Text size={'md'} children={lang.settingsCheckboxText} />
+      <Text size={'md'}>{lang.settingsCheckboxText}</Text>
       <Select
         data={[
           { value: 'right', label: lang.settingsCheckboxOptionRight },
@@ -23,6 +24,6 @@ const CheckboxSetting: React.FC = () => {
       />
     </>
   );
-}
+};
 
 export default CheckboxSetting;

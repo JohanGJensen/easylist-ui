@@ -32,7 +32,9 @@ const SettingsProvider: React.FC<IProviderProps> = ({ children }) => {
    * LANGUAGE related settings
    */
   useEffect(() => {
-    const lang: LanguageTypes | null = JSON.parse(localStorage.getItem('lang') as string);
+    const lang: LanguageTypes | null = JSON.parse(
+      localStorage.getItem('lang') as string
+    );
 
     if (lang) {
       setLangCode(lang);
@@ -60,11 +62,10 @@ const SettingsProvider: React.FC<IProviderProps> = ({ children }) => {
   };
 
   return (
-    <SettingsContext.Provider
-      value={values}
-      children={children}
-    />
+    <SettingsContext.Provider value={values}>
+      {children}
+    </SettingsContext.Provider>
   );
-}
+};
 
 export default SettingsProvider;

@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { SettingsContext } from '../../../providers/SettingsProvider';
 
 // components
@@ -22,11 +22,11 @@ function HomeHeader() {
   const [selectValue, setSelectValue] = React.useState<string>('All');
 
   const { newSpace } = useMutateSpaces();
- 
+
   const onAddSpace = () => {
     const request: ISpaceRequest = {
       name: inputValue,
-      user: selectValue
+      user: selectValue,
     };
 
     newSpace(request);
@@ -64,12 +64,19 @@ function HomeHeader() {
       <Header
         rightContent={
           <>
-            <Button onClick={() => setAddSpaceModal(true)} color={'teal'} children={<FilePlus />} />
-            <Button onClick={() => navigate('/easylist-ui-pwa/settings')} color={'teal'} children={<Settings />} />
+            <Button onClick={() => setAddSpaceModal(true)} color={'teal'}>
+              <FilePlus />
+            </Button>
+            <Button
+              onClick={() => navigate('/easylist-ui-pwa/settings')}
+              color={'teal'}
+            >
+              <Settings />
+            </Button>
           </>
         }
       />
-      <Modal onClose={onCloseModal} opened={addSpaceModal} children={
+      <Modal onClose={onCloseModal} opened={addSpaceModal}>
         <>
           <Input
             value={inputValue}
@@ -93,12 +100,13 @@ function HomeHeader() {
               onClick={onAddSpace}
               size={'xs'}
               color={'teal'}
-              children={lang.homeCreateSpaceAddButton}
               disabled={inputValue === ''}
-            />
+            >
+              {lang.homeCreateSpaceAddButton}
+            </Button>
           </Group>
         </>
-      } />
+      </Modal>
     </>
   );
 }

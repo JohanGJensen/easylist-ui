@@ -20,7 +20,7 @@ interface IProps {
 
 enum CheckBoxPosition {
   LEFT = 'left',
-  RIGHT = 'right'
+  RIGHT = 'right',
 }
 
 const Item: React.FC<IProps> = (props) => {
@@ -29,24 +29,24 @@ const Item: React.FC<IProps> = (props) => {
   const [complete, setComplete] = useState<boolean>(item.complete);
   const completedStyle = complete ? { textDecoration: 'line-through' } : {};
 
-  const { removeItem, updateItem } = useMutateItems(space, item);
+  const { removeItem, updateItem } = useMutateItems(space);
 
   const onChange = () => {
     const request = {
       id: item.id,
       name: item.name,
-      complete: !complete
+      complete: !complete,
     };
     const data = {
       spaceId: space.id,
       itemId: item.id,
       request: request,
     };
-  
+
     setComplete(!complete);
 
     updateItem(data);
-  }
+  };
 
   const onDelete = () => {
     const data = { spaceId: space.id, itemId: item.id };
@@ -56,25 +56,27 @@ const Item: React.FC<IProps> = (props) => {
   return (
     <Group position={'apart'}>
       <Group spacing={'xs'}>
-        {
-          checkboxPos === CheckBoxPosition.LEFT &&
+        {checkboxPos === CheckBoxPosition.LEFT && (
           <Checkbox onChange={onChange} checked={complete} color={'teal'} />
-        }
+        )}
         <Text
           style={{ ...completedStyle, maxWidth: '210px' }}
           color={complete ? 'dimmed' : 'inherit'}
           size={'lg'}
-        >{item.name}</Text>
+        >
+          {item.name}
+        </Text>
       </Group>
       <Group spacing={'xs'}>
-        {
-          checkboxPos === CheckBoxPosition.RIGHT &&
+        {checkboxPos === CheckBoxPosition.RIGHT && (
           <Checkbox onChange={onChange} checked={complete} color={'teal'} />
-        }
-        <ActionIcon onClick={onDelete} size={'sm'} color={'red'} children={<Trash />} />
+        )}
+        <ActionIcon onClick={onDelete} size={'sm'} color={'red'}>
+          <Trash />
+        </ActionIcon>
       </Group>
     </Group>
   );
-}
+};
 
 export default Item;

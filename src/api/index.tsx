@@ -1,14 +1,9 @@
-import axios from "axios";
-import { IItemRequest, ISpaceRequest } from "../interfaces";
+import axios from 'axios';
+import { IItemRequest, ISpaceRequest } from '../interfaces';
+import { IRequestMutation } from './mutations/useMutateItems';
 
-interface IRequestMutation<T> {
-  spaceId?: string;
-  itemId?: string;
-  request: T;
-}
-
-// const HOST = 'http://localhost:8080'
-const HOST = 'https://easylist-api.onrender.com';
+const HOST = 'http://localhost:8080';
+// const HOST = 'https://easylist-api.onrender.com';
 
 export const getAllSpaces = () => {
   return axios.get(`${HOST}/spaces/all`);
@@ -23,7 +18,7 @@ export const deleteSpace = (spaceId: string) => {
 };
 
 export const postNewItem = (data: IRequestMutation<IItemRequest>) => {
-  const {spaceId, request} = data;
+  const { spaceId, request } = data;
   return axios.post(`${HOST}/items/create/${spaceId}`, request);
 };
 

@@ -18,11 +18,11 @@ import { SpaceContext } from '../../providers/SpaceProvider';
 function HomePage() {
   const { data, handleSetAllSpaces } = useContext(SpaceContext);
 
-  const { isLoading  } = useQuery(['spaces'], getAllSpaces, {
+  const { isLoading } = useQuery(['spaces'], getAllSpaces, {
     onSuccess: ({ data: spaces }) => {
       handleSetAllSpaces(spaces);
     },
-    staleTime: 6000
+    staleTime: 6000,
   });
 
   return (
@@ -30,11 +30,10 @@ function HomePage() {
       <LoadingOverlay visible={isLoading} />
       <HomeHeader />
       <Container>
-        {data && data.map((space: ISpace) => {
-          return (
-            <Space key={`space-${space.id}`} space={space} />
-          )
-        })}
+        {data &&
+          data.map((space: ISpace) => {
+            return <Space key={`space-${space.id}`} space={space} />;
+          })}
       </Container>
     </>
   );

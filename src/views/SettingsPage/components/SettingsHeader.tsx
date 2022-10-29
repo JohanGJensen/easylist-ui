@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 // components
 import Header from '../../../components/Header/Header';
@@ -13,10 +13,12 @@ const SettingsHeader = () => {
     <Header
       position={'left'}
       leftContent={
-        <Button onClick={() => navigate(-1)} color={'gray'} children={<ArrowBack />} />
+        <Button onClick={() => navigate(-1)} color={'gray'}>
+          {<ArrowBack />}
+        </Button>
       }
     />
   );
-}
+};
 
 export default SettingsHeader;
