@@ -12,7 +12,7 @@ interface IProps {
 const SettingsCard: React.FC<IProps> = (props) => {
   const { content } = props;
 
-  return <Card withBorder={true} children={content} />;
-}
+  return <Card withBorder={true}>{content}</Card>;
+};
 
 export default SettingsCard;
