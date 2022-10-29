@@ -10,16 +10,16 @@ const useMutateSpaces = () => {
   const { mutate: newSpace } = useMutation(postNewSpace, {
     onSuccess: ({ data: space }) => {
       handleAddSpace(space);
-    }
+    },
   });
 
   const { mutate: removeSpace } = useMutation(deleteSpace, {
     onSuccess: ({ data: space }) => {
       handleDeleteSpace(space.id);
-    }
+    },
   });
 
-  return { removeSpace, newSpace }
+  return { removeSpace, newSpace };
 };
 
 export default useMutateSpaces;
