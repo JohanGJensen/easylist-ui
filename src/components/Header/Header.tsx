@@ -13,28 +13,16 @@ interface IProps {
 }
 
 const Header: React.FC<IProps> = (props) => {
-  const {
-    position = 'right',
-    leftContent,
-    rightContent
-  } = props;
+  const { position = 'right', leftContent, rightContent } = props;
 
   return (
     <header className="header-bar">
       <Group position={position} style={{ width: '98%', padding: '6px 0px' }}>
-        {leftContent &&
-          <Group spacing={'xs'}>
-            {leftContent}
-          </Group>
-        }
-        {rightContent &&
-          <Group spacing={'xs'}>
-            {rightContent}
-          </Group>
-        }
+        {leftContent && <Group spacing={'xs'}>{leftContent}</Group>}
+        {rightContent && <Group spacing={'xs'}>{rightContent}</Group>}
       </Group>
     </header>
   );
-}
+};
 
 export default Header;
