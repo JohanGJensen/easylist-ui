@@ -1,4 +1,4 @@
-import { ILanguage } from "../interfaces";
+import { ILanguage } from '../interfaces';
 
 export const spanishLanguage: ILanguage = {
   settings: 'Ajustes',

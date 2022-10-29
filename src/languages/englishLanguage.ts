@@ -1,4 +1,4 @@
-import { ILanguage } from "../interfaces";
+import { ILanguage } from '../interfaces';
 
 export const englishLanguage: ILanguage = {
   settings: 'Settings',
