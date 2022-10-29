@@ -1,11 +1,6 @@
 import axios from 'axios';
 import { IItemRequest, ISpaceRequest } from '../interfaces';
-
-interface IRequestMutation<T> {
-  spaceId?: string;
-  itemId?: string;
-  request?: T;
-}
+import { IRequestMutation } from './mutations/useMutateItems';
 
 const HOST = 'http://localhost:8080';
 // const HOST = 'https://easylist-api.onrender.com';
