@@ -6,7 +6,7 @@ import { Text, Group, Checkbox, ActionIcon } from '@mantine/core';
 import { Trash } from 'tabler-icons-react';
 
 // types
-import { IItemRequest, ISpace, ISpaceItem } from '../../../../interfaces';
+import { ISpace, ISpaceItem } from '../../../../interfaces';
 
 // api
 import useMutateItems from '../../../../api/mutations/useMutateItems';
@@ -56,13 +56,21 @@ const Item: React.FC<IProps> = (props) => {
   return (
     <Group position={'apart'}>
       <Group spacing={'xs'}>
-        {checkboxPos === CheckBoxPosition.LEFT && <Checkbox onChange={onChange} checked={complete} color={'teal'} />}
-        <Text style={{ ...completedStyle, maxWidth: '210px' }} color={complete ? 'dimmed' : 'inherit'} size={'lg'}>
+        {checkboxPos === CheckBoxPosition.LEFT && (
+          <Checkbox onChange={onChange} checked={complete} color={'teal'} />
+        )}
+        <Text
+          style={{ ...completedStyle, maxWidth: '210px' }}
+          color={complete ? 'dimmed' : 'inherit'}
+          size={'lg'}
+        >
           {item.name}
         </Text>
       </Group>
       <Group spacing={'xs'}>
-        {checkboxPos === CheckBoxPosition.RIGHT && <Checkbox onChange={onChange} checked={complete} color={'teal'} />}
+        {checkboxPos === CheckBoxPosition.RIGHT && (
+          <Checkbox onChange={onChange} checked={complete} color={'teal'} />
+        )}
         <ActionIcon onClick={onDelete} size={'sm'} color={'red'}>
           <Trash />
         </ActionIcon>
