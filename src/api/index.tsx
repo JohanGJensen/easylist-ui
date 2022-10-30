@@ -2,8 +2,7 @@ import axios from 'axios';
 import { IItemRequest, ISpaceRequest } from '../interfaces';
 import { IRequestMutation } from './mutations/useMutateItems';
 
-// const HOST = 'http://localhost:8080';
-const HOST = 'https://easylist-api.onrender.com';
+const HOST = process.env.REACT_APP_API_HOST;
 
 export const getAllSpaces = () => {
   return axios.get(`${HOST}/spaces/all`);

@@ -2,6 +2,7 @@ name: Deploy to gh-pages
 
 env:
   REACT_APP_PRODUCTION: ${{secrets.REACT_APP_PRODUCTION}}
+  REACT_APP_API_HOST: ${{secrets.REACT_APP_API_HOST}}
 
 on:
   push:

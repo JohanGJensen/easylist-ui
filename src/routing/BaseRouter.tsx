@@ -9,8 +9,6 @@ const SettingsPage = lazy(() => import('../views/SettingsPage'));
 const base = '/easylist-ui-pwa';
 
 const BaseRouter: React.FC = () => {
-  console.log(process.env.REACT_APP_PRODUCTION);
-
   return (
     <Suspense fallback={<LoadingOverlay visible={true} />}>
       <Routes>
