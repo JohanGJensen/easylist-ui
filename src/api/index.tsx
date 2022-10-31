@@ -2,7 +2,7 @@ import axios from 'axios';
 import { IItemRequest, ISpaceRequest } from '../interfaces';
 import { IRequestMutation } from './mutations/useMutateItems';
 
-const HOST = process.env.REACT_APP_API_HOST;
+const HOST = import.meta.env.VITE_API_HOST;
 
 export const getAllSpaces = () => {
   return axios.get(`${HOST}/spaces/all`);
