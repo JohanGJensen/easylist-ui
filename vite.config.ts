@@ -13,4 +13,16 @@ export default defineConfig({
     open: true,
     port: 3000,
   },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: 'src/setupTests.js',
+    coverage: {
+      reporter: ['text', 'html'],
+      exclude: [
+        'node_modules',
+        'src/setupTests.js',
+      ],
+    },
+  },
 });
