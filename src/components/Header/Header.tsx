@@ -6,13 +6,13 @@ import { Group } from '@mantine/core';
 // styling
 import './header.css';
 
-interface IProps {
+export interface HeaderProps {
   position?: 'apart' | 'left' | 'right';
   leftContent?: React.ReactNode;
   rightContent?: React.ReactNode;
 }
 
-const Header: React.FC<IProps> = (props) => {
+const Header: React.FC<HeaderProps> = (props) => {
   const { position = 'right', leftContent, rightContent } = props;
 
   return (
