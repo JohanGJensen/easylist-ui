@@ -17,6 +17,6 @@ describe('Header component', () => {
   });
 
   test('should display left content', () => {
-    expect(screen.getByText(/hello left/i)).toBeDefined();
+    expect(screen.getByText(/hello left/i)).toBeUnDefined();
   });
 });

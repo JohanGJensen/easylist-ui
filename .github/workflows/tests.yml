@@ -1,4 +1,4 @@
-name: Check linting
+name: Vitest
 
 on: push
 
