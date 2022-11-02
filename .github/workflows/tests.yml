@@ -1,4 +1,4 @@
-name: Check linting
+name: Vitest
 
 on: push
 
@@ -12,5 +12,5 @@ jobs:
     - name: Install modules
       run: npm install --legacy-peer-deps
 
-    - name: Run ESLint
-      run: npx eslint src/ --max-warnings=0
+    - name: Run vitest
+      run: npx vitest

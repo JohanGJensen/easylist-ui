@@ -14,6 +14,7 @@
     "@tanstack/react-query": "^4.13.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
+    "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^14.4.3",
     "@types/node": "^18.11.3",
     "@types/react": "^18.0.21",
@@ -23,7 +24,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.2",
-    "react-script": "^2.0.5",
     "tabler-icons-react": "^1.55.0",
     "typescript": "^4.8.4"
   },
@@ -63,9 +63,11 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.10",
+    "jsdom": "^20.0.2",
     "prettier": "^2.7.1",
     "vite": "^3.2.0",
     "vite-plugin-svgr": "^2.2.2",
-    "vite-tsconfig-paths": "^3.5.2"
+    "vite-tsconfig-paths": "^3.5.2",
+    "vitest": "^0.24.4"
   }
 }
