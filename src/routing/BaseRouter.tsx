@@ -1,10 +1,13 @@
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+
+import HomePage from '../views/HomePage';
+import SettingsPage from '../views/SettingsPage';
 
 // components
 import { LoadingOverlay } from '@mantine/core';
-const HomePage = lazy(() => import('../views/HomePage'));
-const SettingsPage = lazy(() => import('../views/SettingsPage'));
+// const HomePage = lazy(() => import('../views/HomePage'));
+// const SettingsPage = lazy(() => import('../views/SettingsPage'));
 
 const base = '/easylist-ui-pwa';
 
