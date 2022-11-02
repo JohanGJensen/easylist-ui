@@ -5,6 +5,7 @@ import svgrPlugin from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/easylist-ui-pwa',
   plugins: [react(), viteTsconfigPaths(), svgrPlugin()],
   build: {
     outDir: 'build',
