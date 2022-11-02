@@ -14,12 +14,16 @@ const testSpaces: ISpace[] = [
 ];
 
 const TestComponent = () => {
-  const { data, handleSetAllSpaces } = React.useContext(SpaceContext);
+  const { data, handleSetAllSpaces, handleDeleteSpace } =
+    React.useContext(SpaceContext);
 
   return (
     <div>
       <button onClick={() => handleSetAllSpaces(testSpaces)}>
         {'handleSetAllSpaces'}
+      </button>
+      <button onClick={() => handleDeleteSpace(testSpaces[0].id)}>
+        {'handleDeleteSpace'}
       </button>
       {data?.map((space) => {
         return (
@@ -40,18 +44,25 @@ describe('<SpaceProvider />', () => {
         <TestComponent />
       </SpaceProvider>
     );
+
+    const button = screen.getByText(/handleSetAllSpaces/);
+    fireEvent.click(button);
   });
 
-  it('handleSetAllSpaces', () => {
+  it('has spaces loaded in component', () => {
     expect(screen.queryByTestId('id-provider')).toBeDefined();
-    const button = screen.getByText(/handleSetAllSpaces/);
-
-    fireEvent.click(button);
 
     const name = screen.getByText(testSpaces[0].name);
     const user = screen.getByText(testSpaces[0].user);
 
     expect(name.textContent).toEqual(testSpaces[0].name);
     expect(user.textContent).toEqual(testSpaces[0].user);
+  });
+
+  it('handle delete space', () => {
+    const button = screen.getByText(/handleDeleteSpace/);
+    fireEvent.click(button);
+
+    expect(testSpaces).toHaveLength(0);
   });
 });
