@@ -6,6 +6,9 @@ import SettingsPage from '../views/SettingsPage';
 
 // components
 import { LoadingOverlay } from '@mantine/core';
+import LoginPage from '../views/login/LoginPage';
+import RegisterPage from '../views/login/RegisterPage';
+import ProtectedRoute from './ProtectedRoute';
 // const HomePage = lazy(() => import('../views/HomePage'));
 // const SettingsPage = lazy(() => import('../views/SettingsPage'));
 
@@ -15,9 +18,25 @@ const BaseRouter: React.FC = () => {
   return (
     <Suspense fallback={<LoadingOverlay visible={true} />}>
       <Routes>
-        <Route path={base} element={<HomePage />} />
-        <Route path={`${base}/settings`} element={<SettingsPage />} />
-        <Route path={'*'} element={<Navigate to={base} />} />
+        <Route path={`${base}/login`} element={<LoginPage />} />
+        <Route path={`${base}/register`} element={<RegisterPage />} />
+        <Route
+          path={`${base}/home`}
+          element={
+            <ProtectedRoute user={false}>
+              <HomePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={`${base}/settings`}
+          element={
+            <ProtectedRoute user={false}>
+              <SettingsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route path={'*'} element={<Navigate to={`${base}/login`} />} />
       </Routes>
     </Suspense>
   );
