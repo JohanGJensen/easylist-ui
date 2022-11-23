@@ -6,6 +6,8 @@ import { useForm } from 'react-hook-form';
 import Wrapper from '../components/WrapperCard';
 import useErrorMessage, { ErrorEnum } from '../hooks/useErrorMessage';
 
+import '../styles/styles.css';
+
 interface LoginPageProps {
   test?: string;
 }
@@ -38,26 +40,46 @@ const LoginPage: React.FC<LoginPageProps> = () => {
         rightContent={<Button onClick={handleClick}>register</Button>}
       />
       <Wrapper>
-        <Card withBorder={true} radius={'sm'} style={{ width: '350px' }}>
-          <Title order={2}>Login Page</Title>
+        <Card
+          withBorder={true}
+          radius={'sm'}
+          style={{ width: '350px' }}
+          className={'glass-morph card'}
+        >
+          <Title order={2} className={'margin-btm'}>
+            Login Page
+          </Title>
           <form>
             <Input.Wrapper
               label={<label>username</label>}
               error={
                 <>{getErrorMessage(errors.userName as { type?: ErrorEnum })}</>
               }
+              className={'margin-btm'}
             >
               <Input
                 {...register('userName', {
                   required: true,
-                  minLength: 3,
-                  maxLength: 16,
                 })}
                 placeholder={'write username...'}
               />
             </Input.Wrapper>
-            <Input.Wrapper label={<label>password</label>}>
-              <Input placeholder={'write password...'} />
+            <Input.Wrapper
+              label={<label>password</label>}
+              error={
+                <>{getErrorMessage(errors.password as { type?: ErrorEnum })}</>
+              }
+              className={'margin-btm'}
+            >
+              <Input
+                {...register('password', {
+                  required: true,
+                  // minLength: 3,
+                  // maxLength: 16,
+                })}
+                type={'password'}
+                placeholder={'write password...'}
+              />
             </Input.Wrapper>
             <Button
               fullWidth={true}
