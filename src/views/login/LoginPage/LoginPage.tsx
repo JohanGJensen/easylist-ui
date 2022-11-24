@@ -4,7 +4,7 @@ import { Button, Title, Input, Card } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Wrapper from '../components/WrapperCard';
-import useErrorMessage, { ErrorEnum } from '../hooks/useErrorMessage';
+import { ErrorEnum } from '../hooks/useErrorMessage';
 
 import '../styles/styles.css';
 
@@ -19,7 +19,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const errorMessage = useErrorMessage();
+  // const errorMessage = useErrorMessage();
 
   const handleClick = () => {
     navigate(`/easylist-ui-pwa/register`);
@@ -27,7 +27,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
 
   const getErrorMessage = (error?: { type?: ErrorEnum }): string => {
     if (error?.type) {
-      return errorMessage(error.type);
+      return error.type;
     }
 
     return '';
@@ -51,7 +51,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
           </Title>
           <form>
             <Input.Wrapper
-              label={<label>username</label>}
+              label={<label className={'labelStyling'}>username</label>}
               error={
                 <>{getErrorMessage(errors.userName as { type?: ErrorEnum })}</>
               }
@@ -65,7 +65,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
               />
             </Input.Wrapper>
             <Input.Wrapper
-              label={<label>password</label>}
+              label={<label className={'labelStyling'}>password</label>}
               error={
                 <>{getErrorMessage(errors.password as { type?: ErrorEnum })}</>
               }
@@ -82,6 +82,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
               />
             </Input.Wrapper>
             <Button
+              style={{ marginTop: '16px' }}
               fullWidth={true}
               onClick={handleSubmit((data) => console.log(data))}
             >

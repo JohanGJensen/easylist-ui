@@ -7,12 +7,12 @@
   width: 100%;
   z-index: -1;
 
-  background: rgb(138, 228, 255);
+  background: rgb(138, 138, 138);
   background: linear-gradient(
     145deg,
-    rgba(138, 228, 255, 1) 0%,
-    rgba(89, 192, 219, 1) 52%,
-    rgba(1, 98, 120, 1) 100%,
-    rgba(255, 255, 255, 1) 100%
+    rgba(138, 138, 138, 1) 0%,
+    rgba(62, 113, 126, 1) 44%,
+    rgba(29, 4, 4, 1) 100%,
+    rgba(1, 98, 120, 1) 100%
   );
 }
