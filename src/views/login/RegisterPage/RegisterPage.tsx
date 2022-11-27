@@ -5,12 +5,23 @@ import Header from 'components/Header/Header';
 import Wrapper from '../components/WrapperCard';
 
 import '../styles/styles.css';
-import { useForm } from 'react-hook-form';
-import { ErrorEnum } from '../hooks/useErrorMessage';
+import { FieldError, useForm } from 'react-hook-form';
+import useErrorMessage from '../hooks/useErrorMessage';
 
 interface RegisterPageProps {
   test?: string;
 }
+
+/**
+ * TODO:
+ * - add health check - display readiness in ui
+ * - add endpoints and functionality for requests
+ *
+ * NICE-TO-HAVES:
+ * - password strength display
+ * - local-storage correct token
+ * - language option
+ */
 
 const RegisterPage: React.FC<RegisterPageProps> = () => {
   const {
@@ -19,17 +30,34 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
+  const errorMessage = useErrorMessage();
+  /**
+   * TODO: this is ugly and should be handle in a state manager,
+   * so I can separate my components
+   */
+  const [userValue, setUserValue] = React.useState<string>('');
+  const [password, setPassword] = React.useState<string>('');
+  const [confirmPassword, setConfirmPassword] = React.useState<string>('');
 
   const handleClick = () => {
     navigate(`/easylist-ui-pwa/login`);
   };
 
-  const getErrorMessage = (error?: { type?: ErrorEnum }): string => {
-    if (error?.type) {
-      return error.type;
-    }
+  const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setUserValue(value);
+  };
 
-    return '';
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setPassword(value);
+  };
+
+  const handleConfirmPasswordChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = e.target.value;
+    setConfirmPassword(value);
   };
 
   return (
@@ -50,54 +78,72 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
           </Title>
           <Input.Wrapper
             label={<label className={'labelStyling'}>username</label>}
-            error={
-              <>{getErrorMessage(errors.userName as { type?: ErrorEnum })}</>
-            }
+            error={<>{errorMessage(errors.userName as FieldError)}</>}
             className={'margin-btm'}
           >
             <Input
               {...register('userName', {
-                required: true,
-                minLength: 3,
-                maxLength: 16,
+                required: 'field is required',
+                minLength: {
+                  value: 3,
+                  message: 'the minimum character-length is 3.',
+                },
+                maxLength: {
+                  value: 16,
+                  message: 'the maximum character-length is 16.',
+                },
               })}
               placeholder={'write username...'}
+              value={userValue}
+              onChange={handleUserNameChange}
             />
           </Input.Wrapper>
           <Input.Wrapper
             label={<label className={'labelStyling'}>password</label>}
-            error={
-              <>{getErrorMessage(errors.password as { type?: ErrorEnum })}</>
-            }
+            error={<>{errorMessage(errors.password as FieldError)}</>}
             className={'margin-btm'}
           >
             <Input
               {...register('password', {
-                required: true,
-                minLength: 3,
-                maxLength: 16,
+                required: 'field is required',
+                minLength: {
+                  value: 3,
+                  message: 'the minimum character-length is 3.',
+                },
+                maxLength: {
+                  value: 16,
+                  message: 'the maximum character-length is 16.',
+                },
               })}
+              type={'password'}
               placeholder={'write password...'}
+              value={password}
+              onChange={handlePasswordChange}
             />
           </Input.Wrapper>
           <Input.Wrapper
             label={<label className={'labelStyling'}>confirm password</label>}
-            error={
-              <>
-                {getErrorMessage(
-                  errors.confirmPassword as { type?: ErrorEnum }
-                )}
-              </>
-            }
+            error={<>{errorMessage(errors.confirmPassword as FieldError)}</>}
             className={'margin-btm'}
           >
             <Input
               {...register('confirmPassword', {
-                required: true,
-                minLength: 3,
-                maxLength: 16,
+                required: 'field is required',
+                minLength: {
+                  value: 3,
+                  message: 'the minimum character-length is 3.',
+                },
+                maxLength: {
+                  value: 16,
+                  message: 'the maximum character-length is 16.',
+                },
+                validate: (value) =>
+                  value === password || 'the passwords are not matching.',
               })}
+              type={'password'}
               placeholder={'confirm password...'}
+              value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
             />
           </Input.Wrapper>
 

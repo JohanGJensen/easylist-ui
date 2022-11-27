@@ -2,9 +2,9 @@ import React from 'react';
 import Header from '../../../components/Header/Header';
 import { Button, Title, Input, Card } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { FieldError, useForm } from 'react-hook-form';
 import Wrapper from '../components/WrapperCard';
-import { ErrorEnum } from '../hooks/useErrorMessage';
+import useErrorMessage from '../hooks/useErrorMessage';
 
 import '../styles/styles.css';
 
@@ -19,19 +19,35 @@ const LoginPage: React.FC<LoginPageProps> = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  // const errorMessage = useErrorMessage();
+  const errorMessage = useErrorMessage();
+  /**
+   * TODO: this is ugly and should be handle in a state manager,
+   * so I can separate my components
+   */
+  const [userValue, setUserValue] = React.useState<string>('');
+  const [password, setPassword] = React.useState<string>('');
 
   const handleClick = () => {
     navigate(`/easylist-ui-pwa/register`);
   };
 
-  const getErrorMessage = (error?: { type?: ErrorEnum }): string => {
-    if (error?.type) {
-      return error.type;
-    }
-
-    return '';
+  const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setUserValue(value);
   };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setPassword(value);
+  };
+
+  // const getErrorMessage = (error?: { type?: ErrorEnum }): string => {
+  //   if (error?.type) {
+  //     return error.type;
+  //   }
+
+  //   return '';
+  // };
 
   return (
     <>
@@ -52,33 +68,31 @@ const LoginPage: React.FC<LoginPageProps> = () => {
           <form>
             <Input.Wrapper
               label={<label className={'labelStyling'}>username</label>}
-              error={
-                <>{getErrorMessage(errors.userName as { type?: ErrorEnum })}</>
-              }
+              error={<>{errorMessage(errors.userName as FieldError)}</>}
               className={'margin-btm'}
             >
               <Input
                 {...register('userName', {
-                  required: true,
+                  required: 'field is required',
                 })}
                 placeholder={'write username...'}
+                value={userValue}
+                onChange={handleUserNameChange}
               />
             </Input.Wrapper>
             <Input.Wrapper
               label={<label className={'labelStyling'}>password</label>}
-              error={
-                <>{getErrorMessage(errors.password as { type?: ErrorEnum })}</>
-              }
+              error={<>{errorMessage(errors.password as FieldError)}</>}
               className={'margin-btm'}
             >
               <Input
                 {...register('password', {
-                  required: true,
-                  // minLength: 3,
-                  // maxLength: 16,
+                  required: 'field is required',
                 })}
                 type={'password'}
                 placeholder={'write password...'}
+                value={password}
+                onChange={handlePasswordChange}
               />
             </Input.Wrapper>
             <Button
