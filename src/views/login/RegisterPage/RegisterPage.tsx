@@ -27,13 +27,12 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
   const {
     handleSubmit,
     register,
+    getValues,
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
   const errorMessage = useErrorMessage();
   const { register: registerAPI } = React.useContext(UserContext);
-
-  const [password, setPassword] = React.useState<string>('');
 
   const handleClick = () => {
     navigate(`/easylist-ui-pwa/login`);
@@ -46,11 +45,6 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
     };
 
     registerAPI(request);
-  };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setPassword(value);
   };
 
   return (
@@ -108,8 +102,6 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
               })}
               type={'password'}
               placeholder={'write password...'}
-              value={password}
-              onChange={handlePasswordChange}
             />
           </Input.Wrapper>
           <Input.Wrapper
@@ -129,7 +121,8 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
                   message: 'the maximum character-length is 16.',
                 },
                 validate: (value) =>
-                  value === password || 'the passwords are not matching.',
+                  value === getValues('password') ||
+                  'the passwords are not matching.',
               })}
               type={'password'}
               placeholder={'confirm password...'}
