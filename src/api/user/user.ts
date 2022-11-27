@@ -1,4 +1,5 @@
-import { http } from '../index';
+import axios from 'axios';
+import { HOST } from '../index';
 
 export interface RegistrationRequest {
   username: string;
@@ -6,11 +7,9 @@ export interface RegistrationRequest {
 }
 
 export const postLogin = (request: RegistrationRequest) => {
-  return http.post(`/users/login`, request, {
-    withCredentials: true,
-  });
+  return axios.post(`${HOST}/users/login`, request);
 };
 
 export const postRegister = (request: RegistrationRequest) => {
-  return http.post(`/users/register`, request);
+  return axios.post(`${HOST}/users/register`, request);
 };
