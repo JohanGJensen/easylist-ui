@@ -32,13 +32,8 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
   const navigate = useNavigate();
   const errorMessage = useErrorMessage();
   const { register: registerAPI } = React.useContext(UserContext);
-  /**
-   * TODO: this is ugly and should be handle in a state manager,
-   * so I can separate my components
-   */
-  const [userValue, setUserValue] = React.useState<string>('');
+
   const [password, setPassword] = React.useState<string>('');
-  const [confirmPassword, setConfirmPassword] = React.useState<string>('');
 
   const handleClick = () => {
     navigate(`/easylist-ui-pwa/login`);
@@ -53,21 +48,9 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
     registerAPI(request);
   };
 
-  const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setUserValue(value);
-  };
-
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPassword(value);
-  };
-
-  const handleConfirmPasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = e.target.value;
-    setConfirmPassword(value);
   };
 
   return (
@@ -88,7 +71,7 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
           </Title>
           <Input.Wrapper
             label={<label className={'labelStyling'}>username</label>}
-            error={<>{errorMessage(errors.userName as FieldError)}</>}
+            error={errorMessage(errors.userName as FieldError)}
             className={'margin-btm'}
           >
             <Input
@@ -104,13 +87,11 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
                 },
               })}
               placeholder={'write username...'}
-              value={userValue}
-              onChange={handleUserNameChange}
             />
           </Input.Wrapper>
           <Input.Wrapper
             label={<label className={'labelStyling'}>password</label>}
-            error={<>{errorMessage(errors.password as FieldError)}</>}
+            error={errorMessage(errors.password as FieldError)}
             className={'margin-btm'}
           >
             <Input
@@ -133,7 +114,7 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
           </Input.Wrapper>
           <Input.Wrapper
             label={<label className={'labelStyling'}>confirm password</label>}
-            error={<>{errorMessage(errors.confirmPassword as FieldError)}</>}
+            error={errorMessage(errors.confirmPassword as FieldError)}
             className={'margin-btm'}
           >
             <Input
@@ -152,8 +133,6 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
               })}
               type={'password'}
               placeholder={'confirm password...'}
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
             />
           </Input.Wrapper>
 

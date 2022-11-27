@@ -21,13 +21,6 @@ const LoginPage: React.FC = () => {
   const errorMessage = useErrorMessage();
   const { login } = React.useContext(UserContext);
 
-  /**
-   * TODO: this is ugly and should be handle in a state manager,
-   * so I can separate my components
-   */
-  const [userValue, setUserValue] = React.useState<string>('');
-  const [password, setPassword] = React.useState<string>('');
-
   const handleClick = () => {
     navigate(`/easylist-ui-pwa/register`);
   };
@@ -39,16 +32,6 @@ const LoginPage: React.FC = () => {
     };
 
     login(request);
-  };
-
-  const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setUserValue(value);
-  };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setPassword(value);
   };
 
   return (
@@ -70,7 +53,7 @@ const LoginPage: React.FC = () => {
           <form>
             <Input.Wrapper
               label={<label className={'labelStyling'}>username</label>}
-              error={<>{errorMessage(errors.userName as FieldError)}</>}
+              error={errorMessage(errors.userName as FieldError)}
               className={'margin-btm'}
             >
               <Input
@@ -78,13 +61,11 @@ const LoginPage: React.FC = () => {
                   required: 'field is required',
                 })}
                 placeholder={'write username...'}
-                value={userValue}
-                onChange={handleUserNameChange}
               />
             </Input.Wrapper>
             <Input.Wrapper
               label={<label className={'labelStyling'}>password</label>}
-              error={<>{errorMessage(errors.password as FieldError)}</>}
+              error={errorMessage(errors.password as FieldError)}
               className={'margin-btm'}
             >
               <Input
@@ -93,8 +74,6 @@ const LoginPage: React.FC = () => {
                 })}
                 type={'password'}
                 placeholder={'write password...'}
-                value={password}
-                onChange={handlePasswordChange}
               />
             </Input.Wrapper>
             <Button
