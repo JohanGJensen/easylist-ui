@@ -15,7 +15,6 @@ interface RegisterPageProps {
 
 /**
  * TODO:
- * - add health check - display readiness in ui
  * - add endpoints and functionality for requests
  *
  * NICE-TO-HAVES:
