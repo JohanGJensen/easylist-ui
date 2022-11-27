@@ -4,6 +4,10 @@ import { IRequestMutation } from './mutations/useMutateItems';
 
 const HOST = import.meta.env.VITE_API_HOST;
 
+export const getStatus = () => {
+  return axios.get(`${HOST}/health`);
+};
+
 export const getAllSpaces = () => {
   return axios.get(`${HOST}/spaces/all`);
 };

@@ -7,6 +7,7 @@ import Wrapper from '../components/WrapperCard';
 import useErrorMessage from '../hooks/useErrorMessage';
 
 import '../styles/styles.css';
+import BackendStatus from '../components/BackendStatus';
 
 interface LoginPageProps {
   test?: string;
@@ -105,6 +106,8 @@ const LoginPage: React.FC<LoginPageProps> = () => {
           </form>
         </Card>
       </Wrapper>
+
+      <BackendStatus />
     </>
   );
 };

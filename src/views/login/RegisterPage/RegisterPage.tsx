@@ -7,6 +7,7 @@ import Wrapper from '../components/WrapperCard';
 import '../styles/styles.css';
 import { FieldError, useForm } from 'react-hook-form';
 import useErrorMessage from '../hooks/useErrorMessage';
+import BackendStatus from '../components/BackendStatus';
 
 interface RegisterPageProps {
   test?: string;
@@ -156,6 +157,8 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
           </Button>
         </Card>
       </Wrapper>
+
+      <BackendStatus />
     </>
   );
 };

@@ -7,6 +7,7 @@ import SettingsProvider from './providers/SettingsProvider';
 import BaseRouter from './routing/BaseRouter';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import SpaceProvider from './providers/SpaceProvider';
+import UserProvider from 'providers/UserProvider';
 
 const container: HTMLElement | null = document.getElementById('root');
 const root = createRoot(container as HTMLElement);
@@ -17,11 +18,13 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <SettingsProvider>
-          <SpaceProvider>
-            <BaseRouter />
-          </SpaceProvider>
-        </SettingsProvider>
+        <UserProvider>
+          <SettingsProvider>
+            <SpaceProvider>
+              <BaseRouter />
+            </SpaceProvider>
+          </SettingsProvider>
+        </UserProvider>
       </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>

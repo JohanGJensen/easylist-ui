@@ -20,3 +20,8 @@ export interface ISettingsState {
   lang: ILanguage;
   handleLanguage(value: LanguageTypes): void;
 }
+
+export interface IUserState {
+  user: boolean;
+  online: boolean;
+}
