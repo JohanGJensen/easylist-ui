@@ -2,18 +2,16 @@ import React from 'react';
 import Header from '../../../components/Header/Header';
 import { Button, Title, Input, Card } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
-import { FieldError, useForm } from 'react-hook-form';
+import { FieldError, FieldValues, useForm } from 'react-hook-form';
 import Wrapper from '../components/WrapperCard';
 import useErrorMessage from '../hooks/useErrorMessage';
 
 import '../styles/styles.css';
 import BackendStatus from '../components/BackendStatus';
+import { UserContext } from 'providers/UserProvider';
+import { RegistrationRequest } from 'api';
 
-interface LoginPageProps {
-  test?: string;
-}
-
-const LoginPage: React.FC<LoginPageProps> = () => {
+const LoginPage: React.FC = () => {
   const {
     handleSubmit,
     register,
@@ -21,6 +19,8 @@ const LoginPage: React.FC<LoginPageProps> = () => {
   } = useForm();
   const navigate = useNavigate();
   const errorMessage = useErrorMessage();
+  const { login } = React.useContext(UserContext);
+
   /**
    * TODO: this is ugly and should be handle in a state manager,
    * so I can separate my components
@@ -32,6 +32,15 @@ const LoginPage: React.FC<LoginPageProps> = () => {
     navigate(`/easylist-ui-pwa/register`);
   };
 
+  const handleLogin = (d: FieldValues) => {
+    const request: RegistrationRequest = {
+      username: d.userName,
+      password: d.password,
+    };
+
+    login(request);
+  };
+
   const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setUserValue(value);
@@ -41,14 +50,6 @@ const LoginPage: React.FC<LoginPageProps> = () => {
     const value = e.target.value;
     setPassword(value);
   };
-
-  // const getErrorMessage = (error?: { type?: ErrorEnum }): string => {
-  //   if (error?.type) {
-  //     return error.type;
-  //   }
-
-  //   return '';
-  // };
 
   return (
     <>
@@ -99,7 +100,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
             <Button
               style={{ marginTop: '16px' }}
               fullWidth={true}
-              onClick={handleSubmit((data) => console.log(data))}
+              onClick={handleSubmit((data) => handleLogin(data))}
             >
               Login
             </Button>

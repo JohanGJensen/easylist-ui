@@ -1,3 +1,4 @@
+import { RegistrationRequest } from 'api';
 import { ISpace, ISpaceItem } from '.';
 import { ILanguage } from './language';
 
@@ -24,4 +25,6 @@ export interface ISettingsState {
 export interface IUserState {
   user: boolean;
   online: boolean;
+  login: (request: RegistrationRequest) => void;
+  register: (request: RegistrationRequest) => void;
 }

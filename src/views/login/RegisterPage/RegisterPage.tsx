@@ -5,9 +5,11 @@ import Header from 'components/Header/Header';
 import Wrapper from '../components/WrapperCard';
 
 import '../styles/styles.css';
-import { FieldError, useForm } from 'react-hook-form';
+import { FieldError, FieldValues, useForm } from 'react-hook-form';
 import useErrorMessage from '../hooks/useErrorMessage';
 import BackendStatus from '../components/BackendStatus';
+import { UserContext } from 'providers/UserProvider';
+import { RegistrationRequest } from 'api';
 
 interface RegisterPageProps {
   test?: string;
@@ -15,8 +17,6 @@ interface RegisterPageProps {
 
 /**
  * TODO:
- * - add endpoints and functionality for requests
- *
  * NICE-TO-HAVES:
  * - password strength display
  * - local-storage correct token
@@ -31,6 +31,7 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
   } = useForm();
   const navigate = useNavigate();
   const errorMessage = useErrorMessage();
+  const { register: registerAPI } = React.useContext(UserContext);
   /**
    * TODO: this is ugly and should be handle in a state manager,
    * so I can separate my components
@@ -41,6 +42,15 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
 
   const handleClick = () => {
     navigate(`/easylist-ui-pwa/login`);
+  };
+
+  const handleRegister = (d: FieldValues) => {
+    const request: RegistrationRequest = {
+      username: d.userName,
+      password: d.password,
+    };
+
+    registerAPI(request);
   };
 
   const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -150,7 +160,7 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
           <Button
             style={{ marginTop: '16px' }}
             fullWidth={true}
-            onClick={handleSubmit((data) => console.log(data))}
+            onClick={handleSubmit((data) => handleRegister(data))}
           >
             Register
           </Button>

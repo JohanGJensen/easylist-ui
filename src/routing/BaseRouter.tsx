@@ -23,7 +23,7 @@ const BaseRouter: React.FC = () => {
         <Route
           path={`${base}/home`}
           element={
-            <ProtectedRoute user={false}>
+            <ProtectedRoute>
               <HomePage />
             </ProtectedRoute>
           }
@@ -31,7 +31,7 @@ const BaseRouter: React.FC = () => {
         <Route
           path={`${base}/settings`}
           element={
-            <ProtectedRoute user={false}>
+            <ProtectedRoute>
               <SettingsPage />
             </ProtectedRoute>
           }
