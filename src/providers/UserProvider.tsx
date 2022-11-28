@@ -1,7 +1,6 @@
 import { getStatus, postLogin, postRegister, RegistrationRequest } from 'api';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Cookie } from 'tabler-icons-react';
 
 // types
 import { IUserState } from '../interfaces';
