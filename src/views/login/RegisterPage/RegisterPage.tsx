@@ -17,9 +17,9 @@ interface RegisterPageProps {
 
 /**
  * TODO:
+ * - add token to header in api
  * NICE-TO-HAVES:
  * - password strength display
- * - local-storage correct token
  * - language option
  */
 
