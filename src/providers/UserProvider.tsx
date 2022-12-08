@@ -1,9 +1,10 @@
 import { getStatus, postLogin, postRegister, RegistrationRequest } from 'api';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getCookie, setCookie } from 'utilities/cookieFunctions';
 
 // types
-import { IUserState } from '../interfaces';
+import { IUserState, User } from '../interfaces';
 
 export const UserContext = React.createContext({} as IUserState);
 
@@ -13,7 +14,7 @@ interface IProviderProps {
 
 const UserProvider: React.FC<IProviderProps> = ({ children }) => {
   const navigate = useNavigate();
-  const [user, setUser] = useState<boolean>(false);
+  const [user, setUser] = useState<User | null>(null);
   const [online, setOnline] = useState<boolean>(false);
 
   const login = async (request: RegistrationRequest) => {
@@ -23,14 +24,11 @@ const UserProvider: React.FC<IProviderProps> = ({ children }) => {
 
         if (status === 200 && data.token) {
           setCookie('jwt', data.token, 1);
-          setUser(true);
-
-          // navigate home
-          navigate(`/easylist-ui-pwa/home`);
+          setUser({ jwt: getCookie('jwt') });
         }
       })
       .catch((error) => {
-        setUser(false);
+        setUser(null);
         console.error(error);
       });
   };
@@ -42,14 +40,14 @@ const UserProvider: React.FC<IProviderProps> = ({ children }) => {
 
         if (status === 200 && data.token) {
           setCookie('jwt', data.token, 1);
-          setUser(true);
+          setUser({ jwt: getCookie('jwt') });
 
           // navigate home
           navigate(`/easylist-ui-pwa/home`);
         }
       })
       .catch((error) => {
-        setUser(false);
+        setUser(null);
         console.error(error);
       });
   };
@@ -69,33 +67,6 @@ const UserProvider: React.FC<IProviderProps> = ({ children }) => {
       });
   };
 
-  const getCookieExpirationUTC = (hours: number) => {
-    const event = new Date();
-    event.setUTCHours(event.getUTCHours() + hours);
-
-    return event.toUTCString();
-  };
-
-  const setCookie = (name: string, value: string, expireHours: number) => {
-    document.cookie = `${name}=${value}; expires=${getCookieExpirationUTC(
-      expireHours
-    )}; path=/`;
-  };
-
-  const getCookie = (name: string) => {
-    const n = name + '=';
-    const decodedCookie = decodeURIComponent(document.cookie); //to be careful
-    const cookies = decodedCookie.split('; ');
-    let cookie;
-
-    cookies.forEach((val) => {
-      console.log(val, n);
-      if (val.includes(n)) cookie = val.substring(n.length);
-    });
-
-    return cookie;
-  };
-
   useEffect(() => {
     // get backend availability status
     fetchStatus();
@@ -104,12 +75,19 @@ const UserProvider: React.FC<IProviderProps> = ({ children }) => {
     const jwt = getCookie('jwt');
 
     if (jwt) {
-      setUser(true);
+      setUser({ jwt: getCookie('jwt') });
 
+      // navigate home
+      // navigate(`/easylist-ui-pwa/home`);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user) {
       // navigate home
       navigate(`/easylist-ui-pwa/home`);
     }
-  }, []);
+  }, [user]);
 
   const values: IUserState = {
     user,

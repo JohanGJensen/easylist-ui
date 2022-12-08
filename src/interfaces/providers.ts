@@ -22,8 +22,11 @@ export interface ISettingsState {
   handleLanguage(value: LanguageTypes): void;
 }
 
+export type User = {
+  jwt: string;
+};
 export interface IUserState {
-  user: boolean;
+  user: User;
   online: boolean;
   login: (request: RegistrationRequest) => void;
   register: (request: RegistrationRequest) => void;
