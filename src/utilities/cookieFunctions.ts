@@ -23,3 +23,7 @@ export const getCookie = (name: string) => {
 
   return cookie;
 };
+
+export const clearCookie = (name: string) => {
+  document.cookie = `${name}=; expires=${getCookieExpirationUTC(-1)}; path=/`;
+};

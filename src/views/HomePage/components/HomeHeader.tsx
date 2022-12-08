@@ -64,10 +64,15 @@ function HomeHeader() {
       <Header
         rightContent={
           <>
-            <Button onClick={() => setAddSpaceModal(true)} color={'teal'}>
+            <Button
+              style={{ padding: '0.5em' }}
+              onClick={() => setAddSpaceModal(true)}
+              color={'teal'}
+            >
               <FilePlus />
             </Button>
             <Button
+              style={{ padding: '0.5em' }}
               onClick={() => navigate('/easylist-ui-pwa/settings')}
               color={'teal'}
             >
