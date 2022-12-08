@@ -17,7 +17,7 @@ export const http = axios.create({
 });
 
 export const getStatus = () => {
-  return axios.get(`${HOST}/health`);
+  return http.get(`/health`);
 };
 
 export const getAllSpaces = () => {
