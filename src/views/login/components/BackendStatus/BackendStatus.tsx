@@ -8,8 +8,8 @@ const statusColors = {
     secondary: '#FCDDDD',
   },
   online: {
-    primary: '#16DB93',
-    secondary: '#D1FFEE',
+    primary: '#5A834A',
+    secondary: '#E6FADE',
   },
 };
 
