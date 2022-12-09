@@ -4,12 +4,12 @@ import { UserContext } from 'providers/UserProvider';
 
 const statusColors = {
   notOnline: {
-    primary: '#F24B4B',
-    secondary: '#FCDDDD',
+    primary: '#FFFFFF',
+    secondary: '#F24B4B',
   },
   online: {
-    primary: '#5A834A',
-    secondary: '#E6FADE',
+    secondary: '#5A834A',
+    primary: '#FFFFFF',
   },
 };
 
