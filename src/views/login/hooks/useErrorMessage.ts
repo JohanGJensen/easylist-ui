@@ -6,6 +6,7 @@ export enum ErrorEnum {
   MAX = 'maxLength',
   REQUIRED = 'required',
   VALIDATE = 'validate',
+  WRONG = 'wrongLogin',
 }
 
 const useErrorMessage = () => {
@@ -29,6 +30,10 @@ const useErrorMessage = () => {
     }
 
     if (type === ErrorEnum.VALIDATE) {
+      return message;
+    }
+
+    if (type === ErrorEnum.WRONG) {
       return message;
     }
 

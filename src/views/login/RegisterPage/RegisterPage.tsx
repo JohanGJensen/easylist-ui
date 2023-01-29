@@ -65,6 +65,9 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
           <Input.Wrapper
             label={<label className={'labelStyling'}>username</label>}
             error={errorMessage(errors.userName as FieldError)}
+            errorProps={{
+              style: { color: '#FFC2AD' },
+            }}
             className={'margin-btm'}
           >
             <Input
@@ -85,6 +88,9 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
           <Input.Wrapper
             label={<label className={'labelStyling'}>password</label>}
             error={errorMessage(errors.password as FieldError)}
+            errorProps={{
+              style: { color: '#FFC2AD' },
+            }}
             className={'margin-btm'}
           >
             <Input
@@ -106,6 +112,9 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
           <Input.Wrapper
             label={<label className={'labelStyling'}>confirm password</label>}
             error={errorMessage(errors.confirmPassword as FieldError)}
+            errorProps={{
+              style: { color: '#FFC2AD' },
+            }}
             className={'margin-btm'}
           >
             <Input

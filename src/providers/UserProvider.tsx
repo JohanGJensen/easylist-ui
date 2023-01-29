@@ -71,17 +71,17 @@ const UserProvider: React.FC<IProviderProps> = ({ children }) => {
     // get backend availability status
     fetchStatus();
 
+    if (user) {
+      // navigate home
+      navigate(`/easylist-ui-pwa/home`);
+      return;
+    }
+
     // check storage for a token
     const jwt = getCookie('jwt');
 
     if (jwt) {
       setUser({ jwt: getCookie('jwt') });
-    }
-  }, []);
-
-  useEffect(() => {
-    if (user) {
-      // navigate home
       navigate(`/easylist-ui-pwa/home`);
     }
   }, [user]);

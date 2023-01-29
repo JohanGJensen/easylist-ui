@@ -54,6 +54,9 @@ const LoginPage: React.FC = () => {
             <Input.Wrapper
               label={<label className={'labelStyling'}>username</label>}
               error={errorMessage(errors.userName as FieldError)}
+              errorProps={{
+                style: { color: '#FFC2AD' },
+              }}
               className={'margin-btm'}
             >
               <Input
@@ -66,6 +69,9 @@ const LoginPage: React.FC = () => {
             <Input.Wrapper
               label={<label className={'labelStyling'}>password</label>}
               error={errorMessage(errors.password as FieldError)}
+              errorProps={{
+                style: { color: '#FFC2AD' },
+              }}
               className={'margin-btm'}
             >
               <Input
