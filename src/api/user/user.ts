@@ -6,7 +6,9 @@ export interface RegistrationRequest {
 }
 
 export const postLogin = (request: RegistrationRequest) => {
-  return http.post(`/users/login`, request);
+  return http.post(`/users/login`, request, {
+    withCredentials: true,
+  });
 };
 
 export const postRegister = (request: RegistrationRequest) => {
