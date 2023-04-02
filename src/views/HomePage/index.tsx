@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 // components
 import HomeHeader from './components/HomeHeader';
 import { Container, LoadingOverlay } from '@mantine/core';
+import { BackendStatus } from 'components/BackendStatus';
 import Space from './components/Space/Space';
 
 // styling
@@ -35,6 +36,8 @@ function HomePage() {
             return <Space key={`space-${space.id}`} space={space} />;
           })}
       </Container>
+
+      <BackendStatus />
     </>
   );
 }
