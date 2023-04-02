@@ -21,52 +21,28 @@ export const getStatus = () => {
 };
 
 export const getAllSpaces = () => {
-  return http.get(`/spaces/all`, {
-    headers: {
-      Authorization: getCookie('jwt'),
-    },
-  });
+  return http.get(`${HOST}/spaces/all`);
 };
 
 export const postNewSpace = (request: ISpaceRequest) => {
-  return http.post(`/spaces/create`, request, {
-    headers: {
-      Authorization: getCookie('jwt'),
-    },
-  });
+  return http.post(`${HOST}/spaces/create`, request);
 };
 
 export const deleteSpace = (spaceId: string) => {
-  return http.delete(`/spaces/delete/${spaceId}`, {
-    headers: {
-      Authorization: getCookie('jwt'),
-    },
-  });
+  return http.delete(`${HOST}/spaces/delete/${spaceId}`);
 };
 
 export const postNewItem = (data: IRequestMutation<IItemRequest>) => {
   const { spaceId, request } = data;
-  return http.post(`/items/create/${spaceId}`, request, {
-    headers: {
-      Authorization: getCookie('jwt'),
-    },
-  });
+  return http.post(`${HOST}/items/create/${spaceId}`, request);
 };
 
 export const postItemUpdate = (data: IRequestMutation<IItemRequest>) => {
   const { spaceId, itemId, request } = data;
-  return http.post(`/items/update/${spaceId}/${itemId}`, request, {
-    headers: {
-      Authorization: getCookie('jwt'),
-    },
-  });
+  return http.post(`${HOST}/items/update/${spaceId}/${itemId}`, request);
 };
 
 export const deleteItem = (data: IRequestMutation<IItemRequest>) => {
   const { spaceId, itemId } = data;
-  return http.delete(`/items/delete/${spaceId}/${itemId}`, {
-    headers: {
-      Authorization: getCookie('jwt'),
-    },
-  });
+  return http.delete(`${HOST}/items/delete/${spaceId}/${itemId}`);
 };
