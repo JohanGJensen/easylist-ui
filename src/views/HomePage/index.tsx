@@ -28,7 +28,7 @@ function HomePage() {
 
   return (
     <>
-      <LoadingOverlay visible={isLoading} />
+      <LoadingOverlay visible={data.length === 0 && isLoading} />
       <HomeHeader />
       <Container style={{ marginBottom: '5em' }}>
         {data &&
