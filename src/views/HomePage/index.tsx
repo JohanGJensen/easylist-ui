@@ -30,7 +30,7 @@ function HomePage() {
     <>
       <LoadingOverlay visible={isLoading} />
       <HomeHeader />
-      <Container>
+      <Container style={{ marginBottom: '5em' }}>
         {data &&
           data.map((space: ISpace) => {
             return <Space key={`space-${space.id}`} space={space} />;

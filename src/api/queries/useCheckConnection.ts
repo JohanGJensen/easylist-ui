@@ -3,7 +3,7 @@ import { getStatus } from 'api';
 import React from 'react';
 
 type ConnectionQuery = {
-  online: boolean;
+  isOnline: boolean;
 };
 
 export const useCheckConnection = (): ConnectionQuery => {
@@ -19,5 +19,5 @@ export const useCheckConnection = (): ConnectionQuery => {
     },
   });
 
-  return { online };
+  return { isOnline: online };
 };
