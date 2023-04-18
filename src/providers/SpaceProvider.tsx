@@ -14,7 +14,8 @@ const SpaceProvider: React.FC<IProviderProps> = ({ children }) => {
 
   const setSpacesData = (spaces: ISpace[]) => {
     // set data in provider
-    setData([...spaces]);
+    setData(spaces);
+
     // store locally
     localStorage.setItem('spaces', JSON.stringify(spaces));
   };
@@ -51,7 +52,7 @@ const SpaceProvider: React.FC<IProviderProps> = ({ children }) => {
       return dataSpace;
     });
 
-    setSpacesData(newData);
+    setSpacesData([...newData]);
   };
 
   const handleDeleteSpace = (spaceId: string) => {
@@ -62,7 +63,7 @@ const SpaceProvider: React.FC<IProviderProps> = ({ children }) => {
 
     newData.splice(spaceIndex, 1);
 
-    setSpacesData(newData);
+    setSpacesData([...newData]);
   };
 
   const handleUpdateItem = (spaceId: string, item: ISpaceItem) => {
@@ -76,7 +77,7 @@ const SpaceProvider: React.FC<IProviderProps> = ({ children }) => {
 
     data[spaceIndex].items[itemIndex] = item;
 
-    setSpacesData(newData);
+    setSpacesData([...newData]);
   };
 
   React.useEffect(() => {
