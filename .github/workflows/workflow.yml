@@ -18,10 +18,10 @@ jobs:
 
     steps:
       - name: Checkout
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8.3.1
-        # uses: actions/checkout@v1
+        uses: pnpm/action-setup@v2
+          with:
+            version: 8.3.1
+        uses: actions/checkout@v1
 
       - name: Install and build
         run: pnpm install && pnpm run build
