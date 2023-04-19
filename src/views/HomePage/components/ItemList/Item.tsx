@@ -10,6 +10,7 @@ import { ISpace, ISpaceItem } from '../../../../interfaces';
 
 // api
 import useMutateItems from '../../../../api/mutations/useMutateItems';
+import { useCheckConnection } from 'api/queries/useCheckConnection';
 
 // styling
 
@@ -25,6 +26,7 @@ enum CheckBoxPosition {
 
 const Item: React.FC<IProps> = (props) => {
   const { checkboxPos } = useContext(SettingsContext);
+  const { isOnline } = useCheckConnection();
   const { space, item } = props;
   const [complete, setComplete] = useState<boolean>(item.complete);
   const completedStyle = complete ? { textDecoration: 'line-through' } : {};
@@ -57,7 +59,12 @@ const Item: React.FC<IProps> = (props) => {
     <Group position={'apart'}>
       <Group spacing={'xs'}>
         {checkboxPos === CheckBoxPosition.LEFT && (
-          <Checkbox onChange={onChange} checked={complete} color={'teal'} />
+          <Checkbox
+            onChange={onChange}
+            disabled={!isOnline}
+            checked={complete}
+            color={'teal'}
+          />
         )}
         <Text
           style={{ ...completedStyle, maxWidth: '210px' }}
@@ -69,9 +76,19 @@ const Item: React.FC<IProps> = (props) => {
       </Group>
       <Group spacing={'xs'}>
         {checkboxPos === CheckBoxPosition.RIGHT && (
-          <Checkbox onChange={onChange} checked={complete} color={'teal'} />
+          <Checkbox
+            onChange={onChange}
+            disabled={!isOnline}
+            checked={complete}
+            color={'teal'}
+          />
         )}
-        <ActionIcon onClick={onDelete} size={'sm'} color={'red'}>
+        <ActionIcon
+          onClick={onDelete}
+          disabled={!isOnline}
+          size={'sm'}
+          color={'red'}
+        >
           <Trash />
         </ActionIcon>
       </Group>
