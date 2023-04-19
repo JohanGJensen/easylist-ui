@@ -1,5 +1,5 @@
 import React from 'react';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import SpaceProvider, { SpaceContext } from './SpaceProvider';
 import { ISpace } from 'interfaces';
