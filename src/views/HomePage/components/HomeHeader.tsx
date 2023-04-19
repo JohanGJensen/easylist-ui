@@ -11,11 +11,13 @@ import { FilePlus, Settings } from 'tabler-icons-react';
 import useMutateSpaces from '../../../api/mutations/useMutateSpaces';
 
 import { ISpaceRequest } from '../../../interfaces';
+import { useCheckConnection } from 'api/queries/useCheckConnection';
 
 function HomeHeader() {
   const navigate = useNavigate();
 
   const { lang } = React.useContext(SettingsContext);
+  const { isOnline } = useCheckConnection();
   const [addSpaceModal, setAddSpaceModal] = React.useState<boolean>(false);
   const [inputValue, setInputValue] = React.useState<string>('');
   const [inputIsInvalid, setInputInvalid] = React.useState<boolean>(false);
@@ -64,11 +66,16 @@ function HomeHeader() {
       <Header
         rightContent={
           <>
-            <Button onClick={() => setAddSpaceModal(true)} color={'teal'}>
+            <Button
+              onClick={() => setAddSpaceModal(true)}
+              disabled={!isOnline}
+              color={'teal'}
+            >
               <FilePlus />
             </Button>
             <Button
               onClick={() => navigate('/easylist-ui-pwa/settings')}
+              disabled={!isOnline}
               color={'teal'}
             >
               <Settings />

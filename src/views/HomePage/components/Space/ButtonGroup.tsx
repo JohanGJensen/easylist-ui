@@ -11,6 +11,7 @@ import { Plus, ShoppingCart, Trash } from 'tabler-icons-react';
 // mutations
 import useMutateSpaces from '../../../../api/mutations/useMutateSpaces';
 import useMutateItems from '../../../../api/mutations/useMutateItems';
+import { useCheckConnection } from 'api/queries/useCheckConnection';
 
 interface IProps {
   space: ISpace;
@@ -18,6 +19,7 @@ interface IProps {
 
 const ButtonGroup: React.FC<IProps> = (props) => {
   const { lang } = React.useContext(SettingsContext);
+  const { isOnline } = useCheckConnection();
   const { space } = props;
   const [value, setValue] = React.useState<string>('');
   const [inputIsInvalid, setInputInvalid] = React.useState<boolean>(false);
@@ -82,6 +84,7 @@ const ButtonGroup: React.FC<IProps> = (props) => {
       <Group spacing={'md'}>
         <ActionIcon
           onClick={() => setAddItemModal(true)}
+          disabled={!isOnline}
           size={'sm'}
           color={'teal'}
         >
@@ -89,6 +92,7 @@ const ButtonGroup: React.FC<IProps> = (props) => {
         </ActionIcon>
         <ActionIcon
           onClick={() => setDeleteItemModal(true)}
+          disabled={!isOnline}
           size={'sm'}
           color={'red'}
         >
