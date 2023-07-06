@@ -74,7 +74,7 @@ function HomeHeader() {
               <FilePlus />
             </Button>
             <Button
-              onClick={() => navigate('/easylist-ui-pwa/settings')}
+              onClick={() => navigate('/easylist-ui/settings')}
               disabled={!isOnline}
               color={'teal'}
             >

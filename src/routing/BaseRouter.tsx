@@ -9,7 +9,7 @@ import { LoadingOverlay } from '@mantine/core';
 // const HomePage = lazy(() => import('../views/HomePage'));
 // const SettingsPage = lazy(() => import('../views/SettingsPage'));
 
-const base = '/easylist-ui-pwa';
+const base = '/easylist-ui';
 
 const BaseRouter: React.FC = () => {
   return (
