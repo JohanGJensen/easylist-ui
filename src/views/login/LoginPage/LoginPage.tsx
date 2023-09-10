@@ -22,7 +22,7 @@ const LoginPage: React.FC = () => {
   const { login } = React.useContext(UserContext);
 
   const handleClick = () => {
-    navigate(`/easylist-ui-pwa/register`);
+    navigate(`/easylist-ui/register`);
   };
 
   const handleLogin = (d: FieldValues) => {

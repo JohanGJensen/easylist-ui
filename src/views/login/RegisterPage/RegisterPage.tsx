@@ -34,7 +34,7 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
   const { register: registerAPI } = React.useContext(UserContext);
 
   const handleClick = () => {
-    navigate(`/easylist-ui-pwa/login`);
+    navigate(`/easylist-ui/login`);
   };
 
   const handleRegister = (d: FieldValues) => {
