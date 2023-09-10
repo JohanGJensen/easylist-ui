@@ -6,7 +6,7 @@ interface ProtectedRouteProps {
   children: JSX.Element;
 }
 
-const base = '/easylist-ui-pwa';
+const base = '/easylist-ui';
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = (props) => {
   const { children } = props;

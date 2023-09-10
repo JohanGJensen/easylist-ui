@@ -43,7 +43,7 @@ const UserProvider: React.FC<IProviderProps> = ({ children }) => {
           setUser({ jwt: getCookie('jwt') });
 
           // navigate home
-          navigate(`/easylist-ui-pwa/home`);
+          navigate(`/easylist-ui/home`);
         }
       })
       .catch((error) => {
@@ -57,7 +57,8 @@ const UserProvider: React.FC<IProviderProps> = ({ children }) => {
       .then((response) => {
         const { data } = response;
 
-        if (data && data.message === 'healthy') {
+        // if (data && data.message === 'healthy') {
+        if (data === 'healthy') {
           setOnline(true);
         }
       })
@@ -73,7 +74,7 @@ const UserProvider: React.FC<IProviderProps> = ({ children }) => {
 
     if (user) {
       // navigate home
-      navigate(`/easylist-ui-pwa/home`);
+      navigate(`/easylist-ui/home`);
       return;
     }
 
@@ -82,7 +83,7 @@ const UserProvider: React.FC<IProviderProps> = ({ children }) => {
 
     if (jwt) {
       setUser({ jwt: getCookie('jwt') });
-      navigate(`/easylist-ui-pwa/home`);
+      navigate(`/easylist-ui/home`);
     }
   }, [user]);
 
