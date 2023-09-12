@@ -6,12 +6,13 @@ import { FieldError, FieldValues, useForm } from 'react-hook-form';
 import Wrapper from '../components/WrapperCard';
 import useErrorMessage from '../hooks/useErrorMessage';
 
-import '../styles/styles.css';
+import styles from '../styles/styles.module.css';
 import BackendStatus from '../components/BackendStatus';
 import { UserContext } from 'providers/UserProvider';
 import { RegistrationRequest } from 'api';
 
 const LoginPage: React.FC = () => {
+  const { marginBottom, labelStyling, glassMorph, card } = styles;
   const {
     handleSubmit,
     register,
@@ -45,19 +46,19 @@ const LoginPage: React.FC = () => {
           withBorder={true}
           radius={'sm'}
           style={{ width: '350px' }}
-          className={'glass-morph card'}
+          className={`${glassMorph} ${card}`}
         >
-          <Title order={2} className={'margin-btm'}>
+          <Title order={2} className={marginBottom}>
             Login Page
           </Title>
           <form>
             <Input.Wrapper
-              label={<label className={'labelStyling'}>username</label>}
+              label={<label className={labelStyling}>username</label>}
               error={errorMessage(errors.userName as FieldError)}
               errorProps={{
                 style: { color: '#FFC2AD' },
               }}
-              className={'margin-btm'}
+              className={marginBottom}
             >
               <Input
                 {...register('userName', {
@@ -67,12 +68,12 @@ const LoginPage: React.FC = () => {
               />
             </Input.Wrapper>
             <Input.Wrapper
-              label={<label className={'labelStyling'}>password</label>}
+              label={<label className={labelStyling}>password</label>}
               error={errorMessage(errors.password as FieldError)}
               errorProps={{
                 style: { color: '#FFC2AD' },
               }}
-              className={'margin-btm'}
+              className={marginBottom}
             >
               <Input
                 {...register('password', {

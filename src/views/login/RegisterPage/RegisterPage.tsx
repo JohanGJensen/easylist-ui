@@ -4,7 +4,7 @@ import { Button, Title, Input, Card } from '@mantine/core';
 import Header from 'components/Header/Header';
 import Wrapper from '../components/WrapperCard';
 
-import '../styles/styles.css';
+import styles from '../styles/styles.module.css';
 import { FieldError, FieldValues, useForm } from 'react-hook-form';
 import useErrorMessage from '../hooks/useErrorMessage';
 import BackendStatus from '../components/BackendStatus';
@@ -23,6 +23,7 @@ interface RegisterPageProps {
  */
 
 const RegisterPage: React.FC<RegisterPageProps> = () => {
+  const { marginBottom, labelStyling, glassMorph, card } = styles;
   const {
     handleSubmit,
     register,
@@ -57,18 +58,18 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
           withBorder={true}
           radius={'sm'}
           style={{ width: '350px' }}
-          className={'glass-morph card'}
+          className={`${glassMorph} ${card}`}
         >
-          <Title order={2} className={'margin-btm'}>
+          <Title order={2} className={marginBottom}>
             Register Page
           </Title>
           <Input.Wrapper
-            label={<label className={'labelStyling'}>username</label>}
+            label={<label className={labelStyling}>username</label>}
             error={errorMessage(errors.userName as FieldError)}
             errorProps={{
               style: { color: '#FFC2AD' },
             }}
-            className={'margin-btm'}
+            className={marginBottom}
           >
             <Input
               {...register('userName', {
@@ -86,12 +87,12 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
             />
           </Input.Wrapper>
           <Input.Wrapper
-            label={<label className={'labelStyling'}>password</label>}
+            label={<label className={labelStyling}>password</label>}
             error={errorMessage(errors.password as FieldError)}
             errorProps={{
               style: { color: '#FFC2AD' },
             }}
-            className={'margin-btm'}
+            className={marginBottom}
           >
             <Input
               {...register('password', {
@@ -110,12 +111,12 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
             />
           </Input.Wrapper>
           <Input.Wrapper
-            label={<label className={'labelStyling'}>confirm password</label>}
+            label={<label className={labelStyling}>confirm password</label>}
             error={errorMessage(errors.confirmPassword as FieldError)}
             errorProps={{
               style: { color: '#FFC2AD' },
             }}
-            className={'margin-btm'}
+            className={marginBottom}
           >
             <Input
               {...register('confirmPassword', {

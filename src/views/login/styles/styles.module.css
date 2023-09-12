@@ -1,4 +1,4 @@
-.glass-morph {
+.glassMorph {
   /* From https://css.glass */
   background: rgba(255, 255, 255, 0.15);
   border-radius: 16px;
@@ -16,6 +16,6 @@
   color: #ffffff;
 }
 
-.margin-btm {
+.marginBottom {
   margin-bottom: 0.5em;
 }
