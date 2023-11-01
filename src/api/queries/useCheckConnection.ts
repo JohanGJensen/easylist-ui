@@ -13,7 +13,7 @@ export const useCheckConnection = (): ConnectionQuery => {
     onSuccess: (data) => {
       const { data: status } = data;
 
-      if (typeof status === 'string' && status === 'healthy') {
+      if (status && status.message === 'healthy') {
         setOnline(true);
       }
     },
