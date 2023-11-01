@@ -31,7 +31,7 @@
     "start": "vite",
     "dev": "vite --no-open",
     "build": "tsc && vite build",
-    "serve": "vite preview",
+    "preview": "vite preview",
     "test": "vitest watch",
     "test:no-watch": "vitest run",
     "test:coverage": "vitest run --coverage",
