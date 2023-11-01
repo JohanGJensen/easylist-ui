@@ -21,28 +21,28 @@ export const getStatus = () => {
 };
 
 export const getAllSpaces = () => {
-  return http.get(`${HOST}/api/spaces/all`);
+  return http.get(`/api/spaces/all`);
 };
 
 export const postNewSpace = (request: ISpaceRequest) => {
-  return http.post(`${HOST}/api/spaces/create`, request);
+  return http.post(`/api/spaces/create`, request);
 };
 
 export const deleteSpace = (spaceId: string) => {
-  return http.delete(`${HOST}/api/spaces/delete/${spaceId}`);
+  return http.delete(`/api/spaces/delete/${spaceId}`);
 };
 
 export const postNewItem = (data: IRequestMutation<IItemRequest>) => {
   const { spaceId, request } = data;
-  return http.post(`${HOST}/api/items/create/${spaceId}`, request);
+  return http.post(`/api/items/create/${spaceId}`, request);
 };
 
 export const postItemUpdate = (data: IRequestMutation<IItemRequest>) => {
   const { spaceId, itemId, request } = data;
-  return http.post(`${HOST}/api/items/update/${spaceId}/${itemId}`, request);
+  return http.post(`/api/items/update/${spaceId}/${itemId}`, request);
 };
 
 export const deleteItem = (data: IRequestMutation<IItemRequest>) => {
   const { spaceId, itemId } = data;
-  return http.delete(`${HOST}/api/items/delete/${spaceId}/${itemId}`);
+  return http.delete(`/api/items/delete/${spaceId}/${itemId}`);
 };
