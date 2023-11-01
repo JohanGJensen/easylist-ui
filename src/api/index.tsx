@@ -9,7 +9,7 @@ export const HOST = import.meta.env.VITE_API_HOST;
 // const JWT = getCookie('jwt');
 
 export const http = axios.create({
-  baseURL: HOST,
+  baseURL: HOST + '/api',
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
     Authorization: getCookie('jwt'),

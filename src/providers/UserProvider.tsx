@@ -57,8 +57,8 @@ const UserProvider: React.FC<IProviderProps> = ({ children }) => {
       .then((response) => {
         const { data } = response;
 
-        // if (data && data.message === 'healthy') {
-        if (data === 'healthy') {
+        // if (data === 'healthy') {
+        if (data && data.message === 'healthy') {
           setOnline(true);
         }
       })

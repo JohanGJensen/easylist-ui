@@ -36,7 +36,7 @@
     "test": "vitest watch",
     "test:no-watch": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "predeploy": "npm run build",
+    "predeploy": "pnpm build",
     "deploy": "gh-pages -d build",
     "lint": "eslint src/ --max-warnings=0"
   },
