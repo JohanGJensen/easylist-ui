@@ -9,6 +9,8 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import SpaceProvider from './providers/SpaceProvider';
 import UserProvider from 'providers/UserProvider';
 
+import 'globalStyles.css';
+
 const container: HTMLElement | null = document.getElementById('root');
 const root = createRoot(container as HTMLElement);
 
