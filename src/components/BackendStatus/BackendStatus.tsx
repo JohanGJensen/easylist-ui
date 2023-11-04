@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, ThemeIcon } from '@mantine/core';
-import { useCheckConnection } from 'api/queries/useCheckConnection';
+import { useCheckServiceStatus } from 'api/queries/useCheckServiceStatus';
 import { PlugConnected, PlugConnectedX } from 'tabler-icons-react';
 
 const BackendStatus: React.FC = () => {
-  const { isOnline } = useCheckConnection();
+  const { isOnline } = useCheckServiceStatus();
 
   return (
     <Box

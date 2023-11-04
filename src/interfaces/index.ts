@@ -1,6 +1,11 @@
 export * from './providers';
 export * from './language';
 
+export const Environment = {
+  PRODUCTION: 'production',
+  DEVELOPMENT: 'development',
+} as const;
+
 export interface ISpaceItem {
   id: string;
   complete: boolean;

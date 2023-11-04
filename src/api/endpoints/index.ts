@@ -1,12 +1,16 @@
 import axios from 'axios';
 import { getCookie } from 'utilities/cookieFunctions';
-import { IItemRequest, ISpaceRequest } from '../interfaces';
-import { IRequestMutation } from './mutations/useMutateItems';
+import {
+  IItemRequest,
+  ISpace,
+  ISpaceRequest,
+  ISpaceItem,
+} from '../../interfaces';
+import { IRequestMutation } from '../mutations/useItemMutation';
 
 export * from './user/user';
 
 export const HOST = import.meta.env.VITE_API_HOST;
-// const JWT = getCookie('jwt');
 
 export const http = axios.create({
   baseURL: HOST,
@@ -16,20 +20,24 @@ export const http = axios.create({
   },
 });
 
+export type ResponseMessage = {
+  message: string;
+};
+
 export const getStatus = () => {
   return http.get(`/api/health`);
 };
 
 export const getAllSpaces = () => {
-  return http.get(`/api/spaces/all`);
+  return http.get<ISpace[]>(`/api/spaces/all`);
 };
 
 export const postNewSpace = (request: ISpaceRequest) => {
-  return http.post(`/api/spaces/create`, request);
+  return http.post<ISpace>(`/api/spaces/create`, request);
 };
 
 export const deleteSpace = (spaceId: string) => {
-  return http.delete(`/api/spaces/delete/${spaceId}`);
+  return http.delete<ResponseMessage>(`/api/spaces/delete/${spaceId}`);
 };
 
 export const postNewItem = (data: IRequestMutation<IItemRequest>) => {
@@ -39,10 +47,13 @@ export const postNewItem = (data: IRequestMutation<IItemRequest>) => {
 
 export const postItemUpdate = (data: IRequestMutation<IItemRequest>) => {
   const { spaceId, itemId, request } = data;
-  return http.post(`/api/items/update/${spaceId}/${itemId}`, request);
+  return http.post<ISpaceItem>(
+    `/api/items/update/${spaceId}/${itemId}`,
+    request
+  );
 };
 
 export const deleteItem = (data: IRequestMutation<IItemRequest>) => {
   const { spaceId, itemId } = data;
-  return http.delete(`/api/items/delete/${spaceId}/${itemId}`);
+  return http.delete<ResponseMessage>(`/api/items/delete/${spaceId}/${itemId}`);
 };

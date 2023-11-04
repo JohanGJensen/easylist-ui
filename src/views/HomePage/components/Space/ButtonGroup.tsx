@@ -9,9 +9,9 @@ import { ActionIcon, Group, Modal, Input, Button, Text } from '@mantine/core';
 import { Plus, ShoppingCart, Trash } from 'tabler-icons-react';
 
 // mutations
-import useMutateSpaces from '../../../../api/mutations/useMutateSpaces';
-import useMutateItems from '../../../../api/mutations/useMutateItems';
-import { useCheckConnection } from 'api/queries/useCheckConnection';
+import useMutateSpaces from '../../../../api/mutations/useSpaceMutation';
+import useMutateItems from '../../../../api/mutations/useItemMutation';
+import { useCheckServiceStatus } from 'api/queries/useCheckServiceStatus';
 
 interface IProps {
   space: ISpace;
@@ -19,7 +19,7 @@ interface IProps {
 
 const ButtonGroup: React.FC<IProps> = (props) => {
   const { lang } = React.useContext(SettingsContext);
-  const { isOnline } = useCheckConnection();
+  const { isOnline } = useCheckServiceStatus();
   const { space } = props;
   const [value, setValue] = React.useState<string>('');
   const [inputIsInvalid, setInputInvalid] = React.useState<boolean>(false);
@@ -27,7 +27,7 @@ const ButtonGroup: React.FC<IProps> = (props) => {
   const [deleteItemModal, setDeleteItemModal] = React.useState<boolean>(false);
 
   const { removeSpace } = useMutateSpaces();
-  const { newItem } = useMutateItems(space);
+  const { createItem } = useMutateItems(space);
 
   const addItem = () => {
     const request = {
@@ -39,7 +39,7 @@ const ButtonGroup: React.FC<IProps> = (props) => {
       request: request,
     };
 
-    newItem(data);
+    createItem(data);
   };
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {

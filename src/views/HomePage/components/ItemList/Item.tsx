@@ -9,8 +9,8 @@ import { Trash } from 'tabler-icons-react';
 import { ISpace, ISpaceItem } from '../../../../interfaces';
 
 // api
-import useMutateItems from '../../../../api/mutations/useMutateItems';
-import { useCheckConnection } from 'api/queries/useCheckConnection';
+import useMutateItems from '../../../../api/mutations/useItemMutation';
+import { useCheckServiceStatus } from 'api/queries/useCheckServiceStatus';
 
 // styling
 
@@ -26,7 +26,7 @@ enum CheckBoxPosition {
 
 const Item: React.FC<IProps> = (props) => {
   const { checkboxPos } = useContext(SettingsContext);
-  const { isOnline } = useCheckConnection();
+  const { isOnline } = useCheckServiceStatus();
   const { space, item } = props;
   const [complete, setComplete] = useState<boolean>(item.complete);
   const completedStyle = complete ? { textDecoration: 'line-through' } : {};

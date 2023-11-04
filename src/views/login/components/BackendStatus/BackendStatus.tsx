@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Loader, Text } from '@mantine/core';
-import { UserContext } from 'providers/UserProvider';
+import { useCheckServiceStatus } from 'api/queries/useCheckServiceStatus';
 
 const statusColors = {
   notOnline: {
@@ -16,8 +16,8 @@ const statusColors = {
 const BackendStatus: React.FC = () => {
   const { online, notOnline } = statusColors;
 
-  const { online: isOnline } = React.useContext(UserContext);
-
+  const { isOnline } = useCheckServiceStatus();
+  console.log('login status', isOnline);
   return (
     <Box
       sx={() => ({

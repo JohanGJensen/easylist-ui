@@ -1,8 +1,10 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import SettingsProvider from './providers/SettingsProvider';
+import { Environment } from 'interfaces';
 
 import BaseRouter from './routing/BaseRouter';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
@@ -15,6 +17,7 @@ const container: HTMLElement | null = document.getElementById('root');
 const root = createRoot(container as HTMLElement);
 
 const queryClient = new QueryClient();
+const env = import.meta.env.VITE_APP_ENVIRONMENT;
 
 root.render(
   <React.StrictMode>
@@ -28,6 +31,10 @@ root.render(
           </SettingsProvider>
         </UserProvider>
       </BrowserRouter>
+
+      {env === Environment.DEVELOPMENT && (
+        <ReactQueryDevtools initialIsOpen={false} />
+      )}
     </QueryClientProvider>
   </React.StrictMode>
 );

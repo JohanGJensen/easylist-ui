@@ -1,4 +1,4 @@
-import { getStatus, postLogin, postRegister, RegistrationRequest } from 'api';
+import { postLogin, postRegister, RegistrationRequest } from 'api/endpoints';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCookie, setCookie } from 'utilities/cookieFunctions';
@@ -15,7 +15,6 @@ interface IProviderProps {
 const UserProvider: React.FC<IProviderProps> = ({ children }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
-  const [online, setOnline] = useState<boolean>(false);
 
   const login = async (request: RegistrationRequest) => {
     await postLogin(request)
@@ -52,28 +51,7 @@ const UserProvider: React.FC<IProviderProps> = ({ children }) => {
       });
   };
 
-  const fetchStatus = async () => {
-    await getStatus()
-      .then((response) => {
-        const { data } = response;
-
-        // if (data === 'healthy') {
-        if (data && data.message === 'healthy') {
-          setOnline(true);
-        } else {
-          console.warn('application backend not healthy');
-        }
-      })
-      .catch((error) => {
-        setOnline(false);
-        console.error(error);
-      });
-  };
-
   useEffect(() => {
-    // get backend availability status
-    fetchStatus();
-
     if (user) {
       // navigate home
       navigate(`/easylist-ui/home`);
@@ -91,7 +69,6 @@ const UserProvider: React.FC<IProviderProps> = ({ children }) => {
 
   const values: IUserState = {
     user,
-    online,
     login,
     register,
   };

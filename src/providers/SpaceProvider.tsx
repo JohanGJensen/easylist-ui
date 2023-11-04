@@ -24,11 +24,11 @@ const SpaceProvider: React.FC<IProviderProps> = ({ children }) => {
     setSpacesData(spaces);
   };
 
-  const handleAddSpace = (space: ISpace) => {
+  const handleCreateSpace = (space: ISpace) => {
     setSpacesData([...data, space]);
   };
 
-  const handleAddItem = (spaceId: string, item: ISpaceItem) => {
+  const handleCreateItem = (spaceId: string, item: ISpaceItem) => {
     const newData: ISpace[] = data.map((space) => {
       if (space.id === spaceId) {
         space.items.push(item);
@@ -93,8 +93,8 @@ const SpaceProvider: React.FC<IProviderProps> = ({ children }) => {
     handleSetAllSpaces,
     handleDeleteItem,
     handleDeleteSpace,
-    handleAddItem,
-    handleAddSpace,
+    handleCreateItem,
+    handleCreateSpace,
     handleUpdateItem,
   };
 

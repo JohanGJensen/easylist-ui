@@ -8,22 +8,22 @@ import { Button, Select, Group, Input, Modal } from '@mantine/core';
 import { FilePlus, Settings } from 'tabler-icons-react';
 
 // mutations
-import useMutateSpaces from '../../../api/mutations/useMutateSpaces';
+import useMutateSpaces from '../../../api/mutations/useSpaceMutation';
 
 import { ISpaceRequest } from '../../../interfaces';
-import { useCheckConnection } from 'api/queries/useCheckConnection';
+import { useCheckServiceStatus } from 'api/queries/useCheckServiceStatus';
 
 function HomeHeader() {
   const navigate = useNavigate();
 
   const { lang } = React.useContext(SettingsContext);
-  const { isOnline } = useCheckConnection();
+  const { isOnline } = useCheckServiceStatus();
   const [addSpaceModal, setAddSpaceModal] = React.useState<boolean>(false);
   const [inputValue, setInputValue] = React.useState<string>('');
   const [inputIsInvalid, setInputInvalid] = React.useState<boolean>(false);
   const [selectValue, setSelectValue] = React.useState<string>('All');
 
-  const { newSpace } = useMutateSpaces();
+  const { createSpace } = useMutateSpaces();
 
   const onAddSpace = () => {
     const request: ISpaceRequest = {
@@ -31,7 +31,7 @@ function HomeHeader() {
       user: selectValue,
     };
 
-    newSpace(request);
+    createSpace(request);
 
     onCloseModal();
   };
