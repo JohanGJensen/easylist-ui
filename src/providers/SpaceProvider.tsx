@@ -20,13 +20,13 @@ const SpaceProvider: React.FC<IProviderProps> = ({ children }) => {
     localStorage.setItem('spaces', JSON.stringify(spaces));
   };
 
-  const handleSetAllSpaces = (spaces: ISpace[]) => {
-    setSpacesData(spaces);
-  };
+  // const handleSetAllSpaces = (spaces: ISpace[]) => {
+  //   setSpacesData(spaces);
+  // };
 
-  const handleCreateSpace = (space: ISpace) => {
-    setSpacesData([...data, space]);
-  };
+  // const handleCreateSpace = (space: ISpace) => {
+  //   setSpacesData([...data, space]);
+  // };
 
   const handleCreateItem = (spaceId: string, item: ISpaceItem) => {
     const newData: ISpace[] = data.map((space) => {
@@ -55,16 +55,16 @@ const SpaceProvider: React.FC<IProviderProps> = ({ children }) => {
     setSpacesData([...newData]);
   };
 
-  const handleDeleteSpace = (spaceId: string) => {
-    const newData: ISpace[] = data;
-    const spaceIndex: number = data.findIndex((space) => {
-      return space.id === spaceId;
-    });
+  // const handleDeleteSpace = (spaceId: string) => {
+  //   const newData: ISpace[] = data;
+  //   const spaceIndex: number = data.findIndex((space) => {
+  //     return space.id === spaceId;
+  //   });
 
-    newData.splice(spaceIndex, 1);
+  //   newData.splice(spaceIndex, 1);
 
-    setSpacesData([...newData]);
-  };
+  //   setSpacesData([...newData]);
+  // };
 
   const handleUpdateItem = (spaceId: string, item: ISpaceItem) => {
     const spaceIndex: number = data.findIndex((space) => {
@@ -90,11 +90,11 @@ const SpaceProvider: React.FC<IProviderProps> = ({ children }) => {
 
   const values: ISpaceState = {
     data,
-    handleSetAllSpaces,
+    // handleSetAllSpaces,
     handleDeleteItem,
-    handleDeleteSpace,
+    // handleDeleteSpace,
     handleCreateItem,
-    handleCreateSpace,
+    // handleCreateSpace,
     handleUpdateItem,
   };
 

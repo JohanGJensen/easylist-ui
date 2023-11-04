@@ -6,9 +6,6 @@ export type LanguageTypes = 'en_US' | 'da_DK' | 'es_ES';
 
 export interface ISpaceState {
   data: ISpace[];
-  handleSetAllSpaces: (spaces: ISpace[]) => void;
-  handleCreateSpace: (space: ISpace) => void;
-  handleDeleteSpace: (spaceId: string) => void;
   handleCreateItem: (spaceId: string, item: ISpaceItem) => void;
   handleDeleteItem: (space: ISpace, itemId: string) => void;
   handleUpdateItem: (spaceId: string, item: ISpaceItem) => void;

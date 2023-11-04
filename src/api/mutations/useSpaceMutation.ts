@@ -1,29 +1,20 @@
-import { useContext } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { deleteSpace, postNewSpace } from '../endpoints';
-import { SpaceContext } from '../../providers/SpaceProvider';
 
 const useSpaceMutation = () => {
-  const { handleCreateSpace, handleDeleteSpace } = useContext(SpaceContext);
+  const qc = useQueryClient();
 
-  const {
-    mutate: createSpace,
-    isSuccess: created,
-    data: createdData,
-  } = useMutation({
+  const { mutate: createSpace, isSuccess: created } = useMutation({
     mutationFn: postNewSpace,
   });
 
-  if (created) handleCreateSpace(createdData.data);
+  if (created) qc.refetchQueries({ queryKey: ['spaces'], stale: true });
 
-  const {
-    mutate: removeSpace,
-    isSuccess: deleted,
-    data: deletedData,
-  } = useMutation({ mutationFn: deleteSpace });
+  const { mutate: removeSpace, isSuccess: deleted } = useMutation({
+    mutationFn: deleteSpace,
+  });
 
-  if (deleted) console.log(deletedData);
-  // if (deleted) handleDeleteSpace(deletedData.data.id);
+  if (deleted) qc.refetchQueries({ queryKey: ['spaces'] });
 
   return { removeSpace, createSpace };
 };
