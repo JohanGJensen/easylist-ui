@@ -22,7 +22,6 @@ const UserProvider: React.FC<IProviderProps> = ({ children }) => {
         const { data, status } = response;
 
         if (status === 200 && data.token) {
-          console.log('login', data.token);
           setCookie('jwt', data.token, 1);
           setUser({ jwt: getCookie('jwt') });
         }
@@ -53,7 +52,6 @@ const UserProvider: React.FC<IProviderProps> = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log('effect user', user);
     if (user) {
       // navigate home
       navigate(`/easylist-ui/home`);
