@@ -62,7 +62,7 @@ const UserProvider: React.FC<IProviderProps> = ({ children }) => {
     const jwt = getCookie('jwt');
 
     if (jwt) {
-      setUser({ jwt: getCookie('jwt') });
+      setUser({ jwt: jwt });
       navigate(`/easylist-ui/home`);
     }
   }, [user]);

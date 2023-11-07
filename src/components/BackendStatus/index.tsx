@@ -1,1 +1,1 @@
-export { default as BackendStatus } from './BackendStatus';
+export { default } from './BackendStatus';

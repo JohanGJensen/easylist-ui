@@ -7,7 +7,7 @@ import Wrapper from '../components/WrapperCard';
 import useErrorMessage from '../hooks/useErrorMessage';
 
 import styles from '../styles/styles.module.css';
-import BackendStatus from '../components/BackendStatus';
+import BackendStatus from '../../../components/BackendStatus';
 import { UserContext } from 'providers/UserProvider';
 import { RegistrationRequest } from 'api/endpoints';
 
