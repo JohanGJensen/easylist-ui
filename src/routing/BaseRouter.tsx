@@ -1,16 +1,17 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import HomePage from '../views/HomePage';
-import SettingsPage from '../views/SettingsPage';
+// import HomePage from '../views/HomePage';
+// import SettingsPage from '../views/SettingsPage';
 
 // components
 import { LoadingOverlay } from '@mantine/core';
 import LoginPage from '../views/login/LoginPage';
 import RegisterPage from '../views/login/RegisterPage';
 import ProtectedRoute from './ProtectedRoute';
-// const HomePage = lazy(() => import('../views/HomePage'));
-// const SettingsPage = lazy(() => import('../views/SettingsPage'));
+
+const HomePage = lazy(() => import('../views/HomePage'));
+const SettingsPage = lazy(() => import('../views/SettingsPage'));
 
 const base = '/easylist-ui';
 

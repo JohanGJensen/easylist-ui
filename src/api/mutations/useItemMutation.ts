@@ -1,8 +1,5 @@
-import { useContext } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteItem, postItemUpdate, postNewItem } from '../endpoints';
-import { SpaceContext } from '../../providers/SpaceProvider';
-import { ISpace } from '../../interfaces';
 
 export interface IRequestMutation<T> {
   spaceId?: string;
@@ -10,38 +7,26 @@ export interface IRequestMutation<T> {
   request?: T;
 }
 
-const useItemMutation = (space: ISpace) => {
-  const { handleCreateItem, handleDeleteItem, handleUpdateItem } =
-    useContext(SpaceContext);
+const useItemMutation = () => {
+  const qc = useQueryClient();
 
-  // const { mutate: removeItem } = useMutation(deleteItem, {
-  //   onSuccess: ({ data: item }) => {
-  //     handleDeleteItem(space, item.id);
-  //   },
-  // });
-  const {
-    mutate: removeItem,
-    isSuccess: deleted,
-    data: deletedData,
-  } = useMutation({ mutationFn: deleteItem });
+  const { mutate: removeItem, isSuccess: deleted } = useMutation({
+    mutationFn: deleteItem,
+  });
 
-  if (deleted) console.log(deletedData);
+  if (deleted) qc.refetchQueries({ queryKey: ['spaces'] });
 
-  const {
-    mutate: updateItem,
-    isSuccess: updated,
-    data: updatedData,
-  } = useMutation({ mutationFn: postItemUpdate });
+  const { mutate: updateItem, isSuccess: updated } = useMutation({
+    mutationFn: postItemUpdate,
+  });
 
-  if (updated) handleUpdateItem(space.id, updatedData.data);
+  if (updated) qc.refetchQueries({ queryKey: ['spaces'], stale: true });
 
-  const {
-    mutate: createItem,
-    isSuccess: created,
-    data: createdData,
-  } = useMutation({ mutationFn: postNewItem });
+  const { mutate: createItem, isSuccess: created } = useMutation({
+    mutationFn: postNewItem,
+  });
 
-  if (created) handleCreateItem(space.id, createdData.data);
+  if (created) qc.refetchQueries({ queryKey: ['spaces'], stale: true });
 
   return { removeItem, updateItem, createItem };
 };

@@ -8,17 +8,15 @@ type SpaceQuery = {
 };
 
 const useSpaceQueries = (): SpaceQuery => {
-  const { isLoading, isSuccess, data } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ['spaces'],
     queryFn: getAllSpaces,
     staleTime: 3000,
   });
 
-  if (isSuccess) {
-    return { isLoading, spaces: data.data };
-  }
-
-  return { isLoading, spaces: [] };
+  // seems like caching replaces a value of being an axios response with ISpace[]
+  console.log('data', data);
+  return { isLoading, spaces: data?.data ?? [] };
 };
 
 export default useSpaceQueries;

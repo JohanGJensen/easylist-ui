@@ -8,7 +8,6 @@ import { Environment } from 'interfaces';
 
 import BaseRouter from './routing/BaseRouter';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-// import SpaceProvider from './providers/SpaceProvider';
 import UserProvider from 'providers/UserProvider';
 
 import './globalStyles.css';
@@ -25,9 +24,7 @@ root.render(
       <BrowserRouter>
         <UserProvider>
           <SettingsProvider>
-            {/* <SpaceProvider> */}
             <BaseRouter />
-            {/* </SpaceProvider> */}
           </SettingsProvider>
         </UserProvider>
       </BrowserRouter>

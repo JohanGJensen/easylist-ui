@@ -31,7 +31,7 @@ const Item: React.FC<IProps> = (props) => {
   const [complete, setComplete] = useState<boolean>(item.complete);
   const completedStyle = complete ? { textDecoration: 'line-through' } : {};
 
-  const { removeItem, updateItem } = useMutateItems(space);
+  const { removeItem, updateItem } = useMutateItems();
 
   const onChange = () => {
     const request = {

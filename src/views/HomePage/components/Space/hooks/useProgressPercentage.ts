@@ -1,11 +1,11 @@
 import React from 'react';
-import { SpaceContext } from '../../../../../providers/SpaceProvider';
+import useSpaceQueries from 'api/queries/useSpaceQueries';
 
 // types
 import { ISpace } from '../../../../../interfaces';
 
 export const useProgressPercentage = (space: ISpace) => {
-  const { data } = React.useContext(SpaceContext);
+  const { spaces } = useSpaceQueries();
   const [percentage, setPercentage] = React.useState<number>(0);
 
   React.useEffect(() => {
@@ -20,7 +20,7 @@ export const useProgressPercentage = (space: ISpace) => {
     const percent = decimal * 100;
 
     setPercentage(percent);
-  }, [data, space.items]);
+  }, [spaces, space.items]);
 
   return percentage;
 };

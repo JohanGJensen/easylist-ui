@@ -9,8 +9,8 @@ import { ActionIcon, Group, Modal, Input, Button, Text } from '@mantine/core';
 import { Plus, ShoppingCart, Trash } from 'tabler-icons-react';
 
 // mutations
-import useMutateSpaces from '../../../../api/mutations/useSpaceMutation';
-import useMutateItems from '../../../../api/mutations/useItemMutation';
+import useSpaceMutation from '../../../../api/mutations/useSpaceMutation';
+import useItemMutation from '../../../../api/mutations/useItemMutation';
 import { useCheckServiceStatus } from 'api/queries/useCheckServiceStatus';
 
 interface IProps {
@@ -26,8 +26,8 @@ const ButtonGroup: React.FC<IProps> = (props) => {
   const [addItemModal, setAddItemModal] = React.useState<boolean>(false);
   const [deleteItemModal, setDeleteItemModal] = React.useState<boolean>(false);
 
-  const { removeSpace } = useMutateSpaces();
-  const { createItem } = useMutateItems(space);
+  const { removeSpace } = useSpaceMutation();
+  const { createItem } = useItemMutation();
 
   const addItem = () => {
     const request = {

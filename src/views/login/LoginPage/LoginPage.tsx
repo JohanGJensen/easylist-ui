@@ -9,7 +9,7 @@ import useErrorMessage from '../hooks/useErrorMessage';
 import styles from '../styles/styles.module.css';
 import BackendStatus from '../components/BackendStatus';
 import { UserContext } from 'providers/UserProvider';
-import { RegistrationRequest } from 'api';
+import { RegistrationRequest } from 'api/endpoints';
 
 const LoginPage: React.FC = () => {
   const { marginBottom, labelStyling, glassMorph, card } = styles;

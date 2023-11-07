@@ -17,7 +17,7 @@ const BackendStatus: React.FC = () => {
   const { online, notOnline } = statusColors;
 
   const { isOnline } = useCheckServiceStatus();
-  console.log('login status', isOnline);
+
   return (
     <Box
       sx={() => ({
